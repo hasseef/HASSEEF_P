@@ -1,1 +1,1 @@
-// Production JS placeholder
+// Custom production scripts can go here
