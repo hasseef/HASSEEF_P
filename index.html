@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>منصة حصيف — نموذج تشغيل تفاعلي (PRO v5)</title>
+<title>منصة حصيف — نموذج تشغيل تفاعلي (PRO v6)</title>
 <style>
 :root{--accent:#0b5b34;--gold:#c9a227;--bg:#f7f6f1;--ink:#111827;--muted:#6b7280;--bd:#e5e7eb;--card:#ffffff}
 *{box-sizing:border-box}
@@ -48,6 +48,7 @@ footer{color:var(--muted);text-align:center;padding:18px}
 .tabbar{display:flex;gap:8px;flex-wrap:wrap}
 .tabbar button{background:#fff;color:var(--accent);border:1px solid var(--accent)}
 .active-tab{background:var(--accent)!important;color:#fff!important}
+.note{font-size:12px;color:var(--muted)}
 @media (max-width:1100px){ .layout{grid-template-columns:1fr} aside{position:static} th,td{white-space:normal} }
 </style>
 </head>
@@ -64,8 +65,8 @@ footer{color:var(--muted);text-align:center;padding:18px}
         <img alt="HASSEEF" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2P4z8DwHwAFGgJ7gk3G8QAAAABJRU5ErkJggg==">
       </div>
     </div>
-    <h1>منصة حصيف — نموذج تشغيل تفاعلي (PRO v5)</h1>
-    <p>نسخة عرض تفاعلية تغطي جميع الحسابات مع مسارات موافقات متعددة وربط مستهدفات رؤية 2030 — البيانات محلية.</p>
+    <h1>منصة حصيف — نموذج تشغيل تفاعلي (PRO v6)</h1>
+    <p>نسخة عرض تفاعلية تغطي كل الحسابات مع مسارات موافقات متعددة وربط مستهدفات رؤية 2030 — البيانات محلية.</p>
     <div class="cta">
       <button onclick="enterApp()" style="font-size:16px;padding:10px 16px;border-radius:10px">دخول المنصة</button>
     </div>
@@ -131,7 +132,7 @@ footer{color:var(--muted);text-align:center;padding:18px}
 
 <script>
 /* ======== أدوات عامة وتخزين محلي ======== */
-const LS='hasif:data:pro_v5';
+const LS='hasif:data:pro_v6';
 function ts(){return new Date().toISOString()}
 function Q(s){return document.querySelector(s)}; function QA(s){return [...document.querySelectorAll(s)]}
 function id(p){return p+'-'+Math.random().toString(36).slice(2,8)}
@@ -180,6 +181,7 @@ const seed = {
   speakers:[{id:'spk-001',name:'أ. رندا',type:'متحدث',domain:'اقتصاد',rating:4.8},{id:'spk-002',name:'م. راكان',type:'مدرب',domain:'تقنية',rating:4.5}],
   csr:[{id:'csr-001',orgId:'org-priv-001',program:'تمكين خريجي التقنية',budget:150000,kpiTarget:500,period:'2025',status:'نشط'}],
   incubators:[{id:'ib-001',name:'مسرعة حصيف',ownerOrgId:'org-dev-001',acceptsFunding:true}],
+  incubatorApps:[],
   endowments:[{id:'wa-001',ownerOrgId:'org-np-001',name:'وقف التعليم',mode:'استثمار/تأجير',status:'نشط'}],
   grants:[{id:'gr-001',donorOrgId:'org-donor-001',title:'منح الأثر 2026',focus:'تعليم/مهارات',min:50000,max:300000}],
   collab:[{id:'co-001',fromOrg:'org-gov-001',toOrg:'org-priv-001',related:'in-001',type:'شراكة رعاية',message:'نرغب بالتنسيق حول الرعاية الذهبية',status:'جديد',thread:[]}],
@@ -187,18 +189,21 @@ const seed = {
   consultations:[{id:'cn-001',requester:'org-np-001',provider:'org-uni-001',topic:'قياس أثر مبادرة تعليمية',status:'قيد التعاقد'}],
   donorWallet:[{id:'dw-001',donorOrgId:'org-donor-001',balance:1000000,locked:0}],
   approvalsLog:[], reports:[], audit:[],
+  // إضافات الجامعة
+  uniPrograms:[{id:'up-001',uniId:'org-uni-001',title:'برنامج ريادة الأعمال',type:'أكاديمي',status:'نشط'}],
+  uniResearch:[{id:'ur-001',uniId:'org-uni-001',title:'بحث قياس الأثر الاجتماعي',status:'منشور',link:'#'}],
   auth:{user:null,role:null,region:'الرياض',token:null}
 };
 
 /* ======== القوائم حسب الدور ======== */
 const menus = {
   government:["لوحة المؤشرات","المبادرات للرعاية","المرافق","الإشكاليات/التحديات","الحلول (الواردة/الحرة)","الفعاليات & الموافقات","المتحدثون/المدربون","التدريب التعاوني","الوظائف","التطوع التخصصي","التواصل والشراكات","الاستشارات العلمية","الإعلام والعلاقات العامة","التقارير"],
-  development_authority:["لوحة هيئة التطوير","الحاضنات/المسرعات","المشاريع الإستراتيجية","ربط المناطق","التقارير"],
-  region:["لوحة المنطقة","طلبات الموافقة (إمارة/بلدية/دفاع مدني)","التقارير"],
+  development_authority:["لوحة هيئة التطوير","الحاضنات/المسرعات","طلبات الاحتضان","المشاريع الإستراتيجية","ربط المناطق","التقارير"],
+  region:["لوحة المنطقة","طلبات الموافقة (إمارة/بلدية/دفاع مدني)","سجل الموافقات","التقارير"],
   private:["لوحة CSR","رعاية المبادرات/الفعاليات","المرافق للتأجير","الفرص الاستثمارية","الوظائف","التدريب التعاوني","الفعاليات","الحلول المقترحة","الحاضنات","التقارير"],
   nonprofit:["لوحة المبادرات","الأوقاف/المرافق","الوظائف/التدريب/التطوع","التمويل/الرعايات","الاستشارات العلمية","الحلول","الإعلام","التقارير"],
-  university:["لوحة الجامعة","التدريب التعاوني","المرافق","البرامج/الأبحاث","الشريك العلمي","استشارات أعضاء هيئة التدريس","الفعاليات","التقارير"],
-  donor:["لوحة المانح","محفظة الجهة المانحة","معايير المنح","طلبات التمويل/الرعاية","الأثر والتقارير"],
+  university:["لوحة الجامعة","برامج الجامعة","الأبحاث","التدريب التعاوني","المرافق","الشريك العلمي","استشارات أعضاء هيئة التدريس","الفعاليات","التقارير"],
+  donor:["لوحة المانح","محفظة الجهة المانحة","معايير المنح","مطابقة المبادرات للمنح","طلبات التمويل/الرعاية","الأثر والتقارير"],
   individual:["ملفي","متحدث/مدرب/مستشار","الوظائف/التطوع/التدريب","الاستثمار/الرعاية","حضور الفعاليات","طرح حلول","طلب احتضان"],
   admin:["لوحة النظام","الحسابات والصلاحيات","الإشعارات","التدقيق","التقارير المجمعة","Swagger"]
 };
@@ -237,6 +242,7 @@ function buildMain(){
       <button onclick="switchDash('donor',this)">مانح</button>
     </div>
     <div id="dashRows" class="grid grid-3" style="margin-top:10px"></div>
+    <div class="note">تعقيب: هذه أرقام تشغيلية داخل النموذج، قابلة للمواءمة مع مؤشرات ملفاتك.</div>
   </section>
 
   <section class="card" id="sec-المبادرات-للرعاية">
@@ -291,13 +297,18 @@ function buildMain(){
       <input name="speakers" placeholder="متحدثون (،)"><select name="needsApproval"><option value="true">تحتاج موافقات</option><option value="false">بدون موافقات</option></select>
       <button>إضافة</button>
     </form>
-    <table><thead><tr><th>#</th><th>الجهة</th><th>العنوان</th><th>التاريخ</th><th>المدينة</th><th>المتحدثون</th><th>الإمارة</th><th>البلدية</th><th>الدفاع المدني</th></tr></thead><tbody id="evT"></tbody></table>
+    <table><thead><tr><th>#</th><th>الجهة</th><th>العنوان</th><th>التاريخ</th><th>المدينة</th><th>المتحدثون</th><th>الإمارة</th><th>البلدية</th><th>الدفاع المدني</th><th>طلب رعاية</th></tr></thead><tbody id="evT"></tbody></table>
   </section>
 
   <section class="card" id="sec-طلبات-الموافقة-(إمارة/بلدية/دفاع-مدني)">
     <h2>لوحة الموافقات (لإمارة المنطقة والجهات المختصة)</h2>
     <p class="muted">إصدار قرارات موافقة/رفض بكل جهة مع سبب، وتسجيلها في سجل الموافقات.</p>
     <table><thead><tr><th>#</th><th>مرجع</th><th>العنوان</th><th>المدينة</th><th>الإمارة</th><th>البلدية</th><th>الدفاع المدني</th><th>قرارات</th></tr></thead><tbody id="apT"></tbody></table>
+  </section>
+
+  <section class="card" id="sec-سجل-الموافقات">
+    <h2>سجل الموافقات (تتبع الأسباب)</h2>
+    <table><thead><tr><th>#</th><th>الفعالية</th><th>الجهة</th><th>الحالة</th><th>السبب</th><th>التاريخ</th></tr></thead><tbody id="apLogT"></tbody></table>
   </section>
 
   <section class="card" id="sec-المتحدثون/المدربون">
@@ -394,12 +405,44 @@ function buildMain(){
     <table><thead><tr><th>#</th><th>المانح</th><th>البرنامج</th><th>التركيز</th><th>الحدود</th></tr></thead><tbody id="grT"></tbody></table>
   </section>
 
+  <section class="card" id="sec-مطابقة-المبادرات-للمنح">
+    <h2>مطابقة المبادرات/الفعاليات مع معايير المنح</h2>
+    <div class="toolbar"><button class="btn-ghost" onclick="runGrantMatching()">تشغيل المطابقة</button></div>
+    <table><thead><tr><th>#</th><th>برنامج المنح</th><th>التركيز</th><th>المبادرة/الفعالية</th><th>سبب التطابق</th></tr></thead><tbody id="matchT"></tbody></table>
+    <div class="note">المعيار التجريبي الحالي: تطابق كلمات مفتاحية بسيطة بين (focus) والعنوان/الوصف/أهداف الرؤية.</div>
+  </section>
+
   <section class="card" id="sec-الحاضنات/المسرعات">
     <h2>الحاضنات/المسرعات</h2>
     <form id="ibForm" class="grid grid-3"><input name="name" placeholder="الاسم"><input name="ownerOrgId" placeholder="Org ID">
       <select name="acceptsFunding"><option value="true">تستقبل تمويل</option><option value="false">بدون تمويل</option></select><button>إضافة</button>
     </form>
     <table><thead><tr><th>#</th><th>الاسم</th><th>المالك</th><th>تمويل</th></tr></thead><tbody id="ibT"></tbody></table>
+  </section>
+
+  <section class="card" id="sec-طلبات-الاحتضان">
+    <h2>طلبات الاحتضان (مشاريع أفراد/جهات → حاضنات)</h2>
+    <form id="ibAppForm" class="grid grid-3">
+      <input name="incubatorId" placeholder="معرّف الحاضنة (ib-*)"><input name="owner" placeholder="الطالب (Org/Individual)">
+      <input name="title" placeholder="عنوان المشروع/الفكرة"><button>إرسال طلب</button>
+    </form>
+    <table><thead><tr><th>#</th><th>الحاضنة</th><th>الطالب</th><th>العنوان</th><th>الحالة</th></tr></thead><tbody id="ibAppT"></tbody></table>
+  </section>
+
+  <section class="card" id="sec-برامج-الجامعة">
+    <h2>برامج الجامعة</h2>
+    <form id="upForm" class="grid grid-3"><input name="uniId" placeholder="Org ID جامعة" value="org-uni-001">
+      <input name="title" placeholder="اسم البرنامج"><input name="type" placeholder="نوعه (أكاديمي/تنفيذي)"><button>إضافة</button>
+    </form>
+    <table><thead><tr><th>#</th><th>الجامعة</th><th>البرنامج</th><th>النوع</th><th>الحالة</th></tr></thead><tbody id="upT"></tbody></table>
+  </section>
+
+  <section class="card" id="sec-الأبحاث">
+    <h2>أبحاث الجامعة</h2>
+    <form id="urForm" class="grid grid-3"><input name="uniId" placeholder="Org ID جامعة" value="org-uni-001">
+      <input name="title" placeholder="عنوان البحث"><input name="link" placeholder="رابط (اختياري)"><button>إضافة</button>
+    </form>
+    <table><thead><tr><th>#</th><th>الجامعة</th><th>البحث</th><th>الحالة</th><th>رابط</th></tr></thead><tbody id="urT"></tbody></table>
   </section>
 
   <section class="card" id="sec-التقارير">
@@ -432,11 +475,11 @@ function renderAll(){
   const dash = Q('#dashRows'); if(dash){ dash.innerHTML='';
     const cards=[
       {seg:'government',t:'طرح مبادرة للرعاية',d:'تعريف الحزم وربط مستهدفات 2030',k:'in'},
-      {seg:'private',t:'طلب رعاية',d:'تقديم طلب رعاية باقة لمبادرة/فعالية',k:'co'},
+      {seg:'private',t:'طلب رعاية',d:'تقديم طلب رعاية لمبادرة/فعالية',k:'co'},
       {seg:'nonprofit',t:'طلب استشارة علمية',d:'من جامعة/كلية مختصة',k:'cn'},
       {seg:'university',t:'إدارة التدريب التعاوني',d:'ربط الطلاب مع الجهات',k:'ct'},
-      {seg:'region',t:'مراجعة موافقات الفعاليات',d:'إمارة/بلدية/دفاع مدني',k:'ap'},
-      {seg:'donor',t:'تمويل/منح',d:'تحريك محفظة المانح ومعايير المنح',k:'dw'}
+      {seg:'region',t:'مراجعة الموافقات',d:'إمارة/بلدية/دفاع مدني',k:'ap'},
+      {seg:'donor',t:'مطابقة منح',d:'اقتراح مبادرات مطابقة للمعايير',k:'match'}
     ];
     cards.forEach(c=>{ const el=document.createElement('div'); el.className='card'; el.innerHTML=`<strong>${c.t}</strong><div class="muted">${c.d}</div>`; dash.appendChild(el); });
   }
@@ -474,7 +517,8 @@ function renderAll(){
       const spk=(x.speakers||[]).join('،');
       const ap=x.approvals||{};
       evT.innerHTML+=`<tr><td>${i+1}</td><td>${x.ownerOrgId}</td><td>${x.title}</td><td>${x.date}</td><td>${x.city}</td><td>${spk}</td>
-        <td>${ap.need?(ap.emirate||'قيد المراجعة'):'—'}</td><td>${ap.need?(ap.municipality||'قيد المراجعة'):'—'}</td><td>${ap.need?(ap.civildefense||'قيد المراجعة'):'—'}</td></tr>`;
+        <td>${ap.need?(ap.emirate||'قيد المراجعة'):'—'}</td><td>${ap.need?(ap.municipality||'قيد المراجعة'):'—'}</td><td>${ap.need?(ap.civildefense||'قيد المراجعة'):'—'}</td>
+        <td><button class='btn-ghost' onclick="requestEventSponsorship('${x.id}')">طلب رعاية</button></td></tr>`;
     });
   }
   // الموافقات
@@ -492,6 +536,12 @@ function renderAll(){
         </td></tr>`;
     });
   }
+  // سجل الموافقات
+  const apLogT=Q('#apLogT'); if(apLogT){ apLogT.innerHTML='';
+    d.approvalsLog.forEach((r,i)=>{
+      apLogT.innerHTML+=`<tr><td>${i+1}</td><td>${r.ref}</td><td>${r.gate}</td><td>${r.ok?'موافق':'مرفوض'}</td><td>${r.reason||'-'}</td><td>${r.ts}</td></tr>`;
+    });
+  }
   // المتحدثون
   const spkT=Q('#spkT'); if(spkT){ spkT.innerHTML='';
     d.speakers.filter(x=>mfilter(q,x.name,x.type,x.domain)).forEach((x,i)=>{
@@ -499,9 +549,6 @@ function renderAll(){
     });
   }
   // تدريب/وظائف/تطوع
-  [['#ctT','coopTrain',['title','ownerOrgId']],[['#jbT'],'jobs',['title','ownerOrgId','type']],[['#voT'],'volunteering',['title','ownerOrgId','specialty']]].forEach(cfg=>{
-    const sel = Array.isArray(cfg[0])?cfg[0][0]:cfg[0]; const key = Array.isArray(cfg[0])?cfg[1]:cfg[0].slice(1,3);
-  });
   const ctT=Q('#ctT'); if(ctT){ ctT.innerHTML=''; d.coopTrain.filter(x=>mfilter(q,x.title,x.ownerOrgId)).forEach((x,i)=>{
     ctT.innerHTML+=`<tr><td>${i+1}</td><td>${x.ownerOrgId}</td><td>${x.title}</td><td>${x.seats}</td><td>${x.period}</td><td>${x.status||'-'}</td></tr>`;
   });}
@@ -530,7 +577,7 @@ function renderAll(){
       prT.innerHTML+=`<tr><td>${i+1}</td><td>${x.owner}</td><td>${x.title}</td><td>${x.status}</td><td>${(x.channels||[]).join('،')}</td></tr>`;
     });
   }
-  // CSR / أوقاف / محفظة / منح / حاضنات
+  // CSR / أوقاف / محفظة / منح / حاضنات / طلبات احتضان
   const csrT=Q('#csrT'); if(csrT){ csrT.innerHTML='';
     d.csr.filter(x=>mfilter(q,x.program,x.orgId)).forEach((x,i)=>{ csrT.innerHTML+=`<tr><td>${i+1}</td><td>${x.orgId}</td><td>${x.program}</td><td>${x.budget}</td><td>${x.kpiTarget}</td><td>${x.period}</td><td>${x.status}</td></tr>`;});
   }
@@ -546,16 +593,15 @@ function renderAll(){
   const ibT=Q('#ibT'); if(ibT){ ibT.innerHTML='';
     d.incubators.filter(x=>mfilter(q,x.name,x.ownerOrgId)).forEach((x,i)=>{ ibT.innerHTML+=`<tr><td>${i+1}</td><td>${x.name}</td><td>${x.ownerOrgId}</td><td>${x.acceptsFunding?'نعم':'لا'}</td></tr>`;});
   }
+  const ibAppT=Q('#ibAppT'); if(ibAppT){ ibAppT.innerHTML='';
+    d.incubatorApps.forEach((x,i)=>{ ibAppT.innerHTML+=`<tr><td>${i+1}</td><td>${x.incubatorId}</td><td>${x.owner}</td><td>${x.title}</td><td>${x.status||'قيد المراجعة'}</td></tr>`;});
+  }
 
   renderSwagger();
 }
 
 /* ======== تبديل تبويب المؤشرات (عرض تعبيري) ======== */
-function switchDash(seg,btn){
-  QA('.tabbar button').forEach(b=>b.classList.remove('active-tab'));
-  btn.classList.add('active-tab');
-  // عرض تعبيري فقط في هذا النموذج
-}
+function switchDash(seg,btn){ QA('.tabbar button').forEach(b=>b.classList.remove('active-tab')); btn.classList.add('active-tab'); }
 
 /* ======== معالجة النماذج ======== */
 function parsePackages(s){ if(!s) return []; return s.split('؛').map(x=>x.trim()).filter(Boolean).map(pair=>{const [n,v]=pair.split(':'); return {name:(n||'').trim(), value:+(v||0)};}); }
@@ -591,7 +637,7 @@ function wire(){
   Q('#spkForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
     const rec={id:id('spk'),...f,rating:0}; d.speakers.push(rec); save(d); audit('speaker','create',rec); renderAll(); e.target.reset();});
 
-  // التدريب/الوظائف/التطوع
+  // تدريب/وظائف/تطوع
   Q('#ctForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
     const rec={id:id('ct'),...f,seats:+f.seats||0,status:'معلن'}; d.coopTrain.push(rec); save(d); audit('coop','create',rec); renderAll(); e.target.reset();});
   Q('#jbForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
@@ -611,7 +657,7 @@ function wire(){
   Q('#prForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
     const rec={id:id('pr'),owner:f.owner,title:f.title,status:f.status,channels:(f.channels||'').split('،').map(x=>x.trim()).filter(Boolean)}; d.mediaPR.push(rec); save(d); audit('media','create',rec); renderAll(); e.target.reset();});
 
-  // CSR / أوقاف / محفظة / منح / حاضنات
+  // CSR / أوقاف / محفظة / منح / حاضنات / طلبات احتضان
   Q('#csrForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
     const rec={id:id('csr'),orgId:f.orgId,program:f.program,budget:+f.budget||0,kpiTarget:+f.kpiTarget||0,period:f.period,status:'نشط'}; d.csr.push(rec); save(d); audit('csr','create',rec); renderAll(); e.target.reset();});
   Q('#waForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
@@ -620,10 +666,18 @@ function wire(){
     const rec={id:id('gr'),donorOrgId:f.donorOrgId,title:f.title,focus:f.focus,min:+f.min||0,max:+f.max||0}; d.grants.push(rec); save(d); audit('grant-criteria','create',rec); renderAll(); e.target.reset();});
   Q('#ibForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
     const rec={id:id('ib'),name:f.name,ownerOrgId:f.ownerOrgId,acceptsFunding:(f.acceptsFunding==='true')}; d.incubators.push(rec); save(d); audit('incubator','create',rec); renderAll(); e.target.reset();});
+  Q('#ibAppForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
+    const rec={id:id('iba'),incubatorId:f.incubatorId,owner:f.owner,title:f.title,status:'قيد المراجعة'}; d.incubatorApps.push(rec); save(d); audit('incubator-app','create',rec); renderAll(); e.target.reset();});
   Q('#dwForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
     const w=d.donorWallet.find(x=>x.donorOrgId===f.donorOrgId) || {id:id('dw'),donorOrgId:f.donorOrgId,balance:0,locked:0};
     if(!d.donorWallet.some(x=>x.donorOrgId===f.donorOrgId)) d.donorWallet.push(w);
     w.balance += (+f.delta||0); save(d); audit('donor-wallet','update',{donor:w.donorOrgId,delta:+f.delta||0}); renderAll(); e.target.reset();});
+
+  // برامج/أبحاث الجامعة
+  Q('#upForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
+    const rec={id:id('up'),uniId:f.uniId,title:f.title,type:f.type||'أكاديمي',status:'نشط'}; d.uniPrograms.push(rec); save(d); audit('uni-program','create',rec); renderAll(); e.target.reset();});
+  Q('#urForm')?.addEventListener('submit', e=>{e.preventDefault(); const f=Object.fromEntries(new FormData(e.target));
+    const rec={id:id('ur'),uniId:f.uniId,title:f.title,status:'منشور',link:f.link||'#'}; d.uniResearch.push(rec); save(d); audit('uni-research','create',rec); renderAll(); e.target.reset();});
 
   // Swagger
   Q('#swaggerJson')?.addEventListener('input', renderSwagger);
@@ -637,6 +691,12 @@ function requestSponsorship(inId){
   const pkg = prompt('اختر الباقة (اكتب الاسم كما في الجدول: ذهبية/فضية...):','ذهبية');
   const coll = {id:id('co'),fromOrg:org,toOrg:initiative.govOrgId,related:inId,type:'طلب رعاية',message:'طلب رعاية باقة '+pkg,status:'جديد',thread:[]};
   d.collab.push(coll); save(d); audit('sponsorship','request',coll); renderAll(); alert('تم إرسال طلب الرعاية.');
+}
+function requestEventSponsorship(evId){
+  const d=db(); const ev=d.events.find(e=>e.id===evId); if(!ev) return alert('الفعالية غير موجودة');
+  const org = prompt('أدخل Org ID للجهة الراعية:','org-priv-001'); if(!org) return;
+  const coll = {id:id('co'),fromOrg:org,toOrg:ev.ownerOrgId,related:evId,type:'طلب رعاية فعالية',message:'نرغب برعاية هذه الفعالية',status:'جديد',thread:[]};
+  d.collab.push(coll); save(d); audit('event-sponsorship','request',coll); renderAll(); alert('تم إرسال طلب الرعاية.');
 }
 function approveEvent(evId, gate, ok){
   const d=db(); const ev = d.events.find(x=>x.id===evId); if(!ev) return;
@@ -652,9 +712,32 @@ function replyCollab(coId){
   co.thread.push({by:(d.auth.user||'user'),ts:ts(),msg}); co.status='قيد التنسيق'; save(d); audit('collab','reply',{coId,msg}); renderAll();
 }
 
+/* ======== مطابقة المنح ======== */
+function textBag(x){ return (x||'').toString().toLowerCase(); }
+function goalTitles(ids){ const d=db(); return (ids||[]).map(v=> d.visionGoals.find(g=>g.id===v)?.title || '').join(' '); }
+function runGrantMatching(){
+  const d=db(); const out=Q('#matchT'); if(!out) return; out.innerHTML='';
+  const items=[
+    ...d.initiatives.map(it=>({kind:'مبادرة', title:it.title, desc:it.desc, goals:goalTitles(it.vision)})),
+    ...d.events.map(ev=>({kind:'فعالية', title:ev.title, desc:'', goals:''}))
+  ];
+  let row=0;
+  d.grants.forEach(gr=>{
+    const focus=textBag(gr.focus);
+    items.forEach(it=>{
+      const bag=textBag(`${it.title} ${it.desc} ${it.goals}`);
+      if(focus && bag.includes(focus.split('/')[0])){ // تطابق بسيط أولي
+        out.innerHTML+=`<tr><td>${++row}</td><td>${gr.title}</td><td>${gr.focus}</td><td>${it.kind}: ${it.title}</td><td>تطابق كلمات مفتاحية (${gr.focus})</td></tr>`;
+      }
+    });
+  });
+  if(!row) out.innerHTML='<tr><td colspan="5">لا توجد تطابقات وفق القاعدة التجريبية الحالية.</td></tr>';
+}
+
 /* ======== تقارير ======== */
 function generateReports(){
   const d=db();
+  const byRegion = (list)=> list.reduce((m,x)=>{const r=(x.region)||(d.organizations.find(o=>o.id===x.ownerOrgId||o.id===x.govOrgId)?.region)||'غير محدد'; m[r]=(m[r]||0)+1; return m;},{});
   const rep = [
     {k:'مبادرات مطروحة', v:d.initiatives.length},
     {k:'حلول واردة', v:d.solutions.length},
