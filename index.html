@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>منصة حصيف – الهيكل التشغيلي للحسابات والخدمات</title>
+  <title>منصة حصيف – النموذج التشغيلي المتكامل</title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -40,45 +40,228 @@
 <body class="bg-stone text-ink antialiased">
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-40 bg-white shadow-soft border-b border-slate-100">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-soft border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-3">
-      <!-- يمين: شعار -->
+      <!-- شعار -->
       <div class="flex items-center gap-2">
-        <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+        <div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
           <span class="text-white text-2xl font-black">ح</span>
         </div>
         <div>
           <div class="flex items-center gap-2">
             <span class="text-lg font-semibold text-ink">منصة حصيف</span>
             <span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-medium">
-              نموذج تشغيلي أولي للحسابات والخدمات
+              نموذج تشغيل وطني – نسخة استعراضية
             </span>
           </div>
           <p class="text-[11px] text-slate-500">
-            برنامج شباب المملكة حصيف الوطني – حلول صائبة يقترح فعلها
+            برنامج شباب المملكة حصيف الوطني – حلول صائبة يُقترح فعلها
           </p>
         </div>
       </div>
 
-      <!-- وسط: وصف بسيط -->
-      <div class="flex-1 min-w-[200px] text-center md:text-right text-[11px] text-slate-500">
-        هذا الهيكل يوضح الواجهة الرئيسية، الحسابات، الخدمات، والنماذج التشغيلية لكل حساب في منصة حصيف.
-      </div>
+      <!-- قائمة علوية بسيطة -->
+      <nav class="flex-1 flex items-center justify-center md:justify-start gap-4 text-[11px] text-slate-600">
+        <a href="#home" class="inline-flex items-center gap-1 hover:text-primary">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i><span>الرئيسية</span>
+        </a>
+        <a href="#view-accounts" class="inline-flex items-center gap-1 hover:text-primary">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i><span>الحسابات والخدمات</span>
+        </a>
+        <a href="#view-reports" class="hidden sm:inline-flex items-center gap-1 hover:text-primary">
+          <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i><span>المؤشرات</span>
+        </a>
+      </nav>
 
-      <!-- يسار: زر عرض الحسابات -->
+      <!-- أزرار سريعة -->
       <div class="flex items-center gap-2 ml-auto">
         <button
           onclick="document.getElementById('view-accounts').scrollIntoView({behavior:'smooth'})"
-          class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold shadow-soft">
+          class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold shadow-soft">
           <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
-          <span>الانتقال للحسابات والخدمات</span>
+          <span>استعراض المنصة</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- LAYOUT -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <!-- LANDING / HOME -->
+  <section id="home" class="bg-gradient-to-b from-white to-stone/70 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid lg:grid-cols-[3fr,2.2fr] gap-6 items-start">
+        <!-- نص رئيسي -->
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-medium mb-3">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>منصة وطنية لربط الحلول والمبادرات بمستهدفات رؤية 2030</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-ink leading-snug mb-3">
+            واجهة موحّدة تربط إمارات المناطق، الجهات الحكومية، القطاع الخاص، غير الربحي، الجامعات، المانحين، والأفراد
+          </h1>
+
+          <p class="text-sm sm:text-base text-slate-600 mb-4">
+            هذه النسخة الاستعراضية توضح كيف تجمع منصة حصيف بين الحسابات المختلفة،
+            والخدمات التي يقدمها كل حساب، والنماذج التشغيلية التي تُبنى عليها القرارات والتمويل والرعايات،
+            بطريقة تشبه المنصات الوطنية الرسمية مثل منصّة المسؤولية الاجتماعية، ولكن بأفق أوسع وتكامل أعمق.
+          </p>
+
+          <!-- أزرار -->
+          <div class="flex flex-wrap gap-3 mb-4">
+            <button
+              onclick="document.getElementById('view-accounts').scrollIntoView({behavior:'smooth'})"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-primary text-white text-sm font-semibold shadow-soft">
+              <i data-lucide="play-circle" class="w-4 h-4"></i>
+              <span>الدخول إلى نموذج التشغيل</span>
+            </button>
+            <button
+              onclick="document.getElementById('landing-accounts').scrollIntoView({behavior:'smooth'})"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-slate-200 bg-white text-sm font-semibold">
+              <i data-lucide="panel-right-open" class="w-4 h-4"></i>
+              <span>التعرّف على الحسابات المستهدفة</span>
+            </button>
+          </div>
+
+          <!-- أرقام أساسية -->
+          <dl class="grid grid-cols-3 gap-3 text-xs text-slate-600">
+            <div class="p-3 rounded-2xl bg-white shadow-soft border border-slate-100">
+              <dt class="text-[11px] text-slate-500 mb-1">عدد الحسابات المتكاملة</dt>
+              <dd id="hero-kpi-accounts" class="text-xl font-bold text-ink">-</dd>
+            </div>
+            <div class="p-3 rounded-2xl bg-white shadow-soft border border-slate-100">
+              <dt class="text-[11px] text-slate-500 mb-1">الخدمات الرئيسية</dt>
+              <dd id="hero-kpi-services" class="text-xl font-bold text-ink">-</dd>
+            </div>
+            <div class="p-3 rounded-2xl bg-white shadow-soft border border-slate-100">
+              <dt class="text-[11px] text-slate-500 mb-1">النماذج التشغيلية</dt>
+              <dd id="hero-kpi-forms" class="text-xl font-bold text-ink">-</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- يمين: بطاقات فرصة/مشروع (أسلوب CSR) -->
+        <div class="space-y-3">
+          <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-4">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div>
+                <p class="text-[11px] text-primary font-semibold mb-0.5">نماذج فرص ومشاريع (استعراضية)</p>
+                <p class="text-[11px] text-slate-500">
+                  أسلوب عرض يشبه بطاقات الفرص في منصات المسؤولية الاجتماعية، لكن مخصص لمنصة حصيف.
+                </p>
+              </div>
+              <span class="inline-flex h-8 w-8 rounded-full bg-primary/10 items-center justify-center">
+                <i data-lucide="hand-heart" class="w-4 h-4 text-primary"></i>
+              </span>
+            </div>
+
+            <div class="space-y-2 text-[11px]">
+              <!-- بطاقة 1 -->
+              <div class="border border-slate-100 rounded-2xl p-2.5 bg-slate-50/70">
+                <div class="flex items-center justify-between mb-1">
+                  <p class="font-semibold text-ink">منصة الأسر المنتجة في منطقة حائل</p>
+                  <span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px]">فرصة رعاية</span>
+                </div>
+                <p class="text-slate-600 mb-1">
+                  مشروع رقمي لتمكين أكثر من 3000 أسرة منتجة عبر متجر موحّد، بدعم من القطاع الخاص والجهات المانحة.
+                </p>
+                <div class="flex flex-wrap items-center gap-1.5 text-[10px] text-slate-500">
+                  <span class="inline-flex items-center gap-1">
+                    <i data-lucide="building-2" class="w-3 h-3"></i><span>جمعية + جهة خاصة</span>
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    <i data-lucide="target" class="w-3 h-3"></i><span>برنامج جودة الحياة</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- بطاقة 2 -->
+              <div class="border border-slate-100 rounded-2xl p-2.5 bg-white">
+                <div class="flex items-center justify-between mb-1">
+                  <p class="font-semibold text-ink">معسكر التمكين الرقمي لشباب المنطقة</p>
+                  <span class="px-2 py-0.5 rounded-full bg-accent/10 text-amber-700 text-[10px]">فرصة تمويل</span>
+                </div>
+                <p class="text-slate-600 mb-1">
+                  برنامج تدريبي لتنمية المهارات الرقمية وريادة الأعمال بالتعاون بين الجامعة، منشآت، والقطاع غير الربحي.
+                </p>
+                <div class="flex flex-wrap items-center gap-1.5 text-[10px] text-slate-500">
+                  <span class="inline-flex items-center gap-1">
+                    <i data-lucide="graduation-cap" class="w-3 h-3"></i><span>جامعة + منشآت</span>
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    <i data-lucide="users" class="w-3 h-3"></i><span>200 شاب/ة مستفيد سنويًا</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- بطاقة 3 -->
+              <div class="border border-slate-100 rounded-2xl p-2.5 bg-white">
+                <div class="flex items-center justify-between mb-1">
+                  <p class="font-semibold text-ink">برنامج التوظيف المجتمعي</p>
+                  <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px]">أثر على التوظيف</span>
+                </div>
+                <p class="text-slate-600 mb-1">
+                  ربط الباحثين عن عمل بفرص في القطاع الخاص والقطاع غير الربحي وفق احتياجات المنطقة.
+                </p>
+                <div class="flex flex-wrap items-center gap-1.5 text-[10px] text-slate-500">
+                  <span class="inline-flex items-center gap-1">
+                    <i data-lucide="briefcase" class="w-3 h-3"></i><span>شركات + جمعيات</span>
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    <i data-lucide="line-chart" class="w-3 h-3"></i><span>يساهم في رفع معدلات التوظيف</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- كيف تعمل المنصة -->
+          <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-4 text-[11px] space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-7 w-7 rounded-xl bg-accent/10 items-center justify-center">
+                <i data-lucide="workflow" class="w-4 h-4 text-accent"></i>
+              </span>
+              <div>
+                <p class="font-semibold text-ink">كيف تعمل منصة حصيف؟</p>
+                <p class="text-slate-500">خطوات مبسطة لشرح النموذج أمام القيادة.</p>
+              </div>
+            </div>
+            <ol class="space-y-1 text-slate-600">
+              <li><span class="font-semibold text-primary">1.</span> تطرح الإمارة أو الجهات الحكومية التحديات والأولويات والمبادرات.</li>
+              <li><span class="font-semibold text-primary">2.</span> تتقدم الجمعيات، الجامعات، القطاع الخاص، والأفراد بحلول ومشاريع وبرامج.</li>
+              <li><span class="font-semibold text-primary">3.</span> تقوم الجهات المانحة والقطاع الخاص بتمويل ورعاية المشاريع ذات الأولوية.</li>
+              <li><span class="font-semibold text-primary">4.</span> تُسهم الجامعات في تعزيز علمية المشاريع وقياس الأثر.</li>
+              <li><span class="font-semibold text-primary">5.</span> تُحسَب المؤشرات بشكل دوري وتُرفع تقارير تنموية على مستوى المنطقة والجهات.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- بطاقات الحسابات بشكل CSR-like -->
+      <div id="landing-accounts" class="mt-8">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <div>
+            <p class="text-xs font-semibold text-primary mb-0.5">الحسابات المستهدفة في حصيف</p>
+            <p class="text-[11px] text-slate-500">
+              بطاقات توضح الأدوار الرئيسة لكل حساب، بأسلوب سهل الشرح أمام القيادة وصنّاع القرار.
+            </p>
+          </div>
+          <button
+            onclick="document.getElementById('view-accounts').scrollIntoView({behavior:'smooth'})"
+            class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 bg-white text-[11px] font-semibold">
+            <i data-lucide="arrow-left-circle" class="w-3.5 h-3.5"></i>
+            <span>الانتقال لواجهة التشغيل</span>
+          </button>
+        </div>
+
+        <div id="landing-accounts-grid" class="grid sm:grid-cols-3 md:grid-cols-4 gap-3 text-[11px]">
+          <!-- يُملأ بالـ JS من نفس بيانات الحسابات -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN APP LAYOUT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
     <div class="flex gap-4 mt-2">
       <!-- SIDEBAR -->
       <aside class="w-56 shrink-0 bg-white border border-slate-100 rounded-2xl shadow-soft p-3 hidden md:block">
@@ -87,7 +270,7 @@
           <button data-view="dashboard"
                   class="nav-item w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-primary/5 text-primary font-semibold">
             <span class="flex items-center gap-2">
-              <i data-lucide="home" class="w-4 h-4"></i>
+              <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
               <span>لوحة القيادة</span>
             </span>
           </button>
@@ -116,20 +299,20 @@
       </aside>
 
       <!-- CONTENT -->
-      <main class="flex-1 space-y-4">
+      <main class="flex-1 space-y-4 text-[12px]">
 
         <!-- DASHBOARD VIEW -->
         <section id="view-dashboard" class="space-y-3">
           <div class="flex items-center justify-between gap-2 flex-wrap">
             <div>
-              <h1 class="text-xl sm:text-2xl font-bold text-ink mb-1">لوحة القيادة الرئيسية</h1>
-              <p class="text-[12px] text-slate-500">
-                نظرة عامة على عدد الحسابات، الخدمات، والنماذج التشغيلية المعرفة ضمن منصة حصيف.
+              <h2 class="text-xl sm:text-2xl font-bold text-ink mb-1">لوحة القيادة الرئيسية</h2>
+              <p class="text-[11px] text-slate-500">
+                نظرة عامة على عدد الحسابات والخدمات والنماذج التشغيلية التي تشكل نظام منصة حصيف.
               </p>
             </div>
             <div class="flex items-center gap-2 text-[11px] text-slate-500">
               <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span>عرض تشغيلي استعراضي – بدون ربط ببيانات حقيقية</span>
+              <span>البيانات هنا استعراضية، الهدف توضيح التصميم التشغيلي فقط.</span>
             </div>
           </div>
 
@@ -137,27 +320,67 @@
             <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
               <p class="text-[11px] text-slate-500 mb-1">عدد الحسابات</p>
               <p id="kpi-accounts" class="text-2xl font-bold text-ink mb-1">-</p>
-              <p class="text-[11px] text-slate-500">تشمل إمارة، حكومية، خاص، غير ربحي، جامعات، مانحين، أفراد، مدربين، حوكمة.</p>
+              <p class="text-[11px] text-slate-500">
+                تشمل إمارة، جهات حكومية، قطاع خاص، جمعيات، جامعات، مانحين، أفراد، مدربين، وحوكمة المنصة.
+              </p>
             </div>
             <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
               <p class="text-[11px] text-slate-500 mb-1">عدد الخدمات الرئيسية</p>
               <p id="kpi-services" class="text-2xl font-bold text-ink mb-1">-</p>
-              <p class="text-[11px] text-slate-500">خدمات المشاريع، الفعاليات، التطوع، التدريب، التمويل، المرافق، الاستشارات، وغيرها.</p>
+              <p class="text-[11px] text-slate-500">
+                خدمات المشاريع، الفعاليات، المرافق، التطوع، التدريب، التمويل، الاستشارات، وغيرها.
+              </p>
             </div>
             <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
               <p class="text-[11px] text-slate-500 mb-1">عدد النماذج التشغيلية</p>
               <p id="kpi-forms" class="text-2xl font-bold text-ink mb-1">-</p>
-              <p class="text-[11px] text-slate-500">كل نموذج يمثل آلية إدخال بيانات مرتبطة بخدمة من الخدمات.</p>
+              <p class="text-[11px] text-slate-500">
+                كل نموذج يمثل حقول بيانات تُبنى عليها قرارات التمويل والرعاية واعتماد المشاريع.
+              </p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3 text-[12px]">
-            <p class="text-[11px] font-semibold text-slate-500 mb-2">كيف تُستخدم هذه الواجهة أمام القيادة؟</p>
-            <ul class="list-disc pr-4 space-y-1 text-slate-600">
-              <li>التنقل بين الحسابات لرؤية الخدمات المخصصة لكل فئة.</li>
-              <li>استعراض النماذج التشغيلية لإثبات أن المنصة جاهزة للتنفيذ التقني.</li>
-              <li>إظهار التكامل بين الأفراد، القطاعات، والجهات المانحة ضمن إطار واحد.</li>
-            </ul>
+          <!-- مثال لوحة مشاريع/فرص على أسلوب CSR -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-[11px] font-semibold text-slate-500">نماذج لعرض المشاريع والفرص داخل المنصة</p>
+              <span class="text-[10px] text-slate-500">أسلوب بطاقات مشابه لمنصات المسؤولية الاجتماعية</span>
+            </div>
+            <div class="grid md:grid-cols-3 gap-2 text-[11px]">
+              <div class="border border-slate-100 rounded-2xl p-2.5 bg-slate-50/70">
+                <p class="font-semibold text-ink mb-0.5">مشاريع تحت طلب الرعاية</p>
+                <p class="text-slate-600 mb-1">
+                  يمكن للقطاع الخاص الدخول من حسابه لاستعراض هذه المشاريع وتقديم عروض رعاية أو تمويل.
+                </p>
+                <ul class="list-disc pr-4 text-slate-500 space-y-0.5">
+                  <li>معرض الأسر المنتجة.</li>
+                  <li>منتدى الابتكار الاجتماعي.</li>
+                  <li>برنامج تمكين الجمعيات الصغيرة.</li>
+                </ul>
+              </div>
+              <div class="border border-slate-100 rounded-2xl p-2.5 bg-white">
+                <p class="font-semibold text-ink mb-0.5">فرص تطوع وتدريب مدعومة</p>
+                <p class="text-slate-600 mb-1">
+                  تظهر للأفراد فرص التطوع والتدريب المعلن عنها من الجمعيات، الجامعات، والقطاع الخاص.
+                </p>
+                <ul class="list-disc pr-4 text-slate-500 space-y-0.5">
+                  <li>تنظيم معرض مجتمعي.</li>
+                  <li>توثيق الفعاليات إعلاميًا.</li>
+                  <li>تدريب تعاوني في شركة تقنية.</li>
+                </ul>
+              </div>
+              <div class="border border-slate-100 rounded-2xl p-2.5 bg-white">
+                <p class="font-semibold text-ink mb-0.5">لوحات قياس الأثر</p>
+                <p class="text-slate-600 mb-1">
+                  تربط نتائج هذه المشاريع بمؤشرات رؤية 2030 (التوظيف، جودة الحياة، تمكين القطاع غير الربحي).
+                </p>
+                <ul class="list-disc pr-4 text-slate-500 space-y-0.5">
+                  <li>عدد الوظائف الناتجة عن المشاريع.</li>
+                  <li>عدد الأسر المنتجة المدعومة.</li>
+                  <li>حجم التمويل والرعايات.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -166,13 +389,13 @@
           <div class="flex items-center justify-between gap-2 flex-wrap">
             <div>
               <h2 class="text-xl font-bold text-ink mb-1">الحسابات والخدمات</h2>
-              <p class="text-[12px] text-slate-500">
+              <p class="text-[11px] text-slate-500">
                 اختر حسابًا من العمود الأول، خدمة من العمود الثاني، وستظهر النماذج التشغيلية المتعلقة بها في العمود الثالث.
               </p>
             </div>
           </div>
 
-          <div class="grid lg:grid-cols-[minmax(0,1.8fr)_minmax(0,1.8fr)_minmax(0,2.2fr)] gap-3 items-start text-[12px]">
+          <div class="grid lg:grid-cols-[minmax(0,1.8fr)_minmax(0,1.8fr)_minmax(0,2.2fr)] gap-3 items-start">
             <!-- عمود الحسابات -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
               <div class="flex items-center justify-between mb-2">
@@ -180,7 +403,7 @@
                 <span class="text-[11px] text-slate-500" id="label-accounts-count"></span>
               </div>
               <div id="accounts-list" class="grid grid-cols-2 gap-2 max-h-[380px] overflow-y-auto pr-1">
-                <!-- يتم البناء بالـ JS -->
+                <!-- JS -->
               </div>
             </div>
 
@@ -192,11 +415,11 @@
                   <p class="text-[11px] text-slate-500" id="label-selected-account-desc"></p>
                 </div>
                 <span id="label-selected-account" class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-[11px]">
-                  <!-- اسم الحساب والأيقونة -->
+                  <!-- filled by JS -->
                 </span>
               </div>
               <div id="services-list" class="flex flex-col gap-1 max-h-[380px] overflow-y-auto pr-1">
-                <!-- يتم البناء بالـ JS -->
+                <!-- JS -->
               </div>
             </div>
 
@@ -215,52 +438,52 @@
                 </div>
               </div>
               <div id="forms-list" class="space-y-2 max-h-[380px] overflow-y-auto pr-1">
-                <!-- يتم البناء بالـ JS -->
+                <!-- JS -->
               </div>
             </div>
           </div>
         </section>
 
-        <!-- REPORTS VIEW (هيكل فقط) -->
+        <!-- REPORTS VIEW -->
         <section id="view-reports" class="space-y-3 hidden">
           <h2 class="text-xl font-bold text-ink mb-1">التقارير والمؤشرات</h2>
-          <p class="text-[12px] text-slate-500 mb-2">
-            هنا تُربط المشاريع والخدمات بمؤشرات رؤية 2030. (هيكل استعراضي – يمكن ربطه لاحقًا ببيانات فعلية).
+          <p class="text-[11px] text-slate-500 mb-2">
+            هنا تُربط المشاريع والخدمات بمؤشرات رؤية 2030، ويمكن توسيعها لاحقًا لتصبح متصلة بأنظمة البيانات الحكومية.
           </p>
-          <div class="grid md:grid-cols-2 gap-3 text-[12px]">
+          <div class="grid md:grid-cols-2 gap-3">
             <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
               <p class="text-[11px] text-slate-500 mb-1">أمثلة على مؤشرات المنصة</p>
-              <ul class="list-disc pr-4 space-y-1 text-slate-600">
-                <li>عدد المشاريع المرتبطة بمستهدفات التوظيف.</li>
-                <li>إجمالي حجم الرعايات والمسؤولية الاجتماعية.</li>
-                <li>عدد ساعات التطوع المعتمدة على مستوى المنطقة.</li>
+              <ul class="list-disc pr-4 space-y-1 text-slate-600 text-[12px]">
+                <li>عدد المشاريع المرتبطة بمستهدفات التوظيف وجودة الحياة.</li>
+                <li>إجمالي حجم الرعايات والمسؤولية الاجتماعية حسب المنطقة والقطاع.</li>
+                <li>عدد ساعات التطوع المعتمدة على مستوى الإمارة.</li>
                 <li>عدد البرامج التدريبية المنفذة بالشراكة مع الجامعات.</li>
               </ul>
             </div>
             <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3">
-              <p class="text-[11px] text-slate-500 mb-1">نماذج تقارير يمكن توليدها من المنصة</p>
-              <ul class="list-disc pr-4 space-y-1 text-slate-600">
-                <li>تقرير أثر تنموي للمنطقة (مجمّع لكل الحسابات).</li>
-                <li>تقرير أداء لجهة حكومية محددة.</li>
-                <li>تقرير أثر لجهة مانحة على المشاريع التي مولتها.</li>
-                <li>تقرير مشاركة الأفراد (وظائف، تدريب، تطوع).</li>
+              <p class="text-[11px] text-slate-500 mb-1">نماذج تقارير تُستخرج من حصيف</p>
+              <ul class="list-disc pr-4 space-y-1 text-slate-600 text-[12px]">
+                <li>تقرير أثر تنموي للمنطقة (المشاريع + الوظائف + التطوع + التدريب + التمويل).</li>
+                <li>تقرير أداء لجهة حكومية محددة مقابل مستهدفاتها في رؤية 2030.</li>
+                <li>تقرير أثر لجهة مانحة على المشاريع التي مولتها وأثرها الاجتماعي.</li>
+                <li>تقرير مشاركة الأفراد (فرص توظيف، تدريب، تطوع، مبادرات مقدّمة).</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <!-- SETTINGS VIEW (هيكل فقط) -->
+        <!-- SETTINGS VIEW -->
         <section id="view-settings" class="space-y-3 hidden">
           <h2 class="text-xl font-bold text-ink mb-1">إعدادات المنصة وحوكمتها</h2>
-          <p class="text-[12px] text-slate-500 mb-2">
+          <p class="text-[11px] text-slate-500 mb-2">
             هذا القسم مخصص لحساب حوكمة المنصة لإدارة الجهات، الحسابات، والصلاحيات، ويمكن تطويره لاحقًا إلى لوحة تحكم كاملة.
           </p>
           <div class="bg-white rounded-2xl border border-slate-100 shadow-soft p-3 text-[12px]">
             <ul class="list-disc pr-4 space-y-1 text-slate-600">
-              <li>اعتماد الجهات (حكومية، خاصة، غير ربحية، جامعات، مانحين).</li>
-              <li>إدارة صلاحيات الوصول لكل نوع حساب.</li>
-              <li>إدارة مكونات النظام (تفعيل/إخفاء خدمات للحسابات).</li>
-              <li>مراقبة استخدام المنصة وضبط الجودة.</li>
+              <li>اعتماد الجهات (حكومية، خاصة، غير ربحية، جامعات، مانحين) بعد التحقق من بياناتها.</li>
+              <li>إدارة صلاحيات الوصول لكل نوع حساب (قراءة، إضافة، تعديل، اعتماد، تقارير).</li>
+              <li>إدارة مكونات النظام (تفعيل/إخفاء خدمات أو نماذج لحسابات معينة).</li>
+              <li>مراقبة استخدام المنصة وضبط الجودة وامتثال البيانات للحوكمة الوطنية.</li>
             </ul>
           </div>
         </section>
@@ -271,17 +494,17 @@
 
   <footer class="border-t border-slate-200 mt-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
-      <span>هذا الهيكل يمثل واجهة تشغيلية أولية لمنصة حصيف، قابلة للتحويل إلى نظام فعلي.</span>
+      <span>هذا النموذج يمثل نسخة استعراضية متكاملة لواجهة منصة حصيف، قابلة للتحويل مباشرة إلى نظام فعلي.</span>
       <span class="inline-flex items-center gap-1">
         <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-        <span>نموذج استعراضي – بدون ربط بأنظمة خارجية</span>
+        <span>لا توجد بيانات حقيقية – الهدف إظهار التصميم والجاهزية التشغيلية</span>
       </span>
     </div>
   </footer>
 
   <!-- SCRIPT: بيانات الحسابات والخدمات والنماذج + منطق الواجهة -->
   <script>
-    // بيانات الحسابات والخدمات والنماذج (مختصرة لكن مكتملة من حيث المنطق)
+    // بيانات الحسابات والخدمات والنماذج
     const ACCOUNTS = [
       {
         key: 'emirate',
@@ -368,20 +591,17 @@
             name: 'إدارة المبادرات والمشاريع',
             desc: 'إدراج مبادرات الجهة وربطها بمؤشرات رؤية 2030 واستقبال عروض التنفيذ/الرعاية.',
             forms: [
-              ['اسم المبادرة/المشروع', 'text'],
-              ['الأهداف الاستراتيجية للجهة', 'textarea'],
-              ['أهداف رؤية 2030 المرتبطة', 'textarea'],
-              ['نوع الحاجة (تمويل/تنفيذ/رعاية/استشارة)', 'text']
-            ].map((f, i) => ({
-              key: 'gov-project-form-' + i,
-              name: 'نموذج مشروع حكومي',
-              fields: [
-                ['اسم المبادرة/المشروع', 'text'],
-                ['الأهداف الاستراتيجية للجهة', 'textarea'],
-                ['أهداف رؤية 2030 المرتبطة', 'textarea'],
-                ['نوع الحاجة (تمويل/تنفيذ/رعاية/استشارة)', 'text']
-              ]
-            }))
+              {
+                key: 'gov-project-form',
+                name: 'نموذج مشروع حكومي',
+                fields: [
+                  ['اسم المبادرة/المشروع', 'text'],
+                  ['الأهداف الاستراتيجية للجهة', 'textarea'],
+                  ['أهداف رؤية 2030 المرتبطة', 'textarea'],
+                  ['نوع الحاجة (تمويل/تنفيذ/رعاية/استشارة)', 'text']
+                ]
+              }
+            ]
           },
           {
             key: 'gov-facilities',
@@ -800,7 +1020,7 @@
       }
     ];
 
-    // عناصر الواجهة
+    // DOM elements
     const navButtons = document.querySelectorAll('.nav-item');
     const views = {
       dashboard: document.getElementById('view-dashboard'),
@@ -812,10 +1032,14 @@
     const kpiAccountsEl = document.getElementById('kpi-accounts');
     const kpiServicesEl = document.getElementById('kpi-services');
     const kpiFormsEl = document.getElementById('kpi-forms');
+    const heroKpiAccountsEl = document.getElementById('hero-kpi-accounts');
+    const heroKpiServicesEl = document.getElementById('hero-kpi-services');
+    const heroKpiFormsEl = document.getElementById('hero-kpi-forms');
 
     const accountsListEl = document.getElementById('accounts-list');
     const servicesListEl = document.getElementById('services-list');
     const formsListEl = document.getElementById('forms-list');
+    const landingAccountsGridEl = document.getElementById('landing-accounts-grid');
 
     const labelAccountsCountEl = document.getElementById('label-accounts-count');
     const labelSelectedAccountEl = document.getElementById('label-selected-account');
@@ -825,12 +1049,10 @@
     let selectedAccountKey = 'emirate';
     let selectedServiceKey = null;
 
-    // تفعيل أيقونات
     function refreshIcons() {
       lucide.createIcons();
     }
 
-    // تبديل الواجهة الرئيسية (Dashboard / Accounts / Reports / Settings)
     function showView(key) {
       Object.keys(views).forEach(k => {
         views[k].classList.toggle('hidden', k !== key);
@@ -852,26 +1074,57 @@
       });
     });
 
-    // حساب المؤشرات العامة
     function updateKPIs() {
       const accountsCount = ACCOUNTS.length;
       let servicesCount = 0;
       let formsCount = 0;
-
       ACCOUNTS.forEach(acc => {
         servicesCount += acc.services.length;
         acc.services.forEach(svc => {
           formsCount += svc.forms.length;
         });
       });
-
       kpiAccountsEl.textContent = accountsCount;
       kpiServicesEl.textContent = servicesCount;
       kpiFormsEl.textContent = formsCount;
+      heroKpiAccountsEl.textContent = accountsCount;
+      heroKpiServicesEl.textContent = servicesCount;
+      heroKpiFormsEl.textContent = formsCount;
       labelAccountsCountEl.textContent = accountsCount + ' حساب';
     }
 
-    // بناء قائمة الحسابات
+    function getSelectedAccount() {
+      return ACCOUNTS.find(a => a.key === selectedAccountKey) || ACCOUNTS[0];
+    }
+
+    function getSelectedService() {
+      const acc = getSelectedAccount();
+      if (!acc) return null;
+      return acc.services.find(s => s.key === selectedServiceKey) || acc.services[0] || null;
+    }
+
+    function renderAccountsLanding() {
+      landingAccountsGridEl.innerHTML = '';
+      ACCOUNTS.forEach(acc => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl border border-slate-100 shadow-soft p-3 flex flex-col gap-1 hover:-translate-y-0.5 hover:shadow-lg transition';
+        card.innerHTML = `
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex h-8 w-8 rounded-xl bg-gradient-to-br ${acc.color} items-center justify-center">
+              <i data-lucide="${acc.icon}" class="w-4 h-4 text-white"></i>
+            </span>
+            <div>
+              <p class="text-[12px] font-semibold text-ink">${acc.name}</p>
+              <p class="text-[10px] text-slate-500">${acc.services.length} خدمة – ${acc.services.reduce((n,s)=>n+s.forms.length,0)} نموذج</p>
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-600 line-clamp-3">${acc.desc}</p>
+        `;
+        landingAccountsGridEl.appendChild(card);
+      });
+      refreshIcons();
+    }
+
     function renderAccounts() {
       accountsListEl.innerHTML = '';
       ACCOUNTS.forEach(acc => {
@@ -882,7 +1135,6 @@
           'w-full text-right p-2 rounded-2xl border flex flex-col gap-1 text-[11px] ' +
           'hover:bg-slate-50 transition ' +
           (isActive ? 'border-primary/70 bg-primary/5' : 'border-slate-100');
-
         btn.innerHTML = `
           <div class="flex items-center gap-2">
             <span class="inline-flex h-7 w-7 rounded-xl bg-gradient-to-br ${acc.color} items-center justify-center">
@@ -898,7 +1150,6 @@
             <span>${acc.services.reduce((n,s)=>n+s.forms.length,0)} نموذج</span>
           </div>
         `;
-
         btn.addEventListener('click', () => {
           selectedAccountKey = acc.key;
           selectedServiceKey = null;
@@ -906,41 +1157,22 @@
           renderServices();
           renderForms();
         });
-
         accountsListEl.appendChild(btn);
       });
       refreshIcons();
     }
 
-    function getSelectedAccount() {
-      return ACCOUNTS.find(a => a.key === selectedAccountKey) || ACCOUNTS[0];
-    }
-
-    function getSelectedService() {
-      const acc = getSelectedAccount();
-      if (!acc) return null;
-      const svc = acc.services.find(s => s.key === selectedServiceKey) || acc.services[0] || null;
-      return svc;
-    }
-
-    // بناء قائمة الخدمات
     function renderServices() {
       const acc = getSelectedAccount();
       if (!acc) return;
-
       servicesListEl.innerHTML = '';
-
       labelSelectedAccountEl.innerHTML = `
         <i data-lucide="${acc.icon}" class="w-3.5 h-3.5"></i>
         <span>${acc.name}</span>
       `;
       labelSelectedAccountDescEl.textContent = acc.desc;
-
       acc.services.forEach((svc, index) => {
-        if (!selectedServiceKey && index === 0) {
-          selectedServiceKey = svc.key;
-        }
-
+        if (!selectedServiceKey && index === 0) selectedServiceKey = svc.key;
         const isActive = svc.key === selectedServiceKey;
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -948,7 +1180,6 @@
           'w-full text-right flex items-start gap-2 p-2 rounded-xl border text-[11px] ' +
           'hover:bg-slate-50 transition ' +
           (isActive ? 'border-primary/70 bg-primary/5' : 'border-slate-100');
-
         btn.innerHTML = `
           <span class="mt-0.5 inline-flex h-7 w-7 rounded-xl bg-primary/10 items-center justify-center">
             <i data-lucide="${svc.icon}" class="w-3.5 h-3.5 text-primary"></i>
@@ -961,35 +1192,27 @@
             <p class="text-[10px] text-slate-500 line-clamp-2">${svc.desc}</p>
           </div>
         `;
-
         btn.addEventListener('click', () => {
           selectedServiceKey = svc.key;
           renderServices();
           renderForms();
         });
-
         servicesListEl.appendChild(btn);
       });
-
       refreshIcons();
     }
 
-    // بناء النماذج
     function renderForms() {
       const svc = getSelectedService();
       formsListEl.innerHTML = '';
-
       if (!svc) {
         labelSelectedServiceDescEl.textContent = 'اختر خدمة من الوسط لعرض نماذجها التشغيلية هنا.';
         return;
       }
-
       labelSelectedServiceDescEl.textContent = svc.desc;
-
       svc.forms.forEach(form => {
         const card = document.createElement('div');
         card.className = 'rounded-2xl border border-slate-100 bg-slate-50/60 p-2.5 space-y-2';
-
         card.innerHTML = `
           <div class="flex items-center justify-between gap-2 mb-1">
             <div class="flex items-center gap-2">
@@ -1008,14 +1231,11 @@
             </span>
           </div>
         `;
-
         const fieldsGrid = document.createElement('div');
         fieldsGrid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-1 text-[10px]';
-
         form.fields.forEach(([label, type]) => {
           const fieldBox = document.createElement('div');
           fieldBox.className = 'bg-white rounded-xl border border-slate-100 p-1.5 flex flex-col gap-0.5';
-
           let typeLabel = '';
           switch (type) {
             case 'text': typeLabel = 'حقل نصي'; break;
@@ -1024,7 +1244,6 @@
             case 'file': typeLabel = 'مرفق'; break;
             default: typeLabel = 'حقل';
           }
-
           fieldBox.innerHTML = `
             <div class="flex items-center justify-between gap-2">
               <span class="font-semibold text-[11px] text-ink">${label}</span>
@@ -1033,20 +1252,17 @@
               </span>
             </div>
           `;
-
           fieldsGrid.appendChild(fieldBox);
         });
-
         card.appendChild(fieldsGrid);
         formsListEl.appendChild(card);
       });
-
       refreshIcons();
     }
 
-    // تهيئة أولية
     function init() {
       updateKPIs();
+      renderAccountsLanding();
       renderAccounts();
       renderServices();
       renderForms();
