@@ -5,42 +5,163 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>منصة حصيف - العرض التفاعلي المطوّر</title>
 <style>
- body { font-family:'Tahoma',sans-serif; margin:0; background:#f4f6f9; color:#222; transition:0.3s; }
- body.dark { background:#1c1c1e; color:#e5e5e7; }
- header { background:#003c5f; padding:18px 24px; color:white; font-size:22px; font-weight:bold; display:flex; justify-content:space-between; align-items:center; }
- nav { display:flex; gap:16px; }
- nav a { color:white; text-decoration:none; font-size:15px; opacity:0.85; }
- nav a:hover { opacity:1; }
- .toggle { cursor:pointer; padding:6px 14px; background:white; color:#003c5f; border-radius:8px; font-size:14px; }
- .container { padding:24px; }
- .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-top:20px; }
- .card { background:white; padding:20px; border-radius:14px; box-shadow:0 2px 6px rgba(0,0,0,0.08); transition:0.25s; cursor:pointer; }
- body.dark .card { background:#2c2c2e; box-shadow:none; }
- .card:hover { transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,0.12); }
- .title { font-size:20px; margin-bottom:10px; font-weight:bold; color:#003c5f; }
- body.dark .title { color:#6bb6ff; }
- .subtitle { font-size:14px; color:#666; }
- body.dark .subtitle { color:#bdbdbd; }
- .section-title { font-size:22px; font-weight:bold; margin-top:40px; color:#003c5f; }
- body.dark .section-title { color:#6bb6ff; }
- footer { text-align:center; padding:25px; margin-top:40px; color:#555; }
- body.dark footer { color:#ccc; }
- 
- /* نموذج تسجيل الدخول */
- #login-screen { position:fixed; inset:0; background:#003c5fd9; display:flex; justify-content:center; align-items:center; }
- #login-box { background:white; width:320px; padding:24px; border-radius:12px; text-align:center; }
- #login-box h2 { margin-bottom:20px; color:#003c5f; }
- input { width:100%; padding:10px; margin-top:10px; border-radius:6px; border:1px solid #ccc; }
- button { width:100%; padding:12px; background:#003c5f; color:white; font-weight:bold; border:none; border-radius:6px; margin-top:14px; cursor:pointer; }
- button:hover { background:#05598f; }
- 
- /* اللوحات */
- .chart { height:160px; background:white; border-radius:14px; box-shadow:0 2px 6px rgba(0,0,0,0.08); padding:20px; }
- body.dark .chart { background:#2c2c2e; }
+  body { font-family:'Tahoma',sans-serif; margin:0; background:#f4f6f9; color:#222; transition:0.3s; }
+  body.dark { background:#1c1c1e; color:#e5e5e7; }
+  header { background:#003c5f; padding:18px 24px; color:white; font-size:20px; font-weight:bold; display:flex; justify-content:space-between; align-items:center; }
+  nav { display:flex; gap:14px; font-size:14px; }
+  nav a { color:white; text-decoration:none; opacity:0.85; }
+  nav a:hover { opacity:1; }
+  .toggle { cursor:pointer; padding:6px 14px; background:white; color:#003c5f; border-radius:8px; font-size:13px; }
+  .container { padding:24px; max-width:1240px; margin:0 auto; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-top:20px; }
+  .card { background:white; padding:18px 18px 16px; border-radius:14px; box-shadow:0 2px 6px rgba(0,0,0,0.08); transition:0.25s; cursor:pointer; }
+  body.dark .card { background:#2c2c2e; box-shadow:none; }
+  .card:hover { transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,0.12); }
+  .title { font-size:18px; margin-bottom:6px; font-weight:bold; color:#003c5f; }
+  body.dark .title { color:#6bb6ff; }
+  .subtitle { font-size:13px; color:#666; line-height:1.5; }
+  body.dark .subtitle { color:#bdbdbd; }
+  .section-title { font-size:21px; font-weight:bold; margin-top:40px; color:#003c5f; display:flex; align-items:center; justify-content:space-between; }
+  body.dark .section-title { color:#6bb6ff; }
+  .section-title small { font-size:12px; color:#777; }
+  footer { text-align:center; padding:25px; margin-top:40px; color:#555; font-size:13px; }
+  body.dark footer { color:#ccc; }
+
+  /* شاشة تسجيل الدخول */
+  #login-screen { position:fixed; inset:0; background:#003c5fe6; display:flex; justify-content:center; align-items:center; z-index:20; }
+  #login-box { background:white; width:320px; max-width:90%; padding:24px 22px; border-radius:14px; text-align:center; box-shadow:0 4px 18px rgba(0,0,0,0.35); }
+  #login-box h2 { margin-bottom:8px; color:#003c5f; font-size:20px; }
+  #login-box p { margin:0 0 14px; font-size:12px; color:#666; }
+  input, select, textarea { width:100%; padding:9px 10px; margin-top:8px; border-radius:7px; border:1px solid #d0d0d0; font-family:inherit; box-sizing:border-box; font-size:13px; }
+  textarea { resize:vertical; min-height:70px; }
+  button { padding:10px 16px; background:#003c5f; color:white; font-weight:bold; border:none; border-radius:8px; margin-top:14px; cursor:pointer; font-size:13px; }
+  button:hover { background:#05598f; }
+
+  /* لوحات المؤشرات */
+  .charts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px; }
+  .chart { min-height:120px; background:white; border-radius:14px; box-shadow:0 2px 6px rgba(0,0,0,0.08); padding:16px 18px; display:flex; flex-direction:column; justify-content:space-between; }
+  body.dark .chart { background:#2c2c2e; }
+  .chart-label { font-size:13px; color:#777; margin-bottom:8px; }
+  body.dark .chart-label { color:#bbb; }
+  .chart-value { font-size:22px; font-weight:bold; }
+  .chart-footnote { font-size:11px; color:#999; margin-top:6px; }
+
+  /* تبويبات الحسابات (صفحات لكل حساب) */
+  .accounts-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .accounts-tabs button { background:#e8edf3; color:#003c5f; border:none; border-radius:20px; padding:6px 14px; font-size:12px; cursor:pointer; }
+  .accounts-tabs button.active { background:#003c5f; color:white; }
+  body.dark .accounts-tabs button { background:#303035; color:#e5e5e7; }
+  body.dark .accounts-tabs button.active { background:#6bb6ff; color:#00111d; }
+  .account-page { margin-top:18px; padding:18px; border-radius:14px; background:white; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+  body.dark .account-page { background:#2c2c2e; }
+  .account-page h3 { margin-top:0; margin-bottom:8px; font-size:18px; }
+  .account-meta { font-size:12px; color:#777; margin-bottom:10px; }
+  .account-services { font-size:13px; line-height:1.7; }
+
+  /* النماذج التشغيلية */
+  .forms-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-top:18px; }
+  .form-card { background:white; border-radius:14px; padding:16px 16px 18px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+  body.dark .form-card { background:#2c2c2e; }
+  .form-card h4 { margin:0 0 8px; font-size:15px; color:#003c5f; }
+  body.dark .form-card h4 { color:#6bb6ff; }
+  .form-note { font-size:11px; color:#888; margin-bottom:6px; }
+
+  .mini-table { margin-top:10px; font-size:11px; width:100%; border-collapse:collapse; }
+  .mini-table th, .mini-table td { border-bottom:1px solid #e0e0e0; padding:4px 3px; text-align:right; }
+  body.dark .mini-table th, body.dark .mini-table td { border-bottom:1px solid #3a3a3d; }
+  .mini-table th { font-weight:bold; font-size:11px; }
+
+  @media (max-width:700px){
+    header { flex-direction:column; align-items:flex-start; gap:10px; }
+    nav { flex-wrap:wrap; }
+    .container { padding:16px; }
+  }
 </style>
 <script>
-function toggleDark(){ document.body.classList.toggle('dark'); }
-function login(){ document.getElementById('login-screen').style.display='none'; }
+  const demoData = {
+    projects:[
+      { name:'منصة الأسر المنتجة بحائل', budget:850000 },
+      { name:'برنامج التمكين المجتمعي', budget:1200000 },
+      { name:'معسكر الريادة الاجتماعية', budget:430000 }
+    ],
+    volunteers:[
+      { name:'متطوع 1', hours:25 },
+      { name:'متطوع 2', hours:40 },
+      { name:'متطوع 3', hours:12 },
+    ],
+    trainings:[
+      { name:'التدريب التعاوني - الإعلام التنموي', seats:30 },
+      { name:'معسكر الوظائف المستقبلية', seats:45 }
+    ],
+    sponsorships:[
+      { name:'شركة أوقاف التنمية', amount:2000000 },
+      { name:'بنك المسؤولية الوطنية', amount:1750000 }
+    ]
+  };
+
+  function renderDashboard(){
+    const projectsCount = demoData.projects.length;
+    const sponsorshipTotal = demoData.sponsorships.reduce((s,x)=>s+x.amount,0);
+    const volunteersCount = demoData.volunteers.length;
+    const trainingsCount = demoData.trainings.length;
+
+    const formatNumber = (n)=> n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+
+    document.getElementById('chartProjectsCount').textContent = projectsCount + ' مشروع';
+    document.getElementById('chartSponsorshipTotal').textContent = formatNumber(sponsorshipTotal) + ' ريال';
+    document.getElementById('chartVolunteersCount').textContent = volunteersCount + ' متطوع/ة';
+    document.getElementById('chartTrainingsCount').textContent = trainingsCount + ' برنامج';
+  }
+
+  function toggleDark(){ document.body.classList.toggle('dark'); }
+
+  function login(){ document.getElementById('login-screen').style.display='none'; }
+
+  function setAccountPage(key){
+    document.querySelectorAll('.accounts-tabs button').forEach(btn=>btn.classList.remove('active'));
+    document.querySelectorAll('.accounts-tabs button[data-key="'+key+'"]').forEach(btn=>btn.classList.add('active'));
+    document.querySelectorAll('.account-page').forEach(p=>p.style.display='none');
+    const el = document.getElementById('account-'+key);
+    if(el) el.style.display='block';
+  }
+
+  function handleFormSubmit(event, type){
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    if(type==='project'){
+      demoData.projects.push({
+        name: formData.get('project_name') || 'مشروع بدون اسم',
+        budget: Number(formData.get('project_budget')) || 0
+      });
+    }
+    if(type==='volunteer'){
+      demoData.volunteers.push({
+        name: formData.get('volunteer_name') || 'متطوع',
+        hours: Number(formData.get('volunteer_hours')) || 0
+      });
+    }
+    if(type==='training'){
+      demoData.trainings.push({
+        name: formData.get('training_name') || 'برنامج تدريبي',
+        seats: Number(formData.get('training_seats')) || 0
+      });
+    }
+    if(type==='sponsorship'){
+      demoData.sponsorships.push({
+        name: formData.get('sponsor_name') || 'جهة راعية',
+        amount: Number(formData.get('sponsor_amount')) || 0
+      });
+    }
+    form.reset();
+    renderDashboard();
+    alert('تم تسجيل النموذج تجريبيًا في لوحة المؤشرات.');
+  }
+
+  window.addEventListener('DOMContentLoaded',()=>{
+    renderDashboard();
+    setAccountPage('emarah');
+  });
 </script>
 </head>
 <body>
@@ -48,60 +169,354 @@ function login(){ document.getElementById('login-screen').style.display='none'; 
 <!-- شاشة تسجيل الدخول الرسمية -->
 <div id="login-screen">
   <div id="login-box">
-    <h2>تسجيل الدخول</h2>
-    <input type="text" placeholder="اسم المستخدم" />
+    <h2>منصة حصيف</h2>
+    <p>دخول تجريبي لعرض النموذج أمام القيادة الوطنية</p>
+    <input type="text" placeholder="اسم المستخدم التجريبي" />
     <input type="password" placeholder="كلمة المرور" />
-    <button onclick="login()">دخول</button>
+    <button onclick="login()">دخول إلى العرض</button>
   </div>
 </div>
 
 <header>
-  <div>منصة حصيف - العرض التفاعلي المطوّر</div>
+  <div>منصة حصيف - Web Demo (النسخة المطوّرة)</div>
   <nav>
-    <a href="#accounts">الحسابات</a>
+    <a href="#overview">نظرة عامة</a>
+    <a href="#accounts-section">الحسابات</a>
+    <a href="#account-pages-section">صفحات الحسابات</a>
     <a href="#modules">المكوّنات</a>
     <a href="#flows">التدفقات</a>
     <a href="#dashboards">المؤشرات</a>
+    <a href="#forms">النماذج التشغيلية</a>
   </nav>
   <div class="toggle" onclick="toggleDark()">الوضع الداكن</div>
 </header>
 
 <div class="container">
 
-  <div id="accounts" class="section-title">حسابات المنصة</div>
+  <!-- نظرة عامة -->
+  <div id="overview" class="section-title">
+    <span>نظرة عامة على المنصة</span>
+    <small>منصة وطنية رقمية لتمكين التكامل التنموي بين الجهات</small>
+  </div>
   <div class="grid">
-    <div class="card"><div class="title">إمارة المنطقة</div><div class="subtitle">إدارة التصاريح – المتابعة – مؤشرات المناطق</div></div>
-    <div class="card"><div class="title">الجهات الحكومية</div><div class="subtitle">التحديات – المشاريع – الفعاليات – التدريب</div></div>
-    <div class="card"><div class="title">القطاع الخاص</div><div class="subtitle">الرعاية – الاستثمار – الوظائف – الحلول</div></div>
-    <div class="card"><div class="title">القطاع غير الربحي</div><div class="subtitle">المبادرات – التطوع – التمويل</div></div>
-    <div class="card"><div class="title">الجامعات</div><div class="subtitle">التدريب – الأبحاث – الحلول – المؤشرات</div></div>
-    <div class="card"><div class="title">الأفراد</div><div class="subtitle">التطوع – التدريب – التحدث – الحلول</div></div>
+    <div class="card" style="cursor:default;">
+      <div class="title">المنصة الوطنية حصيف</div>
+      <div class="subtitle">مظلة رقمية تجمع إمارات المناطق، الجهات الحكومية، القطاع الخاص، القطاع غير الربحي، الجامعات، الجهات التمويلية، والأفراد في نظام واحد متكامل، مع ربط مباشر بمؤشرات رؤية 2030.</div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="title">القيمة المضافة</div>
+      <div class="subtitle">منصة موثوقة لطرح التحديات، استقبال الحلول، إدارة المشاريع، توثيق التطوع والتدريب، جذب الرعايات، وتقديم تقارير أثر تنموي دقيقة للقيادة الوطنية.</div>
+    </div>
   </div>
 
-  <div id="modules" class="section-title">المكونات التشغيلية الأساسية</div>
+  <!-- الحسابات -->
+  <div id="accounts-section" class="section-title">
+    <span>حسابات المنصة</span>
+    <small>ثمانية حسابات رئيسية لكل فاعل تنموي</small>
+  </div>
   <div class="grid">
-    <div class="card"><div class="title">إدارة المشاريع</div></div>
-    <div class="card"><div class="title">الحلول والتحديات</div></div>
-    <div class="card"><div class="title">التطوع</div></div>
-    <div class="card"><div class="title">التدريب</div></div>
-    <div class="card"><div class="title">التمويل والرعايات</div></div>
-    <div class="card"><div class="title">المرافق</div></div>
+    <div class="card"><div class="title">إمارة المنطقة</div><div class="subtitle">إدارة التصاريح الأمنية، رعاية سمو الأمير، مؤشرات التنمية المناطقية، إشراف المحافظات والفعاليات النوعية.</div></div>
+    <div class="card"><div class="title">الجهات الحكومية</div><div class="subtitle">طرح التحديات، إدارة المشاريع، الفعاليات، التدريب التعاوني للطلبة، التوظيف، الربط المباشر بمؤشرات الرؤية.</div></div>
+    <div class="card"><div class="title">القطاع الخاص</div><div class="subtitle">المسؤولية الاجتماعية، الرعايات، الاستثمار التنموي، الوظائف، التدريب التعاوني، حلول تقنية وإدارية للجهات.</div></div>
+    <div class="card"><div class="title">القطاع غير الربحي</div><div class="subtitle">إطلاق المبادرات، استقبال المتطوعين، طلب التمويل والرعايات، إدارة الفعاليات والمرافق، التقارير التنموية.</div></div>
+    <div class="card"><div class="title">الجامعات</div><div class="subtitle">تحويل الأبحاث إلى مشاريع، التدريب التعاوني، الحلول العلمية للتحديات، الاستشارات، ربط مخرجات التعليم بالأثر.</div></div>
+    <div class="card"><div class="title">الجهات التمويلية</div><div class="subtitle">اختيار المشاريع الأعلى أثرًا، تمويل مبني على مؤشرات، تقارير استدامة، محفظة تمويلية موحدة.</div></div>
+    <div class="card"><div class="title">الأفراد</div><div class="subtitle">سجل وطني للتطوع، التدريب، التحدث، الاستشارات، الفرص الوظيفية، وطرح الحلول والمبادرات.</div></div>
+    <div class="card"><div class="title">إدارة المنصة</div><div class="subtitle">حوكمة الحسابات والصلاحيات، تشغيل النظام، الدعم الفني، التقارير العامة، ومراقبة الأثر التنموي الإجمالي.</div></div>
   </div>
 
-  <div id="flows" class="section-title">تدفقات الاستخدام</div>
-  <div class="grid">
-    <div class="card"><div class="title">تدفق مشروع</div><div class="subtitle">تحدٍ → حل → مشروع → تمويل → تنفيذ → أثر</div></div>
-    <div class="card"><div class="title">تدفق فعالية</div><div class="subtitle">إنشاء → تصريح → تنفيذ → تقييم</div></div>
+  <!-- صفحات لكل حساب -->
+  <div id="account-pages-section" class="section-title">
+    <span>صفحات الحسابات (عرض مخصص لكل جهة)</span>
+    <small>يمكن التنقل بين الحسابات لرؤية خدمات كل فئة تنموية</small>
+  </div>
+  <div class="accounts-tabs">
+    <button data-key="emarah" onclick="setAccountPage('emarah')">إمارة المنطقة</button>
+    <button data-key="gov" onclick="setAccountPage('gov')">الجهات الحكومية</button>
+    <button data-key="private" onclick="setAccountPage('private')">القطاع الخاص</button>
+    <button data-key="nonprofit" onclick="setAccountPage('nonprofit')">القطاع غير الربحي</button>
+    <button data-key="uni" onclick="setAccountPage('uni')">الجامعات</button>
+    <button data-key="fund" onclick="setAccountPage('fund')">الجهات التمويلية</button>
+    <button data-key="individual" onclick="setAccountPage('individual')">الأفراد</button>
   </div>
 
-  <div id="dashboards" class="section-title">لوحات مؤشرات تجريبية</div>
+  <div id="account-emarah" class="account-page">
+    <h3>حساب إمارة المنطقة</h3>
+    <div class="account-meta">دور إشرافي وتنموي على مستوى المنطقة والمحافظات التابعة لها.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>إدارة التصاريح الأمنية للفعاليات والأنشطة.</li>
+        <li>متابعة المشاريع والمبادرات التنموية في المنطقة.</li>
+        <li>رعاية سمو الأمير للبرامج النوعية ذات الأثر العالي.</li>
+        <li>لوحة مؤشرات تربط المشاريع بأهداف رؤية 2030 على مستوى المنطقة.</li>
+        <li>متابعة أداء المحافظات والجهات الفاعلة في النطاق الجغرافي.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-gov" class="account-page" style="display:none;">
+    <h3>حساب الجهة الحكومية</h3>
+    <div class="account-meta">وزارات وهيئات وجهات حكومية مركزية أو تنفيذية.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>طرح التحديات التنموية والإدارية.</li>
+        <li>استقبال الحلول من القطاع الخاص والجامعات والأفراد.</li>
+        <li>إدارة المشاريع والمبادرات وربطها بمؤشرات الرؤية.</li>
+        <li>إدارة الفعاليات الرسمية وطلب التصاريح ذات العلاقة.</li>
+        <li>برامج التدريب التعاوني واستقبال طلبة الجامعات.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-private" class="account-page" style="display:none;">
+    <h3>حساب القطاع الخاص</h3>
+    <div class="account-meta">الشركات، المنشآت الصغيرة والمتوسطة، بيوت الخبرة.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>الإعلان عن الوظائف والبرامج التدريبية.</li>
+        <li>تقديم الرعايات والتمويل للمشاريع التنموية.</li>
+        <li>تقديم حلول تقنية واستشارية للتحديات الحكومية والمجتمعية.</li>
+        <li>إتاحة مرافق الشركة للفعاليات والبرامج المجتمعية.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-nonprofit" class="account-page" style="display:none;">
+    <h3>حساب القطاع غير الربحي</h3>
+    <div class="account-meta">الجمعيات الأهلية، المؤسسات غير الربحية، الفرق التطوعية.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>إطلاق مبادرات مجتمعية وتنموية.</li>
+        <li>استقبال المتطوعين وتوثيق ساعاتهم وشهاداتهم.</li>
+        <li>طلب التمويل والرعايات للمشاريع.</li>
+        <li>إدارة الفعاليات المجتمعية والمرافق التابعة.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-uni" class="account-page" style="display:none;">
+    <h3>حساب الجامعات</h3>
+    <div class="account-meta">الجامعات والكليات والمراكز البحثية.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>رفع الأبحاث القابلة للتطبيق وتحويلها إلى مشاريع.</li>
+        <li>برامج التدريب التعاوني والتطبيقي للطلاب.</li>
+        <li>الاستشارات العلمية والبحثية للجهات.</li>
+        <li>مشاركة المرافق الجامعية (قاعات، مسارح، مختبرات).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-fund" class="account-page" style="display:none;">
+    <h3>حساب الجهات التمويلية</h3>
+    <div class="account-meta">البنوك، الصناديق، الجهات المانحة، الأوقاف.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>استقبال المشاريع المؤهلة للتمويل وفق معايير واضحة.</li>
+        <li>إدارة محفظة التمويل والرعايات.</li>
+        <li>متابعة تقارير الأثر التنموي لكل مشروع مدعوم.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="account-individual" class="account-page" style="display:none;">
+    <h3>حساب الأفراد</h3>
+    <div class="account-meta">مواطنين، مقيمين، متخصصين، مبتكرين، متحدثين.</div>
+    <div class="account-services">
+      <strong>الخدمات الرئيسية:</strong>
+      <ul>
+        <li>سجل التطوع والشهادات المعتمدة.</li>
+        <li>فرص التدريب والدورات، بما فيها التدريب التعاوني.</li>
+        <li>التقدم كمتحدث أو مستشار أو خبير.</li>
+        <li>طرح حلول ومبادرات فردية قابلة للتمويل أو الرعاية.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- المكونات -->
+  <div id="modules" class="section-title">
+    <span>المكونات التشغيلية الأساسية</span>
+    <small>مجموعة من الوحدات المتكاملة (26 مكوّنًا) – عرض مختصر</small>
+  </div>
   <div class="grid">
-    <div class="chart">عدد المشاريع المعتمدة: 124</div>
-    <div class="chart">حجم الرعايات: 8.2 مليون ريال</div>
-    <div class="chart">عدد المتطوعين النشطين: 6,140</div>
+    <div class="card"><div class="title">إدارة المشاريع</div><div class="subtitle">رفع مشروع، مراحل التنفيذ، ربط بالتمويل، تقارير أثر.</div></div>
+    <div class="card"><div class="title">الحلول والتحديات</div><div class="subtitle">طرح التحديات من الجهات، استقبال الحلول من الأفراد والقطاعات.</div></div>
+    <div class="card"><div class="title">الفعاليات والتصاريح</div><div class="subtitle">إنشاء الفعاليات، طلب التصاريح، ربط المتحدثين والمرافق.</div></div>
+    <div class="card"><div class="title">إدارة التطوع</div><div class="subtitle">نشر فرص، قبول المتطوعين، توثيق الساعات، إصدار الشهادات.</div></div>
+    <div class="card"><div class="title">إدارة التدريب</div><div class="subtitle">برامج مهنية ومجتمعية وتعاونية، تقييم المتدربين.</div></div>
+    <div class="card"><div class="title">التمويل والرعايات</div><div class="subtitle">طلبات تمويل، رعايات، تحويلات مالية، تقارير استدامة.</div></div>
+    <div class="card"><div class="title">إدارة المرافق</div><div class="subtitle">حجز القاعات والمسارح والمراكز، تقييم الاستخدام.</div></div>
+    <div class="card"><div class="title">المحفظة الرقمية</div><div class="subtitle">رصيد موحد لكل حساب، سجل العمليات، التقارير المالية.</div></div>
+    <div class="card"><div class="title">الاستشارات والتقييم</div><div class="subtitle">طلب استشارة، ترشيح خبراء، تقارير استشارية وتقييمية.</div></div>
+    <div class="card"><div class="title">مؤشرات الرؤية</div><div class="subtitle">ربط المشاريع بمستهدفات وأهداف وبرامج رؤية 2030.</div></div>
+  </div>
+
+  <!-- التدفقات -->
+  <div id="flows" class="section-title">
+    <span>تدفقات الاستخدام الرئيسة</span>
+    <small>نماذج مرئية لتسلسل العمل عبر المنصة</small>
+  </div>
+  <div class="grid">
+    <div class="card" style="cursor:default;">
+      <div class="title">تدفق مشروع تنموي</div>
+      <div class="subtitle">تحدٍ حكومي → حل من جامعة أو قطاع خاص أو فرد → تحويل لحالة مشروع → طلب تمويل → اعتماد من جهة مانحة → تنفيذ ومتابعة عبر المنصة → توثيق وربط بمؤشرات الرؤية.</div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="title">تدفق فعالية وطنية</div>
+      <div class="subtitle">إنشاء فعالية → طلب تصريح من إمارة المنطقة أو الجهة المختصة → إضافة متحدثين → فتح التسجيل → تنفيذ وتقييم → إصدار شهادات وتقارير.</div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="title">تدفق تدريب تعاوني</div>
+      <div class="subtitle">القطاع الخاص أو الحكومي يفتح فرصة → الجامعة ترشح الطلاب → التنفيذ ميدانيًا مع توثيق الساعات عبر المنصة → إصدار شهادة معتمدة.</div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="title">تدفق تمويل ورعاية</div>
+      <div class="subtitle">مشروع جاهز بالمنصة → يظهر في لوحة الجهات المانحة → تقييم الجدوى والأثر → قرار تمويل أو رعاية → تحويلات عبر المحفظة الرقمية → تقارير أثر دورية.</div>
+    </div>
+  </div>
+
+  <!-- لوحات المؤشرات الديناميكية -->
+  <div id="dashboards" class="section-title">
+    <span>لوحات المؤشرات (Dynamic Dashboard)</span>
+    <small>الأرقام تتحدث – مبنية على بيانات تجريبية داخل النموذج</small>
+  </div>
+  <div class="charts-grid">
+    <div class="chart">
+      <div class="chart-label">عدد المشاريع التنموية المسجلة على المنصة</div>
+      <div id="chartProjectsCount" class="chart-value">–</div>
+      <div class="chart-footnote">يتغير العدد عند تجربة نموذج "رفع مشروع".</div>
+    </div>
+    <div class="chart">
+      <div class="chart-label">إجمالي حجم الرعايات والتمويل (ريال)</div>
+      <div id="chartSponsorshipTotal" class="chart-value">–</div>
+      <div class="chart-footnote">يتفاعل مع نموذج "طلب رعاية/تمويل" التجريبي.</div>
+    </div>
+    <div class="chart">
+      <div class="chart-label">عدد المتطوعين المسجلين</div>
+      <div id="chartVolunteersCount" class="chart-value">–</div>
+      <div class="chart-footnote">تزداد عند تسجيل فرص التطوع الجديدة.</div>
+    </div>
+    <div class="chart">
+      <div class="chart-label">عدد البرامج التدريبية النشطة</div>
+      <div id="chartTrainingsCount" class="chart-value">–</div>
+      <div class="chart-footnote">يتفاعل مع نموذج "طرح برنامج تدريبي".</div>
+    </div>
+  </div>
+
+  <!-- النماذج التشغيلية -->
+  <div id="forms" class="section-title">
+    <span>النماذج التشغيلية التجريبية</span>
+    <small>تجربة سريعة لكيفية عمل النماذج داخل المنصة</small>
+  </div>
+  <div class="forms-grid">
+
+    <!-- نموذج رفع مشروع -->
+    <div class="form-card">
+      <h4>نموذج رفع مشروع تنموي</h4>
+      <div class="form-note">يستخدم لحسابات: الجهات الحكومية، القطاع غير الربحي، الجامعات، إمارة المنطقة.</div>
+      <form onsubmit="handleFormSubmit(event,'project')">
+        <input name="project_name" type="text" placeholder="اسم المشروع" required />
+        <textarea name="project_desc" placeholder="وصف مختصر للمشروع (اختياري)"></textarea>
+        <input name="project_budget" type="number" min="0" placeholder="الميزانية التقديرية (ريال)" />
+        <select name="project_owner">
+          <option value="">نوع الجهة المالكة للمشروع</option>
+          <option>جهة حكومية</option>
+          <option>قطاع غير ربحي</option>
+          <option>جامعة</option>
+          <option>إمارة المنطقة</option>
+        </select>
+        <button type="submit">تسجيل المشروع تجريبيًا</button>
+      </form>
+      <table class="mini-table">
+        <thead><tr><th>المشروع</th><th>الميزانية (ريال)</th></tr></thead>
+        <tbody>
+          <tr><td>منصة الأسر المنتجة بحائل</td><td>850,000</td></tr>
+          <tr><td>برنامج التمكين المجتمعي</td><td>1,200,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- نموذج طلب تطوع -->
+    <div class="form-card">
+      <h4>نموذج تسجيل متطوع</h4>
+      <div class="form-note">يُستخدم من الجمعيات والجهات المجتمعية ضمن حساب القطاع غير الربحي.</div>
+      <form onsubmit="handleFormSubmit(event,'volunteer')">
+        <input name="volunteer_name" type="text" placeholder="اسم المتطوع" required />
+        <input name="volunteer_hours" type="number" min="1" max="200" placeholder="عدد الساعات المتوقعة" />
+        <select name="volunteer_field">
+          <option value="">مجال التطوع</option>
+          <option>تنظيم فعاليات</option>
+          <option>إعلام وتغطيات</option>
+          <option>استشارات مهنية</option>
+        </select>
+        <button type="submit">تسجيل متطوع تجريبيًا</button>
+      </form>
+      <table class="mini-table">
+        <thead><tr><th>المتطوع</th><th>الساعات</th></tr></thead>
+        <tbody>
+          <tr><td>متطوع 1</td><td>25</td></tr>
+          <tr><td>متطوع 2</td><td>40</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- نموذج برنامج تدريبي -->
+    <div class="form-card">
+      <h4>نموذج طرح برنامج تدريبي</h4>
+      <div class="form-note">للقطاع الخاص، الجامعات، الجهات الحكومية.</div>
+      <form onsubmit="handleFormSubmit(event,'training')">
+        <input name="training_name" type="text" placeholder="اسم البرنامج" required />
+        <input name="training_seats" type="number" min="1" placeholder="عدد المقاعد" />
+        <select name="training_type">
+          <option value="">نوع التدريب</option>
+          <option>تدريب تعاوني</option>
+          <option>تدريب مجتمعي</option>
+          <option>تدريب مهني</option>
+        </select>
+        <button type="submit">تسجيل برنامج تدريبي تجريبيًا</button>
+      </form>
+      <table class="mini-table">
+        <thead><tr><th>البرنامج</th><th>المقاعد</th></tr></thead>
+        <tbody>
+          <tr><td>التدريب التعاوني - الإعلام التنموي</td><td>30</td></tr>
+          <tr><td>معسكر الوظائف المستقبلية</td><td>45</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- نموذج تمويل/رعاية -->
+    <div class="form-card">
+      <h4>نموذج طلب رعاية أو تمويل</h4>
+      <div class="form-note">يُعرض أمام البنوك والصناديق والجهات المانحة عبر حسابها في المنصة.</div>
+      <form onsubmit="handleFormSubmit(event,'sponsorship')">
+        <input name="sponsor_name" type="text" placeholder="اسم الجهة الراعية/الممولة" required />
+        <input name="sponsor_amount" type="number" min="1" placeholder="المبلغ المقترح (ريال)" />
+        <select name="sponsor_type">
+          <option value="">نوع الدعم</option>
+          <option>رعاية فعالية</option>
+          <option>تمويل مشروع</option>
+          <option>دعم تشغيلي</option>
+        </select>
+        <button type="submit">تسجيل دعم تجريبيًا</button>
+      </form>
+      <table class="mini-table">
+        <thead><tr><th>الجهة</th><th>قيمة الدعم</th></tr></thead>
+        <tbody>
+          <tr><td>شركة أوقاف التنمية</td><td>2,000,000</td></tr>
+          <tr><td>بنك المسؤولية الوطنية</td><td>1,750,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
 </div>
-<footer>نموذج العرض التفاعلي لمنصة حصيف – النسخة المطوّرة</footer>
+<footer>نموذج العرض التفاعلي لمنصة حصيف – النسخة المطوّرة والقابلة للنشر كصفحة ويب واحدة (Static Single Page)</footer>
 </body>
 </html>
