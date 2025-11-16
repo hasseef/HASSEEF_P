@@ -1,1096 +1,1286 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منصة حصيف - النموذج الوطني التفاعلي</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>منصة حصيف – النموذج الأولي المتكامل للحسابات والخدمات</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#5AA044' },
+            accent:  { DEFAULT: '#F8BE43' },
+            ink:     { DEFAULT: '#0f172a' },
+            stone:   { DEFAULT: '#f3f4f6' },
+          },
+          boxShadow: {
+            soft: '0 14px 35px rgba(15,23,42,0.08)',
+          },
+          borderRadius: {
+            '2xl': '1.25rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
   <style>
-    :root {
-      --primary:#003c5f;
-      --primary-light:#05598f;
-      --bg:#f4f6f9;
-      --bg-dark:#1c1c1e;
-      --card:#ffffff;
-      --card-dark:#2c2c2e;
-      --text:#222222;
-      --text-muted:#777777;
-      --text-light:#e5e5e7;
-      --border:#dde3eb;
-      --shadow:0 2px 6px rgba(0,0,0,0.08);
-    }
-
-    * { box-sizing:border-box; }
-
-    body {
-      margin:0;
-      font-family: "Tahoma", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      transition:background 0.25s,color 0.25s;
-    }
-
-    body.dark {
-      background:var(--bg-dark);
-      color:var(--text-light);
-    }
-
-    .app {
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
-
-    /* HEADER */
-
-    header {
-      background:var(--primary);
-      color:#fff;
-      padding:10px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .header-left {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .logo-circle {
-      width:34px;
-      height:34px;
-      border-radius:50%;
-      border:2px solid #ffffff66;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:16px;
-      font-weight:bold;
-    }
-
-    .header-titles {
-      display:flex;
-      flex-direction:column;
-    }
-
-    .header-titles .app-name {
-      font-weight:bold;
-      font-size:15px;
-      white-space:nowrap;
-    }
-
-    .header-titles .subtitle {
-      font-size:11px;
-      opacity:0.85;
-    }
-
-    .header-center {
-      flex:1;
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .account-select {
-      min-width:170px;
-      padding:6px 8px;
-      border-radius:8px;
-      border:none;
-      font-size:12px;
-      color:var(--primary);
-    }
-
-    .header-right {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:12px;
-    }
-
-    .toggle-btn {
-      background:#ffffff;
-      color:var(--primary);
-      border:none;
-      padding:6px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:11px;
-      font-weight:bold;
-      white-space:nowrap;
-    }
-
-    .user-pill {
-      border-radius:999px;
-      border:1px solid #ffffff66;
-      padding:4px 10px;
-      font-size:11px;
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .user-avatar {
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      background:#ffffff44;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:11px;
-    }
-
-    /* LAYOUT */
-
-    .layout {
-      display:flex;
-      flex:1;
-      min-height:0;
-    }
-
-    aside.sidebar {
-      width:230px;
-      background:#ffffff;
-      border-left:1px solid var(--border);
-      box-shadow:2px 0 6px rgba(0,0,0,0.04);
-      padding:10px 6px;
-    }
-
-    body.dark aside.sidebar {
-      background:var(--card-dark);
-      border-left:1px solid #333;
-      box-shadow:none;
-    }
-
-    .sidebar-title {
-      font-size:12px;
-      color:var(--text-muted);
-      margin:4px 6px 8px;
-    }
-
-    .menu {
-      list-style:none;
-      margin:0;
-      padding:0;
-      font-size:13px;
-    }
-
-    .menu li {
-      margin:2px 0;
-    }
-
-    .menu-button {
-      width:100%;
-      text-align:right;
-      padding:8px 10px;
-      border-radius:8px;
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:6px;
-      font-size:13px;
-      color:inherit;
-    }
-
-    .menu-button span.icon {
-      font-size:13px;
-      opacity:0.9;
-    }
-
-    .menu-button.active {
-      background:rgba(0,60,95,0.12);
-      color:var(--primary);
-      font-weight:bold;
-    }
-
-    body.dark .menu-button.active {
-      background:#004a7e;
-      color:#fff;
-    }
-
-    .menu-divider {
-      margin:8px 4px;
-      border-top:1px solid var(--border);
-    }
-
-    body.dark .menu-divider {
-      border-top:1px solid #333;
-    }
-
-    /* CONTENT */
-
-    .content {
-      flex:1;
-      padding:16px 18px 20px;
-      min-width:0;
-    }
-
-    .breadcrumb {
-      font-size:11px;
-      color:var(--text-muted);
-      margin-bottom:4px;
-    }
-
-    body.dark .breadcrumb {
-      color:#aaaaaa;
-    }
-
-    .page-header {
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-      flex-wrap:wrap;
-    }
-
-    .page-title {
-      font-size:20px;
-      font-weight:bold;
-    }
-
-    .page-desc {
-      font-size:13px;
-      color:var(--text-muted);
-    }
-
-    body.dark .page-desc {
-      color:#b5b5b5;
-    }
-
-    .page-actions {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .btn {
-      border-radius:999px;
-      border:none;
-      padding:6px 11px;
-      font-size:11px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:5px;
-      white-space:nowrap;
-    }
-
-    .btn-primary {
-      background:var(--primary);
-      color:#fff;
-    }
-
-    .btn-outline {
-      background:transparent;
-      color:var(--primary);
-      border:1px solid var(--primary);
-    }
-
-    body.dark .btn-outline {
-      color:#fff;
-      border-color:#6bb6ff;
-    }
-
-    /* CARDS + GRID */
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:10px;
-      margin-bottom:12px;
-    }
-
-    @media (max-width:1100px) {
-      .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    }
-    @media (max-width:700px) {
-      .layout { flex-direction:column; }
-      aside.sidebar { width:100%; order:2; display:flex; overflow-x:auto; }
-      .menu { display:flex; flex-wrap:nowrap; }
-      .menu li { min-width:110px; }
-      .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    }
-    @media (max-width:520px) {
-      .grid { grid-template-columns:repeat(1,minmax(0,1fr)); }
-    }
-
-    .card {
-      background:var(--card);
-      border-radius:12px;
-      padding:10px 12px;
-      box-shadow:var(--shadow);
-      font-size:13px;
-    }
-
-    body.dark .card {
-      background:var(--card-dark);
-      box-shadow:none;
-    }
-
-    .kpi-label {
-      font-size:11px;
-      color:var(--text-muted);
-      margin-bottom:6px;
-    }
-
-    body.dark .kpi-label {
-      color:#cccccc;
-    }
-
-    .kpi-value {
-      font-size:18px;
-      font-weight:bold;
-      margin-bottom:4px;
-    }
-
-    .kpi-note {
-      font-size:11px;
-      color:var(--text-muted);
-    }
-
-    body.dark .kpi-note {
-      color:#aaaaaa;
-    }
-
-    .two-cols {
-      display:grid;
-      grid-template-columns:2.1fr 1.4fr;
-      gap:10px;
-    }
-
-    @media (max-width:900px) {
-      .two-cols { grid-template-columns:1fr; }
-    }
-
-    .table {
-      width:100%;
-      border-collapse:collapse;
-      font-size:12px;
-      margin-top:6px;
-    }
-
-    .table thead {
-      background:#f0f3f8;
-    }
-
-    body.dark .table thead {
-      background:#33353a;
-    }
-
-    .table th, .table td {
-      padding:6px 5px;
-      text-align:right;
-      border-bottom:1px solid var(--border);
-      white-space:nowrap;
-    }
-
-    body.dark .table th, body.dark .table td {
-      border-bottom:1px solid #383838;
-    }
-
-    .table th {
-      font-weight:bold;
-      font-size:11px;
-    }
-
-    .badge {
-      display:inline-block;
-      font-size:10px;
-      padding:2px 6px;
-      border-radius:999px;
-      background:#e4eff8;
-      color:var(--primary);
-    }
-
-    body.dark .badge {
-      background:#004a7e;
-      color:#fff;
-    }
-
-    .pill-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:4px;
-      margin-top:4px;
-    }
-
-    .pill {
-      font-size:11px;
-      padding:3px 8px;
-      border-radius:999px;
-      background:#eef2f7;
-      color:var(--text-muted);
-    }
-
-    body.dark .pill {
-      background:#30333a;
-      color:#cccccc;
-    }
-
-    footer {
-      padding:14px;
-      font-size:11px;
-      text-align:center;
-      color:var(--text-muted);
-    }
-
-    body.dark footer {
-      color:#aaaaaa;
+    html, body {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
-<body>
-  <div class="app">
+<body class="bg-stone text-ink antialiased">
 
-    <!-- HEADER -->
-    <header>
-      <div class="header-left">
-        <div class="logo-circle">ح</div>
-        <div class="header-titles">
-          <div class="app-name">منصة حصيف الوطنية</div>
-          <div class="subtitle">منصة تكامل تنموي مرتبطة برؤية السعودية 2030</div>
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-3">
+
+      <!-- يمين: شعار حصيف / اسم المنصة -->
+      <div class="flex items-center gap-2 order-1">
+        <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <span class="text-white text-2xl font-black">ح</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-semibold text-ink">منصة حصيف</span>
+            <span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+              نموذج تشغيلي أولي
+            </span>
+          </div>
+          <p class="text-xs text-slate-500">
+            برنامج شباب المملكة حصيف الوطني – حلول صائبة يُقترح فعلها
+          </p>
         </div>
       </div>
 
-      <div class="header-center">
-        <select id="accountSelect" class="account-select" title="اختيار نوع الحساب للعرض">
-          <option value="emarah">إمارة المنطقة</option>
-          <option value="gov">جهة حكومية</option>
-          <option value="private">القطاع الخاص</option>
-          <option value="nonprofit">القطاع غير الربحي</option>
-          <option value="uni">جامعة / مركز بحثي</option>
-          <option value="fund">جهة تمويلية / مانحة</option>
-          <option value="individual">فرد</option>
-        </select>
+      <!-- وسط: العنوان / الشرح المختصر -->
+      <div class="flex-1 min-w-[200px] order-3 md:order-2 text-center md:text-right">
+        <p class="text-xs sm:text-sm text-slate-500">
+          نموذج موحّد يربط
+          <span class="font-semibold text-ink">إمارات المناطق، الجهات الحكومية، القطاع الخاص، القطاع غير الربحي، الجامعات، الجهات المانحة، الأفراد، والمدربين</span>
+          عبر منصة واحدة، مع عرض الخدمات والنماذج لكل حساب.
+        </p>
       </div>
 
-      <div class="header-right">
-        <button id="darkToggle" class="toggle-btn">الوضع الليلي</button>
-        <div class="user-pill">
-          <div class="user-avatar">👤</div>
-          <span>عرض تجريبي</span>
+      <!-- يسار: أزرار العرض واللغة -->
+      <div class="flex items-center gap-2 order-2 md:order-3 ml-auto">
+        <button id="btnAR" class="px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200 bg-slate-100">
+          عــر
+        </button>
+        <button id="btnEN" class="px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200">
+          EN
+        </button>
+        <a href="#accounts" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary text-white text-xs font-medium shadow-soft">
+          <i data-lucide="cursor-click" class="w-3.5 h-3.5"></i>
+          <span>الانتقال إلى الحسابات</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO / نظرة عامة -->
+  <section class="bg-gradient-to-b from-white to-stone/80 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid md:grid-cols-[3fr,2fr] gap-6 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span id="heroBadge">نموذج أولي – قابل للاستعراض على الكمبيوتر والجوال</span>
+          </div>
+
+          <h1 id="heroTitle" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-ink leading-snug mb-3">
+            لوحة تشغيل وطنية تربط جميع الحسابات التنموية في منصة حصيف
+          </h1>
+
+          <p id="heroText" class="text-sm sm:text-base text-slate-600 mb-4">
+            يسمح هذا النموذج الاستعراضي لصانع القرار برؤية كيفية عمل حسابات المنصة، والخدمات المتاحة لكل حساب،
+            والنماذج التشغيلية التي تُمكّن ربط مستهدفات رؤية 2030 بالفرص، والمشاريع، والتوظيف، والتدريب، والتطوع، والاستثمار، والتبرع.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mb-4">
+            <button
+              onclick="document.getElementById('accounts').scrollIntoView({behavior:'smooth'})"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-primary text-white text-sm font-semibold shadow-soft">
+              <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+              <span id="btnPrimaryLabel">استعراض الحسابات والخدمات</span>
+            </button>
+            <button
+              onclick="document.getElementById('matrix').scrollIntoView({behavior:'smooth'})"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-slate-200 bg-white text-sm font-semibold">
+              <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+              <span id="btnSecondaryLabel">مصفوفة الخدمات والنماذج</span>
+            </button>
+          </div>
+
+          <dl class="grid grid-cols-3 gap-3 text-xs text-slate-600">
+            <div class="p-3 rounded-2xl bg-white shadow-soft/40 border border-slate-100">
+              <dt id="kpi1Title" class="text-[11px] text-slate-500 mb-1">حسابات مترابطة</dt>
+              <dd class="text-lg font-bold text-ink">9</dd>
+            </div>
+            <div class="p-3 rounded-2xl bg-white shadow-soft/40 border border-slate-100">
+              <dt id="kpi2Title" class="text-[11px] text-slate-500 mb-1">خدمات رئيسية</dt>
+              <dd class="text-lg font-bold text-ink">12+</dd>
+            </div>
+            <div class="p-3 rounded-2xl bg-white shadow-soft/40 border border-slate-100">
+              <dt id="kpi3Title" class="text-[11px] text-slate-500 mb-1">نماذج تشغيلية</dt>
+              <dd class="text-lg font-bold text-ink">40+</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- بطاقة تلخيص الرؤية -->
+        <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-4 sm:p-5 space-y-3">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-semibold text-primary mb-1" id="visionBadge">
+                ربط مستهدفات رؤية 2030 بالحلول والمشاريع
+              </p>
+              <p class="text-xs text-slate-600" id="visionBody">
+                يمكن للإمارات والوزارات والقطاع الخاص والقطاع غير الربحي والجامعات والجهات المانحة والأفراد
+                تقديم مبادراتهم واحتياجاتهم ومشاريعهم عبر المنصة، ليتلاقى العرض والطلب التنموي في مكان واحد
+                بشفافية وفاعلية.
+              </p>
+            </div>
+            <div class="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white">
+              <i data-lucide="target" class="w-5 h-5"></i>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded-xl bg-primary/10 flex items-center justify-center">
+                <i data-lucide="hand-heart" class="w-3.5 h-3.5 text-primary"></i>
+              </span>
+              <div>
+                <p id="pill1Title" class="font-semibold text-ink">تمكين المسؤولية الاجتماعية</p>
+                <p id="pill1Body" class="text-slate-500">ربط الشركات بالمشاريع المجتمعية عالية الأثر.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded-xl bg-accent/10 flex items-center justify-center">
+                <i data-lucide="line-chart" class="w-3.5 h-3.5 text-accent"></i>
+              </span>
+              <div>
+                <p id="pill2Title" class="font-semibold text-ink">تعزيز فاعلية الحكومة</p>
+                <p id="pill2Body" class="text-slate-500">منصة واحدة لاستقبال الحلول والفرص والمبادرات.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded-xl bg-primary/10 flex items-center justify-center">
+                <i data-lucide="university" class="w-3.5 h-3.5 text-primary"></i>
+              </span>
+              <div>
+                <p id="pill3Title" class="font-semibold text-ink">دور علمي للجامعات</p>
+                <p id="pill3Body" class="text-slate-500">تعزيز علمية المشاريع ورفع جودة الإنفاق التنموي.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded-xl bg-accent/10 flex items-center justify-center">
+                <i data-lucide="users" class="w-3.5 h-3.5 text-accent"></i>
+              </span>
+              <div>
+                <p id="pill4Title" class="font-semibold text-ink">مسارات للأفراد</p>
+                <p id="pill4Body" class="text-slate-500">وظائف، تدريب، تطوع، مبادرات، ومشاريع ناشئة.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <!-- MAIN LAYOUT -->
-    <div class="layout">
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-title">القائمة الرئيسية</div>
-        <ul class="menu" id="mainMenu">
-          <li><button class="menu-button active" data-section="dashboard"><span class="icon">🏠</span>لوحة القيادة</button></li>
-          <li><button class="menu-button" data-section="projects"><span class="icon">📁</span>المشاريع والمبادرات</button></li>
-          <li><button class="menu-button" data-section="challenges"><span class="icon">💡</span>التحديات والحلول</button></li>
-          <li><button class="menu-button" data-section="events"><span class="icon">🎫</span>الفعاليات والتصاريح</button></li>
-          <li><button class="menu-button" data-section="human"><span class="icon">🤝</span>التطوع والتدريب والتوظيف</button></li>
-          <li class="menu-divider"></li>
-          <li><button class="menu-button" data-section="finance"><span class="icon">💰</span>التمويل والرعايات والمحفظة</button></li>
-          <li><button class="menu-button" data-section="facilities"><span class="icon">🏛️</span>المرافق المشتركة</button></li>
-          <li><button class="menu-button" data-section="vision"><span class="icon">📊</span>مؤشرات الرؤية والتقارير</button></li>
-          <li><button class="menu-button" data-section="partnerships"><span class="icon">📄</span>الشراكات والاتفاقيات</button></li>
-          <li class="menu-divider"></li>
-          <li><button class="menu-button" data-section="settings"><span class="icon">⚙️</span>بيانات الجهة والإعدادات</button></li>
-        </ul>
-      </aside>
-
-      <!-- CONTENT -->
-      <section class="content">
-        <div class="breadcrumb" id="breadcrumb">إمارة المنطقة / لوحة القيادة</div>
-        <div class="page-header">
-          <div>
-            <div class="page-title" id="pageTitle">لوحة القيادة - إمارة المنطقة</div>
-            <div class="page-desc" id="pageDesc">
-              نظرة شاملة على المشاريع، الفعاليات، والبرامج التنموية في نطاق الإمارة وربطها بمؤشرات رؤية 2030.
-            </div>
-          </div>
-          <div class="page-actions" id="pageActions">
-            <button class="btn btn-primary"><span>＋</span><span>إطلاق مبادرة جديدة</span></button>
-            <button class="btn btn-outline"><span>↻</span><span>تحديث المؤشرات</span></button>
-          </div>
-        </div>
-
-        <!-- DASHBOARD SECTION -->
-        <div id="section-dashboard">
-          <div class="grid">
-            <div class="card">
-              <div class="kpi-label">عدد المشاريع والمبادرات النشطة</div>
-              <div class="kpi-value" id="kpiProjects">124</div>
-              <div class="kpi-note">تشمل المشاريع الحكومية وغير الربحية والبرامج المجتمعية تحت إشراف الإمارة.</div>
-            </div>
-            <div class="card">
-              <div class="kpi-label">حجم التمويل والرعايات المعتمدة (ريال)</div>
-              <div class="kpi-value" id="kpiFunding">8,250,000</div>
-              <div class="kpi-note">من البنوك والصناديق والشركات الداعمة عبر المنصة.</div>
-            </div>
-            <div class="card">
-              <div class="kpi-label">عدد المتطوعين المسجلين عبر المنصة</div>
-              <div class="kpi-value" id="kpiVolunteers">6,140</div>
-              <div class="kpi-note">يتضمّن متطوعي الجمعيات والفعاليات والمبادرات الشبابية.</div>
-            </div>
-            <div class="card">
-              <div class="kpi-label">عدد الفعاليات القادمة خلال 30 يومًا</div>
-              <div class="kpi-value" id="kpiEvents">32</div>
-              <div class="kpi-note">فعاليات تعليمية، مجتمعية، وثقافية تحت مظلة الإمارة والجهات الشريكة.</div>
-            </div>
-          </div>
-
-          <div class="two-cols">
-            <div class="card">
-              <div class="kpi-label">أبرز المشاريع التنموية</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>المشروع</th>
-                    <th>الجهة</th>
-                    <th>الحالة</th>
-                    <th>ربط بالرؤية</th>
-                  </tr>
-                </thead>
-                <tbody id="projectsTable">
-                  <tr>
-                    <td>منصة الأسر المنتجة بحائل</td>
-                    <td>جهة غير ربحية + شريك خاص</td>
-                    <td><span class="badge">قيد التنفيذ</span></td>
-                    <td>تمكين الحياة العامرة</td>
-                  </tr>
-                  <tr>
-                    <td>معسكر التمكين الرقمي للشباب</td>
-                    <td>جامعة + وزارة حكومية</td>
-                    <td><span class="badge">تحت الإطلاق</span></td>
-                    <td>تنمية وتنويع الاقتصاد</td>
-                  </tr>
-                  <tr>
-                    <td>برنامج التوظيف المجتمعي</td>
-                    <td>إمارة المنطقة + قطاع خاص</td>
-                    <td><span class="badge">فعّال</span></td>
-                    <td>زيادة معدلات التوظيف</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="card">
-              <div class="kpi-label">توزيع المبادرات على برامج الرؤية (عرض مختصر)</div>
-              <div class="pill-row">
-                <div class="pill">جودة الحياة (34 مبادرة)</div>
-                <div class="pill">تنمية القطاع غير الربحي (27)</div>
-                <div class="pill">تطوير القطاع المالي (19)</div>
-                <div class="pill">التحول الوطني (22)</div>
-                <div class="pill">تعزيز الهوية الوطنية (15)</div>
-                <div class="pill">تمكين الشباب (41)</div>
-              </div>
-              <div style="margin-top:10px;font-size:11px;color:var(--text-muted);">
-                هذه الأرقام نموذجية في العرض، ويمكن ربطها فعليًا بمؤشرات الرؤية ومصادر البيانات الحكومية المعتمدة.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECTS SECTION -->
-        <div id="section-projects" style="display:none;">
-          <div class="card">
-            <div class="kpi-label">المشاريع والمبادرات المسجلة في منصة حصيف</div>
-            <div class="kpi-note" style="margin-bottom:6px;">
-              هذا القسم يتيح للجهة استعراض وإدارة مشاريعها التنموية ومعرفة حالة كل مشروع وربطه بالتمويل والأثر.
-            </div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>اسم المشروع</th>
-                  <th>نوع الجهة المالكة</th>
-                  <th>حالة التنفيذ</th>
-                  <th>نوع التمويل</th>
-                  <th>مؤشر الأثر</th>
-                </tr>
-              </thead>
-              <tbody id="projectsManageTable">
-                <tr>
-                  <td>المنصة الوطنية لتمكين المتطوعين</td>
-                  <td>جهة حكومية + غير ربحي</td>
-                  <td><span class="badge">قيد التنفيذ</span></td>
-                  <td>تمويل حكومي + رعايات</td>
-                  <td>عدد الساعات التطوعية المعتمدة</td>
-                </tr>
-                <tr>
-                  <td>تطوير مرافق ريادة الأعمال بالجامعة</td>
-                  <td>جامعة</td>
-                  <td><span class="badge">تحت الإطلاق</span></td>
-                  <td>استثمار قطاع خاص</td>
-                  <td>عدد الشركات المحتضنة سنويًا</td>
-                </tr>
-                <tr>
-                  <td>برنامج دعم الجمعيات الصغيرة</td>
-                  <td>جهة تمويلية</td>
-                  <td><span class="badge">فعّال</span></td>
-                  <td>منح تنموية</td>
-                  <td>عدد الجمعيات المستفيدة</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- CHALLENGES SECTION -->
-        <div id="section-challenges" style="display:none;">
-          <div class="two-cols">
-            <div class="card">
-              <div class="kpi-label">التحديات المطروحة من الجهة</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>عنوان التحدي</th>
-                    <th>مصدر التحدي</th>
-                    <th>الحالة</th>
-                  </tr>
-                </thead>
-                <tbody id="challengesTable">
-                  <tr>
-                    <td>رفع مشاركة المتطوعين في القرى والهجر</td>
-                    <td>إمارة المنطقة</td>
-                    <td><span class="badge">حلول مقترحة</span></td>
-                  </tr>
-                  <tr>
-                    <td>تحفيز القطاع الخاص على رعاية الفعاليات الثقافية</td>
-                    <td>وزارة ثقافية</td>
-                    <td><span class="badge">جارِ التقييم</span></td>
-                  </tr>
-                  <tr>
-                    <td>تحويل مخرجات البحوث الجامعية إلى مشاريع</td>
-                    <td>جامعة</td>
-                    <td><span class="badge">قيد الطرح</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="card">
-              <div class="kpi-label">نماذج من الحلول المقترحة عبر المنصة</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>الحل المقترح</th>
-                    <th>مقدّم من</th>
-                    <th>الوضع</th>
-                  </tr>
-                </thead>
-                <tbody id="solutionsTable">
-                  <tr>
-                    <td>منصة رقمية لاستقطاب المتطوعين محليًا</td>
-                    <td>قطاع خاص + مطور مستقل</td>
-                    <td><span class="badge">مرشح لمشروع</span></td>
-                  </tr>
-                  <tr>
-                    <td>برنامج شراكة بين الجامعة والجمعيات</td>
-                    <td>كلية خدمة اجتماعية</td>
-                    <td><span class="badge">تحت الدراسة</span></td>
-                  </tr>
-                  <tr>
-                    <td>نموذج تحفيز رعايات للفعاليات الثقافية</td>
-                    <td>شركة إعلامية</td>
-                    <td><span class="badge">قيد التفاوض</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- EVENTS SECTION -->
-        <div id="section-events" style="display:none;">
-          <div class="two-cols">
-            <div class="card">
-              <div class="kpi-label">الفعاليات المجدولة</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>الفعالية</th>
-                    <th>الجهة المنظمة</th>
-                    <th>التاريخ</th>
-                    <th>التصريح</th>
-                  </tr>
-                </thead>
-                <tbody id="eventsTable">
-                  <tr>
-                    <td>منتدى الابتكار الاجتماعي</td>
-                    <td>إمارة المنطقة + جامعة</td>
-                    <td>05 / 01 / 2026</td>
-                    <td><span class="badge">معتمد</span></td>
-                  </tr>
-                  <tr>
-                    <td>معرض الأسر المنتجة</td>
-                    <td>جمعية تنموية</td>
-                    <td>20 / 02 / 2026</td>
-                    <td><span class="badge">قيد المراجعة</span></td>
-                  </tr>
-                  <tr>
-                    <td>ملتقى شباب الرؤية</td>
-                    <td>وزارة + شركاء</td>
-                    <td>10 / 03 / 2026</td>
-                    <td><span class="badge">مسار عاجل</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="card">
-              <div class="kpi-label">تصاريح وطلبات الموافقة</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>رقم الطلب</th>
-                    <th>نوع النشاط</th>
-                    <th>الحالة</th>
-                  </tr>
-                </thead>
-                <tbody id="permitsTable">
-                  <tr>
-                    <td>#2026-014</td>
-                    <td>فعالية جماهيرية</td>
-                    <td><span class="badge">تحت الإجراء الأمني</span></td>
-                  </tr>
-                  <tr>
-                    <td>#2026-021</td>
-                    <td>ورشة تدريبية</td>
-                    <td><span class="badge">معتمد</span></td>
-                  </tr>
-                  <tr>
-                    <td>#2026-037</td>
-                    <td>معرض تسويقي</td>
-                    <td><span class="badge">طلب استكمال بيانات</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- HUMAN (VOL / TRAIN / JOBS) SECTION -->
-        <div id="section-human" style="display:none;">
-          <div class="two-cols">
-            <div class="card">
-              <div class="kpi-label">فرص التطوع الحالية</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>العنوان</th>
-                    <th>الجهة</th>
-                    <th>الساعات</th>
-                    <th>الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>تنظيم معرض الأسر المنتجة</td>
-                    <td>جمعية تنموية</td>
-                    <td>20</td>
-                    <td><span class="badge">متاح</span></td>
-                  </tr>
-                  <tr>
-                    <td>توثيق فعاليات منتدى الابتكار</td>
-                    <td>مبادرة شبابية</td>
-                    <td>12</td>
-                    <td><span class="badge">مكتمل</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="card">
-              <div class="kpi-label">برامج التدريب والتوظيف</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>البرنامج / الوظيفة</th>
-                    <th>الجهة</th>
-                    <th>النوع</th>
-                    <th>الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>التدريب التعاوني في التحول الرقمي</td>
-                    <td>جامعة + شركة تقنية</td>
-                    <td>تدريب تعاوني</td>
-                    <td><span class="badge">متاح</span></td>
-                  </tr>
-                  <tr>
-                    <td>وظيفة أخصائي تطوير مجتمعي</td>
-                    <td>جهة غير ربحية</td>
-                    <td>وظيفة</td>
-                    <td><span class="badge">قيد الفرز</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- FINANCE SECTION -->
-        <div id="section-finance" style="display:none;">
-          <div class="two-cols">
-            <div class="card">
-              <div class="kpi-label">الفرص المتاحة للتمويل والرعاية</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>المشروع / الفعالية</th>
-                    <th>نوع الدعم المطلوب</th>
-                    <th>المبلغ التقديري</th>
-                    <th>الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>برنامج تمكين الجمعيات الصغيرة</td>
-                    <td>تمويل مشروع</td>
-                    <td>2,000,000</td>
-                    <td><span class="badge">مرشح</span></td>
-                  </tr>
-                  <tr>
-                    <td>منتدى الابتكار الاجتماعي</td>
-                    <td>رعاية فعالية</td>
-                    <td>450,000</td>
-                    <td><span class="badge">فرصة مفتوحة</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="card">
-              <div class="kpi-label">ملخص المحفظة المالية لحساب الجهة (عرض نموذجي)</div>
-              <div class="kpi-value">رصيد تقريبي: 1,750,000 ريال</div>
-              <div class="kpi-note">
-                التحويلات، الرعايات، والتمويلات تظهر هنا بتفاصيل كاملة عند الربط الفعلي مع الأنظمة البنكية والجهات التمويلية.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FACILITIES SECTION -->
-        <div id="section-facilities" style="display:none;">
-          <div class="card">
-            <div class="kpi-label">أمثلة على المرافق المتاحة في المنصة</div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>المرفق</th>
-                  <th>الجهة المالكة</th>
-                  <th>النوع</th>
-                  <th>الحجز</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>مسرح الغرفة التجارية</td>
-                  <td>غرفة تجارية</td>
-                  <td>قاعة فعاليات</td>
-                  <td><span class="badge">متاح بجدولة</span></td>
-                </tr>
-                <tr>
-                  <td>قاعة المؤتمرات بالجامعة</td>
-                  <td>جامعة</td>
-                  <td>قاعة مؤتمرات</td>
-                  <td><span class="badge">متاح للشركاء</span></td>
-                </tr>
-                <tr>
-                  <td>مركز الأنشطة المجتمعية</td>
-                  <td>جمعية تنموية</td>
-                  <td>مركز مجتمعي</td>
-                  <td><span class="badge">حجز عبر المنصة</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- VISION & REPORTS SECTION -->
-        <div id="section-vision" style="display:none;">
-          <div class="two-cols">
-            <div class="card">
-              <div class="kpi-label">أمثلة على ربط المشاريع بمؤشرات الرؤية</div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>المشروع</th>
-                    <th>هدف الرؤية</th>
-                    <th>المؤشر</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>برنامج التوظيف المجتمعي</td>
-                    <td>رفع معدلات التوظيف</td>
-                    <td>نسبة توظيف الشباب في المنطقة</td>
-                  </tr>
-                  <tr>
-                    <td>منصة الأسر المنتجة</td>
-                    <td>تمكين الأسر من مصدر دخل مستدام</td>
-                    <td>عدد الأسر المنتجة المدعومة</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="card">
-              <div class="kpi-label">نماذج التقارير الرسمية التي يمكن إصدارها</div>
-              <ul style="margin:4px 0 0 18px;font-size:12px;">
-                <li>تقرير أثر تنموي لمشروع محدد.</li>
-                <li>تقرير سنوي لجهة حكومية/جمعية/جامعة.</li>
-                <li>تقرير إجمالي لمستوى الإمارة يربط جميع المشاريع بأهداف الرؤية.</li>
-                <li>تقرير مخصص لجهة تمويلية يوضح أثر التمويل والرعايات.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- PARTNERSHIPS SECTION -->
-        <div id="section-partnerships" style="display:none;">
-          <div class="card">
-            <div class="kpi-label">الشراكات والاتفاقيات النشطة</div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>الشراكة</th>
-                  <th>الأطراف</th>
-                  <th>المدة</th>
-                  <th>الحالة</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>اتفاقية تمكين مبادرات الشباب</td>
-                  <td>إمارة المنطقة + جامعة + جمعية</td>
-                  <td>3 سنوات</td>
-                  <td><span class="badge">سارية</span></td>
-                </tr>
-                <tr>
-                  <td>شراكة دعم الأسر المنتجة</td>
-                  <td>بنك تنموي + جمعية</td>
-                  <td>5 سنوات</td>
-                  <td><span class="badge">سارية</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- SETTINGS SECTION -->
-        <div id="section-settings" style="display:none;">
-          <div class="card">
-            <div class="kpi-label">بيانات الجهة والإعدادات (عرض نموذجي)</div>
-            <div style="font-size:12px;">
-              <p><strong>اسم الجهة:</strong> سيتم جلبه من سجل الجهة الرسمي (مثل: إمارة منطقة حائل، جامعة كذا، جمعية كذا، شركة كذا).</p>
-              <p><strong>صلاحيات الحساب:</strong> تُدار من إدارة المنصة وفق مصفوفة الصلاحيات المعتمدة لكل نوع حساب.</p>
-              <p><strong>إعدادات المكوّنات:</strong> يمكن للمنصة تفعيل/إخفاء بعض الخدمات حسب نوع الجهة (مثال: إتاحة “التصاريح الأمنية” فقط للإمارة).</p>
-            </div>
-          </div>
-        </div>
-
-      </section>
+  <!-- ACCOUNTS SECTION -->
+  <section id="accounts" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 id="accountsTitle" class="text-xl sm:text-2xl font-bold text-ink mb-1">
+          حسابات المنصة
+        </h2>
+        <p id="accountsText" class="text-xs sm:text-sm text-slate-600">
+          اختر حسابًا من البطاقات التالية لاستعراض الخدمات المتاحة له، ثم اختر خدمة لاستعراض نماذجها التشغيلية في الجهة اليمنى.
+        </p>
+      </div>
+      <div class="hidden sm:flex items-center gap-2 text-[11px] text-slate-500">
+        <i data-lucide="info" class="w-3.5 h-3.5"></i>
+        <span id="accountsHint">هذا النموذج استعراضي، لا يتصل بأي قواعد بيانات فعلية.</span>
+      </div>
     </div>
 
-    <footer>
-      نموذج تفاعلي لعرض منصة حصيف الوطنية أمام القيادات وصنّاع القرار – كود صفحة واحدة (Single Page) قابل للتطوير والتوسّع.
-    </footer>
-  </div>
+    <div class="grid lg:grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,3fr)] gap-4 items-start">
 
+      <!-- قائمة الحسابات -->
+      <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-3 sm:p-4">
+        <div class="flex items-center justify-between mb-3">
+          <p id="accountsListTitle" class="text-sm font-semibold text-ink">
+            الحسابات الرئيسية
+          </p>
+          <span class="text-[11px] text-slate-500" id="accountsListBadge">
+            9 حسابات
+          </span>
+        </div>
+
+        <div id="accountsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs"></div>
+      </div>
+
+      <!-- خدمات الحساب المحدد -->
+      <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-3 sm:p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <p id="servicesTitle" class="text-sm font-semibold text-ink">
+              خدمات الحساب المختار
+            </p>
+            <p id="servicesText" class="text-[11px] text-slate-500">
+              اختر خدمة لاستعراض النماذج الخاصة بها.
+            </p>
+          </div>
+          <span id="selectedAccountLabel" class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-[11px]">
+            <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+            <span>إمارة المنطقة</span>
+          </span>
+        </div>
+
+        <div id="servicesList" class="flex flex-col gap-1 text-xs max-h-[340px] overflow-y-auto pr-1">
+          <!-- يتم توليدها بالـ JS -->
+        </div>
+      </div>
+
+      <!-- نماذج الخدمة المختارة -->
+      <div id="matrix" class="bg-white rounded-2xl shadow-soft border border-slate-100 p-3 sm:p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <p id="formsTitle" class="text-sm font-semibold text-ink">
+              النماذج التشغيلية
+            </p>
+            <p id="formsText" class="text-[11px] text-slate-500">
+              النماذج التالية تعكس الحقول الأساسية التي يتم جمعها من كل حساب ضمن الخدمة المختارة.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-[11px] text-slate-500">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span id="formsHint">عرض استعراضي – قابل للتوسّع حسب الاحتياج.</span>
+          </div>
+        </div>
+
+        <div id="formsContainer" class="space-y-3 max-h-[340px] overflow-y-auto pr-1 text-xs">
+          <!-- يتم توليدها بالـ JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER بسيط -->
+  <footer class="border-t border-slate-200 mt-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
+      <div>
+        <span id="footerText1">
+          هذا النموذج جزء من برنامج شباب المملكة حصيف الوطني، ويمكن تطويره ليتحول إلى نظام تشغيلي متكامل.
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+        <span id="footerText2">النسخة الاستعراضية – غير متصلة بأنظمة فعلية</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: تعريف البيانات + منطق العرض -->
   <script>
-    // تبديل الوضع الليلي
-    const darkToggle = document.getElementById('darkToggle');
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      darkToggle.textContent = document.body.classList.contains('dark') ? 'الوضع النهاري' : 'الوضع الليلي';
-    });
+    // ---------- تعريف الحسابات والخدمات والنماذج ----------
 
-    // تغيير الأقسام مع القائمة الجانبية
-    const menuButtons = document.querySelectorAll('.menu-button');
-    const sections = [
-      'dashboard','projects','challenges','events',
-      'human','finance','facilities','vision','partnerships','settings'
+    const accounts = [
+      {
+        key: 'emirate',
+        icon: 'shield',
+        color: 'from-primary to-accent',
+        name_ar: 'إمارة المنطقة',
+        name_en: 'Regional Emirate',
+        desc_ar: 'تشرف على المشهد التنموي في المنطقة وتنسّق بين جميع القطاعات.',
+        desc_en: 'Oversees the regional development landscape and coordinates all sectors.',
+        services: [
+          {
+            key: 'strategic-projects',
+            icon: 'target',
+            name_ar: 'إدارة المبادرات والمشاريع الاستراتيجية',
+            name_en: 'Strategic Projects & Initiatives',
+            desc_ar: 'مشاريع ومبادرات تخدم أولويات المنطقة وترتبط ببرامج رؤية 2030.',
+            desc_en: 'Strategic regional projects linked to Vision 2030 programs.',
+            forms: [
+              {
+                key: 'emirate-initiative',
+                name_ar: 'نموذج مبادرة/مشروع إمارة المنطقة',
+                name_en: 'Emirate Initiative / Project Form',
+                fields: [
+                  ['اسم المبادرة', 'text'],
+                  ['القطاع/القطاعات المشاركة', 'select'],
+                  ['برنامج الرؤية المرتبط', 'select'],
+                  ['الأهداف الاستراتيجية في المنطقة', 'textarea'],
+                  ['المؤشرات الرئيسية (KPIs)', 'textarea'],
+                  ['نوع التمويل المطلوب (منحة/استثمار/مساهمة مسؤولية اجتماعية)', 'select'],
+                  ['الميزانية التقديرية', 'number'],
+                  ['نطاق التنفيذ (مدينة/محافظة/منطقة)', 'text'],
+                  ['الفترة الزمنية للتنفيذ', 'text'],
+                  ['الجهة المشغلة المقترحة (إن وجدت)', 'text']
+                ]
+              },
+              {
+                key: 'emirate-priority',
+                name_ar: 'نموذج أولوية تنموية للمنطقة',
+                name_en: 'Regional Priority Declaration Form',
+                fields: [
+                  ['اسم الأولوية', 'text'],
+                  ['الوصف المختصر للأولوية', 'textarea'],
+                  ['الفئة المستهدفة (أفراد/أسر/منشآت/جمعيات)', 'select'],
+                  ['المناطق الجغرافية داخل الإمارة', 'text'],
+                  ['مؤشرات الوضع الحالي', 'textarea'],
+                  ['المخرجات المتوقعة من المشاريع المعالجة', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'solutions',
+            icon: 'puzzle',
+            name_ar: 'التحديات والحلول المقترحة',
+            name_en: 'Challenges & Proposed Solutions',
+            desc_ar: 'نشر التحديات التنموية واستقبال حلول من القطاعات والأفراد.',
+            desc_en: 'Publish regional challenges and receive solutions from all sectors.',
+            forms: [
+              {
+                key: 'emirate-challenge',
+                name_ar: 'نموذج طرح تحدٍ تنموي من الإمارة',
+                name_en: 'Emirate Challenge Form',
+                fields: [
+                  ['عنوان التحدي', 'text'],
+                  ['الوصف التفصيلي للتحدي', 'textarea'],
+                  ['الجهات المعنية بالتحدي', 'textarea'],
+                  ['مدة التحدي (لفتح استقبال الحلول)', 'text'],
+                  ['شروط قبول الحلول', 'textarea'],
+                  ['نوع المكافأة/الدعم لأفضل الحلول', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'regional-reporting',
+            icon: 'bar-chart-3',
+            name_ar: 'التقارير التنموية للمنطقة',
+            name_en: 'Regional Development Reports',
+            desc_ar: 'لوحة مؤشرات للوظائف، المشاريع، التدريب، التطوع، والتمويل في المنطقة.',
+            desc_en: 'Dashboards for jobs, projects, training, volunteering and funding.',
+            forms: [
+              {
+                key: 'emirate-report-config',
+                name_ar: 'تهيئة لوحة مؤشرات المنطقة',
+                name_en: 'Regional Dashboard Configuration',
+                fields: [
+                  ['الفترات الزمنية للتقارير (ربع سنوي/سنوي)', 'select'],
+                  ['القطاعات المشمولة في التقارير', 'textarea'],
+                  ['مؤشرات الرؤية ذات الأولوية للإمارة', 'textarea']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'gov',
+        icon: 'building-2',
+        color: 'from-primary to-accent',
+        name_ar: 'جهة حكومية',
+        name_en: 'Government Entity',
+        desc_ar: 'وزارة أو هيئة حكومية ترغب في طرح مبادراتها واحتياجاتها وحلولها.',
+        desc_en: 'Ministry or government agency publishing its initiatives and needs.',
+        services: [
+          {
+            key: 'gov-projects',
+            icon: 'folder-kanban',
+            name_ar: 'إدارة المبادرات والمشاريع',
+            name_en: 'Initiatives & Projects',
+            desc_ar: 'إدراج مبادرات الجهة وربطها بمؤشرات رؤية 2030 واستقبال عروض التنفيذ/الرعاية.',
+            desc_en: 'List initiatives and link them to Vision KPIs and implementation offers.',
+            forms: [
+              {
+                key: 'gov-project',
+                name_ar: 'نموذج مبادرة/مشروع حكومي',
+                name_en: 'Government Project Form',
+                fields: [
+                  ['اسم المبادرة/المشروع', 'text'],
+                  ['القطاع الإشرافي (وزارة/هيئة)', 'text'],
+                  ['الأهداف الاستراتيجية للجهة', 'textarea'],
+                  ['أهداف رؤية 2030 المرتبطة', 'textarea'],
+                  ['نوع الحاجة (تمويل/تنفيذ/رعاية/استشارة)', 'select'],
+                  ['الفئة المستفيدة', 'textarea'],
+                  ['المخرجات المتوقعة', 'textarea'],
+                  ['التكلفة التقديرية الإجمالية', 'number'],
+                  ['الخطة الزمنية المختصرة', 'textarea'],
+                  ['الملفات المساندة (دراسة جدوى/خطة عمل)', 'file']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'gov-facilities',
+            icon: 'building',
+            name_ar: 'إتاحة المرافق',
+            name_en: 'Facilities',
+            desc_ar: 'إتاحة مرافق الجهة للفعاليات والمبادرات (مجاني/مدفوع).',
+            desc_en: 'Allowing use of facilities for events and initiatives.',
+            forms: [
+              {
+                key: 'gov-facility',
+                name_ar: 'نموذج إدراج مرفق حكومي',
+                name_en: 'Facility Listing Form',
+                fields: [
+                  ['اسم المرفق', 'text'],
+                  ['نوع المرفق (قاعة/مسرح/ساحة خارجية/معمل)', 'select'],
+                  ['الطاقة الاستيعابية', 'number'],
+                  ['الموقع الجغرافي', 'text'],
+                  ['شروط استخدام المرفق', 'textarea'],
+                  ['هل الاستخدام مجاني للفعاليات aligned مع مستهدفات الجهة؟', 'select'],
+                  ['رسوم الاستخدام (إن وجدت)', 'number']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'gov-solutions',
+            icon: 'lightbulb',
+            name_ar: 'طلب حلول من القطاعات',
+            name_en: 'Request Solutions',
+            desc_ar: 'طرح احتياجات الجهة واستقبال حلول من القطاع الخاص والجامعات والقطاع غير الربحي.',
+            desc_en: 'Publish needs and receive solutions from private, universities, nonprofits.',
+            forms: [
+              {
+                key: 'gov-need',
+                name_ar: 'نموذج احتياج/تحدي للجهة',
+                name_en: 'Need / Challenge Form',
+                fields: [
+                  ['عنوان الاحتياج', 'text'],
+                  ['الوصف التفصيلي', 'textarea'],
+                  ['الأثر المتوقع من إيجاد حل', 'textarea'],
+                  ['القطاعات المطلوبة للمساهمة', 'textarea'],
+                  ['نموذج التعاون المطلوب (عقد/رعاية/مذكرة تفاهم)', 'select'],
+                  ['المدة الزمنية لقبول العروض', 'text']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'gov-events',
+            icon: 'calendar',
+            name_ar: 'الموافقات على الفعاليات',
+            name_en: 'Event Approvals',
+            desc_ar: 'إدارة طلبات إقامة الفعاليات ومتابعة الموافقات.',
+            desc_en: 'Manage event approvals and related permissions.',
+            forms: [
+              {
+                key: 'gov-event-approval',
+                name_ar: 'نموذج طلب إقامة فعالية',
+                name_en: 'Event Approval Request',
+                fields: [
+                  ['اسم الفعالية', 'text'],
+                  ['نوع الفعالية (منتدى/معرض/ورشة/حملة)', 'select'],
+                  ['الجهة المنظمة', 'text'],
+                  ['مكان التنفيذ المقترح', 'text'],
+                  ['تاريخ وبداية ونهاية الفعالية', 'text'],
+                  ['الفئة المستهدفة', 'textarea'],
+                  ['الشركاء المحتملون', 'textarea'],
+                  ['احتياج الأمن والسلامة', 'textarea']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'private',
+        icon: 'briefcase',
+        color: 'from-primary to-accent',
+        name_ar: 'قطاع خاص',
+        name_en: 'Private Sector',
+        desc_ar: 'شركات ومؤسسات تبحث عن فرص مسؤولية اجتماعية واستثمار وتنمية.',
+        desc_en: 'Companies seeking CSR, investment and development opportunities.',
+        services: [
+          {
+            key: 'csr-grants',
+            icon: 'hand-heart',
+            name_ar: 'فرص المنح (المسؤولية الاجتماعية)',
+            name_en: 'CSR Grant Opportunities',
+            desc_ar: 'إطلاق برامج منح ورعاية للمشاريع التنموية المتوافقة مع استراتيجيات الشركة.',
+            desc_en: 'CSR grant and sponsorship programs for development projects.',
+            forms: [
+              {
+                key: 'csr-program',
+                name_ar: 'نموذج برنامج مسؤولية اجتماعية',
+                name_en: 'CSR Program Form',
+                fields: [
+                  ['اسم البرنامج', 'text'],
+                  ['المجالات المستهدفة (تعليم/صحة/شباب/بيئة...)', 'textarea'],
+                  ['الميزانية السنوية المخصصة', 'number'],
+                  ['شروط المشاريع المؤهلة للتمويل', 'textarea'],
+                  ['مناطق التنفيذ المستهدفة', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'private-invest',
+            icon: 'trend-up',
+            name_ar: 'الاستثمار في المشاريع',
+            name_en: 'Investment',
+            desc_ar: 'الاستثمار في مشاريع ذات عائد مالي وأثر اجتماعي.',
+            desc_en: 'Invest in projects with financial return and social impact.',
+            forms: [
+              {
+                key: 'investment-interest',
+                name_ar: 'نموذج اهتمام استثماري',
+                name_en: 'Investment Interest Form',
+                fields: [
+                  ['نوع المشاريع المفضلة', 'textarea'],
+                  ['نطاق حجم الاستثمار (حد أدنى/أعلى)', 'textarea'],
+                  ['مستوى المخاطر المقبول', 'select'],
+                  ['توقعات العائد المالي', 'textarea'],
+                  ['تفضيلات الشراكة (ملكية/عقد تشغيلي/امتياز)', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'private-jobs',
+            icon: 'badge-check',
+            name_ar: 'الوظائف وفرص التدريب',
+            name_en: 'Jobs & Training',
+            desc_ar: 'نشر الوظائف وفرص التدريب التعاوني المرتبطة بالمشاريع الممولة.',
+            desc_en: 'Publish jobs and co-op training linked to funded projects.',
+            forms: [
+              {
+                key: 'job-post',
+                name_ar: 'نموذج نشر وظيفة',
+                name_en: 'Job Posting Form',
+                fields: [
+                  ['المسمى الوظيفي', 'text'],
+                  ['القسم', 'text'],
+                  ['نوع العقد', 'select'],
+                  ['المهام الرئيسية', 'textarea'],
+                  ['المؤهلات المطلوبة', 'textarea'],
+                  ['الراتب أو النطاق', 'text'],
+                  ['موقع العمل (عن بعد/حضور/هجين)', 'select']
+                ]
+              },
+              {
+                key: 'coop-training',
+                name_ar: 'نموذج فرصة تدريب تعاوني',
+                name_en: 'Co-op Training Opportunity Form',
+                fields: [
+                  ['اسم القسم المستضيف', 'text'],
+                  ['الوصف التدريبي', 'textarea'],
+                  ['مدة التدريب', 'text'],
+                  ['المخرجات التعليمية المتوقعة', 'textarea'],
+                  ['عدد المتدربين المطلوب', 'number']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'nonprofit',
+        icon: 'heart',
+        color: 'from-primary to-accent',
+        name_ar: 'قطاع غير ربحي',
+        name_en: 'Nonprofit Sector',
+        desc_ar: 'جمعيات ولجان ومؤسسات أهلية تستفيد من فرص التمويل والشراكات والمتطوعين.',
+        desc_en: 'Nonprofits seeking funding, partnerships and volunteers.',
+        services: [
+          {
+            key: 'np-projects',
+            icon: 'folder-kanban',
+            name_ar: 'المشاريع التنموية',
+            name_en: 'Development Projects',
+            desc_ar: 'إدراج مشاريع الجمعيات لطلب تمويل أو رعاية أو استثمار اجتماعي.',
+            desc_en: 'List nonprofit projects for funding or impact-investment.',
+            forms: [
+              {
+                key: 'np-project',
+                name_ar: 'نموذج مشروع جمعية',
+                name_en: 'Nonprofit Project Form',
+                fields: [
+                  ['اسم المشروع', 'text'],
+                  ['مجال المشروع (اجتماعي/صحي/تعليمي/بيئي...)', 'select'],
+                  ['الفئة المستهدفة', 'textarea'],
+                  ['عدد المستفيدين المتوقع', 'number'],
+                  ['الميزانية المطلوبة', 'number'],
+                  ['مصادر التمويل الحالية (إن وجدت)', 'textarea'],
+                  ['شركاء التنفيذ المقترحين', 'textarea'],
+                  ['آلية المتابعة والتقييم', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'np-volunteers',
+            icon: 'users',
+            name_ar: 'فرص التطوع',
+            name_en: 'Volunteering',
+            desc_ar: 'نشر الفرص التطوعية وربطها بمهارات المتطوعين.',
+            desc_en: 'Publish volunteering opportunities mapped to volunteer skills.',
+            forms: [
+              {
+                key: 'vol-op',
+                name_ar: 'نموذج فرصة تطوعية',
+                name_en: 'Volunteer Opportunity Form',
+                fields: [
+                  ['عنوان الفرصة', 'text'],
+                  ['وصف المهام', 'textarea'],
+                  ['المهارات المطلوبة', 'textarea'],
+                  ['مدة التطوع', 'text'],
+                  ['مكان التنفيذ', 'text'],
+                  ['هل هناك شهادة/حوافز؟', 'select']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'np-training',
+            icon: 'book-open',
+            name_ar: 'برامج التدريب والتمكين',
+            name_en: 'Capacity Building',
+            desc_ar: 'طلب برامج تدريبية للجمعيات من الجامعات أو المانحين.',
+            desc_en: 'Request training programs from universities or funders.',
+            forms: [
+              {
+                key: 'np-training-need',
+                name_ar: 'نموذج احتياج تدريبي للجمعية',
+                name_en: 'Nonprofit Training Need Form',
+                fields: [
+                  ['موضوع التدريب المطلوب', 'text'],
+                  ['الفئة المستهدفة داخل الجمعية', 'textarea'],
+                  ['عدد المستفيدين من التدريب', 'number'],
+                  ['التوقيت المقترح', 'text'],
+                  ['جهة تدريب مفضلة (إن وجدت)', 'text']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'uni',
+        icon: 'graduation-cap',
+        color: 'from-primary to-accent',
+        name_ar: 'الجامعات',
+        name_en: 'Universities',
+        desc_ar: 'تقدّم الجامعات دورًا علميًا واستشاريًا وتدريبيًا، إضافة لطرح الأبحاث والمبادرات.',
+        desc_en: 'Universities provide scientific, advisory, and training roles.',
+        services: [
+          {
+            key: 'uni-consulting',
+            icon: 'clipboard-list',
+            name_ar: 'تعزيز علمي للمشاريع (استشارات)',
+            name_en: 'Scientific Enhancement & Advisory',
+            desc_ar: 'مراجعة وتدقيق المشاريع المطروحة من القطاعات المختلفة علميًا ومنهجيًا.',
+            desc_en: 'Scientific review of projects from all sectors.',
+            forms: [
+              {
+                key: 'uni-consult-request',
+                name_ar: 'نموذج طلب تعزيز علمي من الجامعة',
+                name_en: 'Scientific Review Request',
+                fields: [
+                  ['اسم المشروع/المبادرة', 'text'],
+                  ['نوع الجهة (حكومية/خاصة/غير ربحية)', 'select'],
+                  ['ملخص المشروع', 'textarea'],
+                  ['الجوانب العلمية المطلوب مراجعتها', 'textarea'],
+                  ['الكلية/المركز العلمي المناسب', 'text'],
+                  ['مقابل مالي أو شراكة علمية', 'text']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'uni-training',
+            icon: 'book-open',
+            name_ar: 'البرامج التدريبية والمنتديات',
+            name_en: 'Training Programs & Forums',
+            desc_ar: 'طرح برامج تدريبية ومنتديات علمية مرتبطة بأولويات القطاعات.',
+            desc_en: 'Publish training programs and forums aligned with sector priorities.',
+            forms: [
+              {
+                key: 'uni-program',
+                name_ar: 'نموذج برنامج تدريبي/منتدى',
+                name_en: 'Training / Forum Program Form',
+                fields: [
+                  ['اسم البرنامج/المنتدى', 'text'],
+                  ['الموضوع الرئيسي', 'textarea'],
+                  ['الفئة المستهدفة (طلاب/قطاع خاص/غير ربحي/حكومي)', 'textarea'],
+                  ['عدد الساعات/الأيام', 'text'],
+                  ['الشركاء المحتملون', 'textarea'],
+                  ['رسوم الاشتراك (إن وجدت)', 'number']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'uni-facilities',
+            icon: 'building',
+            name_ar: 'مرافق الجامعة',
+            name_en: 'University Facilities',
+            desc_ar: 'إتاحة مسارح وقاعات ومعامل الجامعة لبرامج تنموية.',
+            desc_en: 'Provide access to university theaters, halls and labs.',
+            forms: [
+              {
+                key: 'uni-facility',
+                name_ar: 'نموذج مرفق جامعي',
+                name_en: 'University Facility Form',
+                fields: [
+                  ['اسم المرفق', 'text'],
+                  ['نوع المرفق', 'select'],
+                  ['الطاقة الاستيعابية', 'number'],
+                  ['الشروط الأكاديمية/التنظيمية للاستخدام', 'textarea']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'funder',
+        icon: 'wallet',
+        color: 'from-primary to-accent',
+        name_ar: 'جهات مانحة',
+        name_en: 'Funders',
+        desc_ar: 'صناديق وجهات تمويل وتبرع تدير محافظ تمويلية للمشاريع والمبادرات.',
+        desc_en: 'Funding entities and donors managing portfolios of projects.',
+        services: [
+          {
+            key: 'funder-programs',
+            icon: 'credit-card',
+            name_ar: 'برامج التمويل والمنح',
+            name_en: 'Funding Programs',
+            desc_ar: 'تعريف برامج المنح ومعاييرها وربطها بالمشاريع الواردة عبر المنصة.',
+            desc_en: 'Define funding programs and link them to projects on the platform.',
+            forms: [
+              {
+                key: 'funder-program',
+                name_ar: 'نموذج برنامج تمويلي',
+                name_en: 'Funding Program Form',
+                fields: [
+                  ['اسم البرنامج التمويلي', 'text'],
+                  ['نوع الدعم (منحة/قرض/استثمار)', 'select'],
+                  ['حجم التمويل المتاح', 'number'],
+                  ['المجالات والقطاعات المستهدفة', 'textarea'],
+                  ['المناطق الجغرافية المستهدفة', 'textarea'],
+                  ['ضوابط أهلية المشاريع', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'funder-portfolio',
+            icon: 'bar-chart-3',
+            name_ar: 'محفظة المانح',
+            name_en: 'Funder Portfolio',
+            desc_ar: 'متابعة أداء المشاريع الممولة ومؤشرات الأثر.',
+            desc_en: 'Track performance and impact of funded projects.',
+            forms: [
+              {
+                key: 'funder-kpi-config',
+                name_ar: 'تهيئة مؤشرات محفظة المانح',
+                name_en: 'Portfolio KPIs Configuration',
+                fields: [
+                  ['أنواع المؤشرات (ناتج/أثر/مالية)', 'textarea'],
+                  ['دورية التقارير (ربع سنوي/سنوي)', 'select'],
+                  ['الجهات المشاركة في التقييم', 'textarea']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'people',
+        icon: 'users',
+        color: 'from-primary to-accent',
+        name_ar: 'الأفراد',
+        name_en: 'Individuals',
+        desc_ar: 'الأفراد كطلاب، خريجين، باحثين عن عمل، متطوعين، أصحاب مبادرات.',
+        desc_en: 'Individuals as students, graduates, job-seekers, volunteers, innovators.',
+        services: [
+          {
+            key: 'people-profile',
+            icon: 'id-card',
+            name_ar: 'الملف التنموي للفرد',
+            name_en: 'Individual Development Profile',
+            desc_ar: 'تجميع بيانات التعليم، الخبرات، التطوع، الاهتمامات، وربطها بالفرص.',
+            desc_en: 'Aggregate education, experience, volunteering and interests.',
+            forms: [
+              {
+                key: 'people-profile-form',
+                name_ar: 'نموذج الملف التنموي',
+                name_en: 'Development Profile Form',
+                fields: [
+                  ['البيانات الأساسية (الاسم/العمر/المدينة)', 'textarea'],
+                  ['المؤهل العلمي والتخصص', 'textarea'],
+                  ['الخبرات العملية', 'textarea'],
+                  ['سجل الأعمال التطوعية', 'textarea'],
+                  ['الاهتمامات التنموية', 'textarea'],
+                  ['نوع الفرص المفضلة (وظيفة/تدريب/تطوع/مشاريع)', 'textarea']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'people-initiatives',
+            icon: 'sparkles',
+            name_ar: 'مبادرات الأفراد',
+            name_en: 'Individual Initiatives',
+            desc_ar: 'رفع مبادرات ومشاريع أفراد مرتبطة ببرامج الرؤية.',
+            desc_en: 'Submit individual initiatives linked to Vision programs.',
+            forms: [
+              {
+                key: 'people-initiative-form',
+                name_ar: 'نموذج مبادرة فردية',
+                name_en: 'Individual Initiative Form',
+                fields: [
+                  ['اسم المبادرة', 'text'],
+                  ['وصف الفكرة', 'textarea'],
+                  ['الإشكالية التي تعالجها', 'textarea'],
+                  ['الفئة المستهدفة', 'textarea'],
+                  ['المنطقة المستهدفة', 'text'],
+                  ['نوع الدعم المطلوب (تمويل/إرشاد/شريك تنفيذي)', 'select']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'speakers',
+        icon: 'mic',
+        color: 'from-primary to-accent',
+        name_ar: 'مدربون/متحدثون',
+        name_en: 'Trainers/Speakers',
+        desc_ar: 'منصة لإبراز ملفات المتحدثين والمدربين وربطهم بالمنتديات والبرامج.',
+        desc_en: 'Showcase trainers/speakers and link them to programs.',
+        services: [
+          {
+            key: 'speaker-profile',
+            icon: 'user-round',
+            name_ar: 'الملف المهني للمدرب/المتحدث',
+            name_en: 'Speaker Professional Profile',
+            desc_ar: 'إبراز السيرة الذاتية والمجالات المتخصصة والمواد التدريبية.',
+            desc_en: 'Highlight CV, expertise areas and training materials.',
+            forms: [
+              {
+                key: 'speaker-profile-form',
+                name_ar: 'نموذج ملف مدرب/متحدث',
+                name_en: 'Speaker Profile Form',
+                fields: [
+                  ['البيانات الأساسية', 'textarea'],
+                  ['المجالات المتخصصة', 'textarea'],
+                  ['الخبرات التدريبية/التحدث', 'textarea'],
+                  ['اللغات المتقنة', 'textarea'],
+                  ['البرامج التدريبية المتاحة', 'textarea']
+                ]
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        key: 'admin',
+        icon: 'settings',
+        color: 'from-primary to-accent',
+        name_ar: 'حوكمة المنصة',
+        name_en: 'Platform Governance',
+        desc_ar: 'إدارة الحسابات والصلاحيات، واعتماد الجهات، ومراقبة البيانات والمؤشرات.',
+        desc_en: 'Manage accounts, permissions, approvals and platform-wide KPIs.',
+        services: [
+          {
+            key: 'admin-accounts',
+            icon: 'shield-check',
+            name_ar: 'إدارة الحسابات والصلاحيات',
+            name_en: 'Accounts & Permissions',
+            desc_ar: 'اعتماد الجهات والمستخدمين وإدارة مستويات الوصول.',
+            desc_en: 'Approve entities/users and manage access levels.',
+            forms: [
+              {
+                key: 'admin-entity',
+                name_ar: 'نموذج توثيق جهة',
+                name_en: 'Entity Verification Form',
+                fields: [
+                  ['نوع الجهة (حكومية/خاصة/غير ربحية/جامعة/مانح)', 'select'],
+                  ['اسم الجهة', 'text'],
+                  ['السجل التجاري/التراخيص', 'textarea'],
+                  ['ممثل الجهة في المنصة', 'textarea'],
+                  ['المستندات المؤيدة', 'file']
+                ]
+              }
+            ]
+          },
+          {
+            key: 'admin-kpi',
+            icon: 'bar-chart-3',
+            name_ar: 'مؤشرات المنصة العامة',
+            name_en: 'Global Platform KPIs',
+            desc_ar: 'ضبط مؤشرات الأداء العامة للمنصة ومتابعة التقدم.',
+            desc_en: 'Configure and monitor platform-wide performance indicators.',
+            forms: [
+              {
+                key: 'admin-kpi-form',
+                name_ar: 'نموذج تهيئة مؤشرات المنصة',
+                name_en: 'Platform KPIs Setup Form',
+                fields: [
+                  ['المحاور الرئيسية (وظائف/مشاريع/تطوع/تدريب...)', 'textarea'],
+                  ['طريقة احتساب كل مؤشر', 'textarea'],
+                  ['دورية النشر (شهرية/ربع سنوية/سنوية)', 'select']
+                ]
+              }
+            ]
+          }
+        ]
+      }
     ];
 
-    function showSection(section) {
-      // فعّل الزر
-      menuButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.section === section);
+    // ---------- عناصر DOM رئيسية ----------
+    const accountsGridEl = document.getElementById('accountsGrid');
+    const servicesListEl = document.getElementById('servicesList');
+    const formsContainerEl = document.getElementById('formsContainer');
+    const selectedAccountLabelEl = document.getElementById('selectedAccountLabel');
+
+    let currentLang = 'ar';
+    let selectedAccountKey = 'emirate';
+    let selectedServiceKey = null;
+
+    // ---------- دوال بناء الواجهة ----------
+
+    function renderAccounts() {
+      accountsGridEl.innerHTML = '';
+      accounts.forEach(acc => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className =
+          'group relative flex flex-col items-start gap-1 p-3 rounded-2xl border bg-white text-right ' +
+          'hover:shadow-soft hover:-translate-y-0.5 transition-all duration-150 text-[11px] ' +
+          (acc.key === selectedAccountKey ? 'border-primary/70 bg-primary/5' : 'border-slate-100');
+
+        btn.innerHTML = `
+          <div class="flex items-center justify-between w-full mb-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-7 w-7 rounded-xl bg-gradient-to-br ${acc.color} items-center justify-center">
+                <i data-lucide="${acc.icon}" class="w-3.5 h-3.5 text-white"></i>
+              </span>
+              <div class="flex flex-col items-start">
+                <span class="font-semibold text-ink text-xs">${currentLang === 'ar' ? acc.name_ar : acc.name_en}</span>
+                <span class="text-[10px] text-slate-500">
+                  ${currentLang === 'ar' ? 'خدمات مخصصة' : 'Tailored services'}
+                </span>
+              </div>
+            </div>
+          </div>
+          <p class="text-[10px] text-slate-500 line-clamp-2 text-right">
+            ${currentLang === 'ar' ? acc.desc_ar : acc.desc_en}
+          </p>
+        `;
+
+        btn.onclick = () => {
+          selectedAccountKey = acc.key;
+          selectedServiceKey = null;
+          renderAccounts();
+          renderServices();
+          renderForms();
+        };
+
+        accountsGridEl.appendChild(btn);
       });
 
-      // أظهر القسم الصحيح
-      sections.forEach(sec => {
-        const el = document.getElementById('section-' + sec);
-        if (el) el.style.display = (sec === section ? 'block' : 'none');
-      });
-
-      updateBreadcrumbAndHeader(section);
+      lucide.createIcons();
     }
 
-    menuButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        showSection(btn.dataset.section);
-      });
-    });
-
-    // تغيير النصوص حسب نوع الحساب
-    const accountSelect = document.getElementById('accountSelect');
-    const breadcrumbEl = document.getElementById('breadcrumb');
-    const pageTitleEl = document.getElementById('pageTitle');
-    const pageDescEl = document.getElementById('pageDesc');
-
-    const accountLabels = {
-      emarah:   'إمارة المنطقة',
-      gov:      'جهة حكومية',
-      private:  'القطاع الخاص',
-      nonprofit:'القطاع غير الربحي',
-      uni:      'جامعة / مركز بحثي',
-      fund:     'جهة تمويلية / مانحة',
-      individual:'فرد'
-    };
-
-    const accountDescriptions = {
-      emarah:   'إشراف تنموي شامل على مستوى المنطقة وربط المشاريع بمؤشرات التنمية المناطقية.',
-      gov:      'إدارة التحديات والمشاريع والبرامج الحكومية وربطها بمستهدفات رؤية 2030.',
-      private:  'تفعيل دور المسؤولية الاجتماعية والاستثمار التنموي والتوظيف والتدريب.',
-      nonprofit:'إطلاق المبادرات المجتمعية واستقطاب المتطوعين والتمويل وتحقيق أثر اجتماعي.',
-      uni:      'تحويل الأبحاث إلى حلول ومشاريع، والتدريب التعاوني، والاستشارات العلمية.',
-      fund:     'اختيار أفضل المشاريع لتمويلها ومتابعة أثرها التنموي عبر تقارير واضحة.',
-      individual:'تمكين الأفراد من التطوع، التدريب، التحدث، وطرح الحلول والمبادرات التنموية.'
-    };
-
-    function updateBreadcrumbAndHeader(section) {
-      const accountKey = accountSelect.value;
-      const accountName = accountLabels[accountKey] || '';
-      const sectionLabel = {
-        dashboard:'لوحة القيادة',
-        projects:'المشاريع والمبادرات',
-        challenges:'التحديات والحلول',
-        events:'الفعاليات والتصاريح',
-        human:'التطوع والتدريب والتوظيف',
-        finance:'التمويل والرعايات والمحفظة',
-        facilities:'المرافق المشتركة',
-        vision:'مؤشرات الرؤية والتقارير',
-        partnerships:'الشراكات والاتفاقيات',
-        settings:'بيانات الجهة والإعدادات'
-      }[section] || '';
-
-      breadcrumbEl.textContent = accountName + ' / ' + sectionLabel;
-      pageTitleEl.textContent = sectionLabel + ' - ' + accountName;
-      pageDescEl.textContent = accountDescriptions[accountKey] || '';
+    function getSelectedAccount() {
+      return accounts.find(a => a.key === selectedAccountKey) || accounts[0];
     }
 
-    accountSelect.addEventListener('change', () => {
-      updateBreadcrumbAndHeader('dashboard');
-    });
+    function renderServices() {
+      const acc = getSelectedAccount();
+      servicesListEl.innerHTML = '';
 
-    // إعداد افتراضي
-    showSection('dashboard');
+      selectedAccountLabelEl.innerHTML =
+        `<i data-lucide="${acc.icon}" class="w-3.5 h-3.5"></i>` +
+        `<span>${currentLang === 'ar' ? acc.name_ar : acc.name_en}</span>`;
+
+      acc.services.forEach((svc, idx) => {
+        if (!selectedServiceKey && idx === 0) selectedServiceKey = svc.key;
+
+        const isActive = svc.key === selectedServiceKey;
+        const div = document.createElement('button');
+        div.type = 'button';
+        div.className =
+          'flex items-start gap-2 p-2 rounded-xl border text-right w-full ' +
+          'hover:bg-slate-50 transition text-[11px] ' +
+          (isActive ? 'border-primary/70 bg-primary/5' : 'border-slate-100');
+
+        div.innerHTML = `
+          <span class="mt-0.5 inline-flex h-7 w-7 rounded-xl bg-primary/10 items-center justify-center">
+            <i data-lucide="${svc.icon}" class="w-3.5 h-3.5 text-primary"></i>
+          </span>
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-2 mb-0.5">
+              <span class="font-semibold text-ink text-xs">
+                ${currentLang === 'ar' ? svc.name_ar : svc.name_en}
+              </span>
+              <span class="text-[10px] text-slate-400">
+                ${svc.forms.length} ${currentLang === 'ar' ? 'نموذج' : 'forms'}
+              </span>
+            </div>
+            <p class="text-[10px] text-slate-500 line-clamp-2">
+              ${currentLang === 'ar' ? svc.desc_ar : svc.desc_en}
+            </p>
+          </div>
+        `;
+
+        div.onclick = () => {
+          selectedServiceKey = svc.key;
+          renderServices();
+          renderForms();
+        };
+
+        servicesListEl.appendChild(div);
+      });
+
+      lucide.createIcons();
+    }
+
+    function renderForms() {
+      const acc = getSelectedAccount();
+      const svc = acc.services.find(s => s.key === selectedServiceKey) || acc.services[0];
+
+      if (!svc) {
+        formsContainerEl.innerHTML = `<p class="text-[11px] text-slate-500">
+          لا توجد نماذج معرفة لهذا الحساب حتى الآن.
+        </p>`;
+        return;
+      }
+
+      formsContainerEl.innerHTML = '';
+      svc.forms.forEach(form => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl border border-slate-100 bg-slate-50/60 p-3 space-y-2';
+
+        const title = (currentLang === 'ar' ? form.name_ar : form.name_en) || '';
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2 mb-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-6 w-6 rounded-xl bg-primary/10 items-center justify-center">
+                <i data-lucide="file-pen" class="w-3.5 h-3.5 text-primary"></i>
+              </span>
+              <div>
+                <p class="text-xs font-semibold text-ink">${title}</p>
+                <p class="text-[10px] text-slate-500">
+                  ${currentLang === 'ar'
+                    ? 'عرض توضيحي للحقول الرئيسية في هذا النموذج.'
+                    : 'Demonstration of the main fields in this form.'}
+                </p>
+              </div>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-white border border-slate-200 text-slate-500">
+              ${currentLang === 'ar' ? 'استعراضي' : 'Demo'}
+            </span>
+          </div>
+        `;
+
+        // جدول الحقول
+        const table = document.createElement('div');
+        table.className = 'grid grid-cols-1 sm:grid-cols-2 gap-1 text-[10px]';
+
+        form.fields.forEach(([label, type]) => {
+          const row = document.createElement('div');
+          row.className = 'flex flex-col gap-0.5 bg-white rounded-xl border border-slate-100 p-1.5';
+          let typeLabel = '';
+          switch (type) {
+            case 'text': typeLabel = currentLang === 'ar' ? 'حقل نصي' : 'Text'; break;
+            case 'textarea': typeLabel = currentLang === 'ar' ? 'حقل متعدد الأسطر' : 'Textarea'; break;
+            case 'number': typeLabel = currentLang === 'ar' ? 'حقل رقمي' : 'Number'; break;
+            case 'select': typeLabel = currentLang === 'ar' ? 'قائمة اختيار' : 'Select'; break;
+            case 'file': typeLabel = currentLang === 'ar' ? 'مرفق/ملف' : 'File'; break;
+            default: typeLabel = type;
+          }
+
+          row.innerHTML = `
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-semibold text-[11px] text-ink">${label}</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500">
+                ${typeLabel}
+              </span>
+            </div>
+          `;
+
+          table.appendChild(row);
+        });
+
+        card.appendChild(table);
+        formsContainerEl.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // ---------- تعريب/إنجليزي للنصوص الثابتة فقط ----------
+    const i18n = {
+      ar: {
+        heroBadge: 'نموذج أولي – قابل للاستعراض على الكمبيوتر والجوال',
+        heroTitle: 'لوحة تشغيل وطنية تربط جميع الحسابات التنموية في منصة حصيف',
+        heroText:
+          'يسمح هذا النموذج الاستعراضي لصانع القرار برؤية كيفية عمل حسابات المنصة، والخدمات المتاحة لكل حساب، والنماذج التشغيلية المرتبطة بها.',
+        btnPrimaryLabel: 'استعراض الحسابات والخدمات',
+        btnSecondaryLabel: 'مصفوفة الخدمات والنماذج',
+        visionBadge: 'ربط مستهدفات رؤية 2030 بالحلول والمشاريع',
+        visionBody:
+          'يمكن لجميع القطاعات استخدام المنصة لطرح مبادراتها واحتياجاتها وربطها بالحلول والمشاريع ذات الأثر العالي.',
+        pill1Title: 'تمكين المسؤولية الاجتماعية',
+        pill1Body: 'ربط الشركات بالمشاريع المجتمعية عالية الأثر.',
+        pill2Title: 'تعزيز فاعلية الحكومة',
+        pill2Body: 'منصة واحدة لاستقبال الحلول والفرص والمبادرات.',
+        pill3Title: 'دور علمي للجامعات',
+        pill3Body: 'تعزيز علمية المشاريع ورفع جودة الإنفاق التنموي.',
+        pill4Title: 'مسارات للأفراد',
+        pill4Body: 'وظائف، تدريب، تطوع، مبادرات، ومشاريع ناشئة.',
+        accountsTitle: 'حسابات المنصة',
+        accountsText: 'اختر حسابًا لاستعراض الخدمات، ثم اختر خدمة لاستعراض النماذج التشغيلية.',
+        accountsHint: 'هذا النموذج استعراضي، لا يتصل بأي قواعد بيانات فعلية.',
+        accountsListTitle: 'الحسابات الرئيسية',
+        accountsListBadge: '9 حسابات',
+        servicesTitle: 'خدمات الحساب المختار',
+        servicesText: 'اختر خدمة لاستعراض النماذج الخاصة بها.',
+        formsTitle: 'النماذج التشغيلية',
+        formsText: 'النماذج التالية تعكس الحقول الأساسية التي يتم جمعها من كل حساب ضمن الخدمة المختارة.',
+        formsHint: 'عرض استعراضي – قابل للتوسّع حسب الاحتياج.',
+        footerText1:
+          'هذا النموذج جزء من برنامج شباب المملكة حصيف الوطني، ويمكن تطويره ليتحول إلى نظام تشغيلي متكامل.',
+        footerText2: 'النسخة الاستعراضية – غير متصلة بأنظمة فعلية'
+      },
+      en: {
+        heroBadge: 'Prototype – works on desktop & mobile',
+        heroTitle: 'National operations board connecting all Hasseef platform accounts',
+        heroText:
+          'This demo helps leadership see how each account works, what services it has, and the core operational forms.',
+        btnPrimaryLabel: 'Browse accounts & services',
+        btnSecondaryLabel: 'Services & forms matrix',
+        visionBadge: 'Linking Vision 2030 targets to projects & solutions',
+        visionBody:
+          'All sectors can use the platform to publish initiatives and needs, and link them to high-impact solutions.',
+        pill1Title: 'Enabling social responsibility',
+        pill1Body: 'Connect companies with high-impact community projects.',
+        pill2Title: 'Enhancing government effectiveness',
+        pill2Body: 'One platform to receive solutions, opportunities and initiatives.',
+        pill3Title: 'Scientific role for universities',
+        pill3Body: 'Improve project quality and rationalize development spending.',
+        pill4Title: 'Pathways for individuals',
+        pill4Body: 'Jobs, training, volunteering and startup projects.',
+        accountsTitle: 'Platform accounts',
+        accountsText: 'Select an account to view its services, then a service to browse its forms.',
+        accountsHint: 'Demo only – not connected to real data sources.',
+        accountsListTitle: 'Main accounts',
+        accountsListBadge: '9 accounts',
+        servicesTitle: 'Selected account services',
+        servicesText: 'Choose a service to see its forms.',
+        formsTitle: 'Operational forms',
+        formsText: 'These forms show the key fields collected from each account within the selected service.',
+        formsHint: 'Demo view – expandable as needed.',
+        footerText1:
+          'This prototype is part of the Hasseef National Youth Program and can be evolved into a full system.',
+        footerText2: 'Demo version – not connected to production systems'
+      }
+    };
+
+    function applyStaticI18n(lang) {
+      currentLang = lang;
+      const t = i18n[lang];
+
+      document.getElementById('heroBadge').textContent = t.heroBadge;
+      document.getElementById('heroTitle').textContent = t.heroTitle;
+      document.getElementById('heroText').textContent = t.heroText;
+      document.getElementById('btnPrimaryLabel').textContent = t.btnPrimaryLabel;
+      document.getElementById('btnSecondaryLabel').textContent = t.btnSecondaryLabel;
+
+      document.getElementById('visionBadge').textContent = t.visionBadge;
+      document.getElementById('visionBody').textContent = t.visionBody;
+      document.getElementById('pill1Title').textContent = t.pill1Title;
+      document.getElementById('pill1Body').textContent = t.pill1Body;
+      document.getElementById('pill2Title').textContent = t.pill2Title;
+      document.getElementById('pill2Body').textContent = t.pill2Body;
+      document.getElementById('pill3Title').textContent = t.pill3Title;
+      document.getElementById('pill3Body').textContent = t.pill3Body;
+      document.getElementById('pill4Title').textContent = t.pill4Title;
+      document.getElementById('pill4Body').textContent = t.pill4Body;
+
+      document.getElementById('accountsTitle').textContent = t.accountsTitle;
+      document.getElementById('accountsText').textContent = t.accountsText;
+      document.getElementById('accountsHint').textContent = t.accountsHint;
+      document.getElementById('accountsListTitle').textContent = t.accountsListTitle;
+      document.getElementById('accountsListBadge').textContent = t.accountsListBadge;
+
+      document.getElementById('servicesTitle').textContent = t.servicesTitle;
+      document.getElementById('servicesText').textContent = t.servicesText;
+
+      document.getElementById('formsTitle').textContent = t.formsTitle;
+      document.getElementById('formsText').textContent = t.formsText;
+      document.getElementById('formsHint').textContent = t.formsHint;
+
+      document.getElementById('footerText1').textContent = t.footerText1;
+      document.getElementById('footerText2').textContent = t.footerText2;
+
+      // اتجاه عام للواجهة
+      if (lang === 'ar') {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      } else {
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+      }
+
+      renderAccounts();
+      renderServices();
+      renderForms();
+    }
+
+    // ---------- تهيئة الأزرار ----------
+
+    document.getElementById('btnAR').onclick = () => {
+      applyStaticI18n('ar');
+      document.getElementById('btnAR').classList.add('bg-slate-100');
+      document.getElementById('btnEN').classList.remove('bg-slate-100');
+    };
+
+    document.getElementById('btnEN').onclick = () => {
+      applyStaticI18n('en');
+      document.getElementById('btnEN').classList.add('bg-slate-100');
+      document.getElementById('btnAR').classList.remove('bg-slate-100');
+    };
+
+    // ---------- تهيئة أولية ----------
+    function init() {
+      applyStaticI18n('ar');
+      lucide.createIcons();
+    }
+
+    init();
   </script>
 </body>
 </html>
