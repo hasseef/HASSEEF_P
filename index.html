@@ -293,6 +293,224 @@
       { key:'speakers', name_ar:'مدربون/متحدثون',name_en:'Trainers/Speakers', icon:'mic', color:'from-primary to-accent' },
       { key:'admin',    name_ar:'حوكمة المنصة',  name_en:'Platform Governance', icon:'settings', color:'from-primary to-accent' },
     ];
+    // تعريف خدمات حساب الأفراد (تبويبات + نماذج + حقول)
+    const peopleAccountServices = [
+      {
+        key: 'my_profile',
+        label: 'ملفي',
+        desc: 'ملف شامل يعكس بيانات الفرد التعليمية والعملية والمهارية وأدواره (مدرب، خبير، متحدث، متطوع، مستثمر...) واهتماماته التنموية.',
+        forms: [
+          {
+            name: 'الملف الأساسي للفرد',
+            fields: [
+              'البيانات الشخصية (الاسم، العمر، المدينة، الجنسية)',
+              'المؤهلات العلمية (الدرجة، التخصص، جهة التخرج، سنة التخرج)',
+              'الخبرات العملية (المسمى الوظيفي، مدة الخبرة، جهة العمل)',
+              'المهارات الرئيسة (رقمية، لغوية، قيادية، تخصصية)',
+              'الاهتمامات التنموية (تعليم، صحة، ريادة، تقنية، تطوع...)'
+            ]
+          },
+          {
+            name: 'أدواري كمدرب/خبير/متحدث',
+            fields: [
+              'نوع الدور (مدرب، خبير، متحدث، مستشار...)',
+              'مجالات التخصص أو المواضيع التي أقدمها',
+              'سنوات الخبرة في التدريب/الاستشارة/التحدث',
+              'أنماط التنفيذ المفضلة (حضوري، عن بُعد، هجين)',
+              'لغة/لغات التقديم',
+              'رابط السير الذاتية أو الأعمال أو النماذج المسجلة (إن وجد)'
+            ]
+          },
+          {
+            name: 'تفضيلات الفرص',
+            fields: [
+              'نوع الفرص المفضلة (وظيفة، تطوع، تدريب، مبادرات، استثمار، تدريب/تحدث مدفوع)',
+              'القطاعات المفضلة (حكومي، خاص، غير ربحي، جامعات)',
+              'المناطق/المدن المفضلة',
+              'تفضيلات نمط العمل (حضوري، عن بُعد، هجين)'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'my_initiatives',
+        label: 'مبادراتي',
+        desc: 'مبادرات ومشاريع فردية يقترحها الفرد لدعم أولويات المجتمع وبرامج الرؤية.',
+        forms: [
+          {
+            name: 'مبادرة/مشروع فردي',
+            fields: [
+              'اسم المبادرة/المشروع',
+              'وصف الفكرة وطبيعة المشكلة التي تعالجها',
+              'الفئة المستهدفة والموقع الجغرافي',
+              'مدى المبادرة (قصيرة، متوسطة، طويلة المدى)',
+              'نوع الدعم المطلوب (تمويل، رعاية، تنفيذ، إرشاد، احتضان)'
+            ]
+          },
+          {
+            name: 'ربط المبادرة بالرؤية والجهات',
+            fields: [
+              'برامج الرؤية ذات العلاقة',
+              'الجهات الحكومية المحتملة للشراكة',
+              'الجهات غير الربحية/الجامعات/الشركات المحتملة للشراكة'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'my_jobs',
+        label: 'فرصي الوظيفية',
+        desc: 'إدارة الفرص الوظيفية المناسبة لملف الفرد (باحث عن عمل أو مدرب أو خبير أو متحدث) ومتابعة الطلبات.',
+        forms: [
+          {
+            name: 'تفضيلات الفرص الوظيفية',
+            fields: [
+              'نوع الفرص (وظائف تقليدية، فرص تدريبية مدفوعة، فرص كمدرب/متحدث/خبير)',
+              'المسارات الوظيفية المفضلة (إدارية، تعليمية، تقنية، صحية...)',
+              'نوع العمل (دوام كامل، جزئي، حر، عن بُعد)',
+              'الحد الأدنى المقبول للراتب أو الأتعاب (اختياري)',
+              'الجهات/القطاعات المستهدفة للتوظيف أو التعاقد'
+            ]
+          },
+          {
+            name: 'متابعة طلب فرصة',
+            fields: [
+              'نوع الفرصة (وظيفة، تعاقد كمدرب، تعاقد كمتحدث، استشارة...)',
+              'المسمى الوظيفي أو عنوان الفرصة',
+              'اسم الجهة المعلنة عن الفرصة',
+              'تاريخ التقديم',
+              'حالة الطلب (تحت المراجعة، مقابلة، عرض، اعتذار)',
+              'ملاحظات أو تنبيهات تخص الطلب'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'my_volunteer',
+        label: 'تطوعي',
+        desc: 'فرص التطوع المتاحة للفرد وسجل مشاركاته وأثره المجتمعي، بما في ذلك التطوع كمدرب أو متحدث أو خبير.',
+        forms: [
+          {
+            name: 'تفضيلات التطوع',
+            fields: [
+              'المجالات التطوعية المفضلة (مجتمعي، صحي، تعليمي، تقني...)',
+              'هل أقبل التطوع كمدرب أو خبير أو متحدث؟',
+              'عدد الساعات المتاحة شهريًا للتطوع',
+              'نمط التطوع المفضل (حضوري، عن بُعد)',
+              'الفئات المستهدفة التي يفضّل خدمتها'
+            ]
+          },
+          {
+            name: 'سجل التطوع الشخصي',
+            fields: [
+              'اسم الجهة/المبادرة المتطوع معها',
+              'نوع النشاط التطوعي (تنفيذي، تنظيمي، تدريب، حديث...)',
+              'الفترة الزمنية وساعات التطوع',
+              'المهارات التي تم استخدامها أو اكتسابها'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'my_development',
+        label: 'تطويري',
+        desc: 'الدورات والمعسكرات التدريبية وفرص التدريب التعاوني، بالإضافة إلى المحافل والملتقيات المناسبة لملف الفرد.',
+        forms: [
+          {
+            name: 'تفضيلات التدريب والتطوير',
+            fields: [
+              'المهارات التي يرغب الفرد في تطويرها (رقمية، ريادية، لغوية...)',
+              'نوع البرامج المفضلة (معسكرات، دورات قصيرة، برامج مطولة)',
+              'نمط التنفيذ (حضوري، عن بُعد، هجين)'
+            ]
+          },
+          {
+            name: 'فرص التدريب التعاوني',
+            fields: [
+              'نوع التدريب التعاوني (جامعي، كليات، تقني...)',
+              'التخصص الدراسي',
+              'الفصل/الفترة التدريبية المستهدفة',
+              'الجهات أو القطاعات المفضلة للتدريب التعاوني',
+              'المنطقة/المدينة المستهدفة'
+            ]
+          },
+          {
+            name: 'المحافل والملتقيات المناسبة لي',
+            fields: [
+              'المجالات التي أرغب في حضور محافل أو ملتقيات فيها',
+              'نوع الفعالية المفضلة (ملتقى، منتدى، مؤتمر، ورشة عمل...)',
+              'المدن أو المناطق المفضلة لحضور الفعاليات',
+              'تفضيل المشاركة (حضور كمتلقي، كمتحدث، كمشارك في حلقة نقاش)'
+            ]
+          },
+          {
+            name: 'سجل البرامج والفعاليات التدريبية',
+            fields: [
+              'اسم البرنامج/الدورة أو الفعالية',
+              'نوع الفعالية (برنامج تدريبي، معسكر، ملتقى، مؤتمر...)',
+              'الجهة المنفذة أو المنظمة',
+              'تاريخ البداية والنهاية',
+              'أهم المهارات أو المعارف المكتسبة'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'my_record',
+        label: 'سجلي التنموي',
+        desc: 'ملخص مشاركات الفرد التنموية (مبادرات، تدريب، تطوع، وظائف، فعاليات، شهادات).',
+        forms: [
+          {
+            name: 'ملخص مشاركاتي التنموية',
+            fields: [
+              'عدد المبادرات أو المشاريع التي قدمها الفرد',
+              'عدد برامج التدريب/التطوير التي أكملها',
+              'عدد ساعات التطوع المعتمدة',
+              'عدد المشاركات في محافل أو ملتقيات أو مؤتمرات',
+              'الجهات الأكثر تعاملًا مع الفرد',
+              'أبرز قصص النجاح أو التجارب الملهمة'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'my_wallet',
+        label: 'محفظتي المالية',
+        desc: 'إدارة المدفوعات والرسوم والاشتراكات والاستثمارات والمساهمات المالية للفرد داخل المنصة.',
+        forms: [
+          {
+            name: 'سجل المدفوعات والرسوم',
+            fields: [
+              'نوع العملية (رسوم تدريب، رسوم شهادة، اشتراك، تبرع...)',
+              'اسم الجهة/البرنامج المرتبط بالعملية',
+              'المبلغ',
+              'تاريخ العملية',
+              'طريقة الدفع (مدى، بطاقة، تحويل...)'
+            ]
+          },
+          {
+            name: 'سجل الاستثمارات أو المساهمات',
+            fields: [
+              'اسم المشروع أو المبادرة المستثمَر/المساهم فيها',
+              'نوع المساهمة (استثمار، دعم، تبرع...)',
+              'المبلغ أو قيمة المساهمة',
+              'تاريخ المساهمة',
+              'الأثر المتوقع أو المتحقق من المساهمة'
+            ]
+          },
+          {
+            name: 'فرص استثمارية مناسبة لي',
+            fields: [
+              'نوع الفرصة (استثمار في مشروع، اشتراك في حاضنة، رعاية فعالية...)',
+              'الحد الأدنى والأعلى للمبلغ الذي أرغب في استثماره',
+              'درجة المخاطرة المقبولة (منخفضة، متوسطة، عالية)',
+              'القطاعات المفضلة للاستثمار (تعليم، تقنية، صحة، ريادة...)'
+            ]
+          }
+        ]
+      }
+    ];
+
 
     const modules = [
       { key:'projects', label_ar:'مشاريع', label_en:'Projects', icon:'folder-kanban' },
@@ -411,7 +629,247 @@
       });
     }
 
-    function buildAccountPage(key){
+    
+    // تهيئة تبويبات ومحتوى حساب الأفراد
+    function configurePeopleAccount(sec, id){
+      try{
+        if(!sec || !peopleAccountServices || !peopleAccountServices.length) return;
+
+        // تعديل مؤشرات الفرد
+        const kpiGrid = sec.querySelector('.grid.grid-cols-2.sm\\:grid-cols-4.gap-3.mt-4');
+        if(kpiGrid){
+          const cards = kpiGrid.querySelectorAll('.bg-slate-50.rounded-xl.p-4');
+          const labels = [
+            'عدد الفرص المناسبة للفرد',
+            'عدد مبادرات ومشاريع الفرد',
+            'ساعات التطوع/التدريب المكتملة',
+            'عدد الجهات المتفاعلة مع الفرد'
+          ];
+          const values = ['24','3','46','9'];
+          cards.forEach((card, idx)=>{
+            const labelEl = card.querySelector('.text-xs.text-slate-500');
+            const valEl = card.querySelector('.text-2xl.font-bold');
+            if(labelEl && labels[idx]) labelEl.textContent = labels[idx];
+            if(valEl && values[idx]) valEl.textContent = values[idx];
+          });
+        }
+
+        // استبدال التبويبات القديمة بخدمات حساب الأفراد
+        const wrapper = sec.querySelector('.mt-5');
+        if(!wrapper) return;
+        const tabBar = wrapper.querySelector('.flex.items-center.gap-2.text-sm') || wrapper.querySelector('.flex.items-center');
+        if(!tabBar) return;
+
+        tabBar.innerHTML = '';
+        wrapper.querySelectorAll('.tab').forEach(t => t.remove());
+
+        peopleAccountServices.forEach((svc, index)=>{
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'tab-btn px-3 py-2 rounded-lg text-xs sm:text-sm transition ' + (index===0 ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700');
+          btn.setAttribute('data-tab', `tab-${id}-${svc.key}`);
+          btn.textContent = svc.label;
+          tabBar.appendChild(btn);
+
+          const panel = document.createElement('div');
+          panel.id = `tab-${id}-${svc.key}`;
+          panel.className = 'tab mt-3' + (index===0 ? '' : ' hidden');
+
+          const desc = document.createElement('p');
+          desc.className = 'text-xs text-slate-600 mb-3';
+          desc.textContent = svc.desc;
+          panel.appendChild(desc);
+
+          if(svc.forms && svc.forms.length){
+            const formsTitle = document.createElement('div');
+            formsTitle.className = 'text-xs font-semibold text-slate-800 mb-1';
+            formsTitle.textContent = 'نماذج الخدمة والحقول الرئيسة:';
+            panel.appendChild(formsTitle);
+
+            svc.forms.forEach(form => {
+              const card = document.createElement('div');
+              card.className = 'mb-2 rounded-xl border border-slate-200 bg-slate-50 p-3';
+              const head = document.createElement('div');
+              head.className = 'text-xs font-semibold mb-1';
+              head.textContent = form.name;
+              card.appendChild(head);
+
+              const ul = document.createElement('ul');
+              ul.className = 'list-disc pr-4 text-[11px] text-slate-600 space-y-0.5';
+              (form.fields || []).forEach(f => {
+                const li = document.createElement('li');
+                li.textContent = f;
+                ul.appendChild(li);
+              });
+              card.appendChild(ul);
+              panel.appendChild(card);
+            });
+          }
+
+          // جدول تجريبي بسيط يوضح شكل البيانات
+          const tableWrapper = document.createElement('div');
+          tableWrapper.className = 'mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white';
+          let tableHtml = '';
+
+          if(svc.key === 'my_profile'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">المجال</th>
+                    <th class="p-2 text-right">أهم العناصر</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">المؤهلات</td>
+                    <td class="p-2">بكالوريوس، ماجستير، شهادات مهنية</td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">الأدوار</td>
+                    <td class="p-2">مدرب، متحدث، خبير، متطوع</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }else if(svc.key === 'my_initiatives'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">اسم المبادرة</th>
+                    <th class="p-2 text-right">المجال</th>
+                    <th class="p-2 text-right">الحالة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">مبادرة تمكين الشباب</td>
+                    <td class="p-2">تنموي/مجتمعي</td>
+                    <td class="p-2">قيد الدراسة</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }else if(svc.key === 'my_jobs'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">نوع الفرصة</th>
+                    <th class="p-2 text-right">الجهة</th>
+                    <th class="p-2 text-right">الحالة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">وظيفة بدوام كامل</td>
+                    <td class="p-2">شركة تقنية</td>
+                    <td class="p-2">قيد المراجعة</td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">فرصة مدرب معتمد</td>
+                    <td class="p-2">جهة تدريبية</td>
+                    <td class="p-2">مقابلة مجدولة</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }else if(svc.key === 'my_volunteer'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">النشاط التطوعي</th>
+                    <th class="p-2 text-right">الجهة</th>
+                    <th class="p-2 text-right">ساعات التطوع</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">تدريب رقمي تطوعي</td>
+                    <td class="p-2">جمعية غير ربحية</td>
+                    <td class="p-2">12 ساعة</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }else if(svc.key === 'my_development'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">البرنامج/الفعالية</th>
+                    <th class="p-2 text-right">النوع</th>
+                    <th class="p-2 text-right">الحالة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">معسكر مهارات رقمية</td>
+                    <td class="p-2">برنامج تدريبي</td>
+                    <td class="p-2">مكتمل</td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">منتدى الابتكار المجتمعي</td>
+                    <td class="p-2">ملتقى/محفل</td>
+                    <td class="p-2">مسجل</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }else if(svc.key === 'my_record'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">المجال</th>
+                    <th class="p-2 text-right">القيمة التراكمية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">برامج التدريب</td>
+                    <td class="p-2">8 برامج مكتملة</td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">ساعات التطوع</td>
+                    <td class="p-2">120 ساعة</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }else if(svc.key === 'my_wallet'){
+            tableHtml = `
+              <table class="min-w-full text-xs text-slate-700">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="p-2 text-right">نوع العملية</th>
+                    <th class="p-2 text-right">الوصف</th>
+                    <th class="p-2 text-right">المبلغ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">رسوم برنامج تدريبي</td>
+                    <td class="p-2">اشتراك في معسكر مهارات رقمية</td>
+                    <td class="p-2">1,200 ريال</td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">استثمار في مشروع</td>
+                    <td class="p-2">مساهمة في مشروع مجتمعي تقني</td>
+                    <td class="p-2">5,000 ريال</td>
+                  </tr>
+                </tbody>
+              </table>`;
+          }
+
+          if(tableHtml){
+            tableWrapper.innerHTML = tableHtml;
+            panel.appendChild(tableWrapper);
+          }
+
+          wrapper.appendChild(panel);
+        });
+      }catch(e){
+        console.error('configurePeopleAccount error', e);
+      }
+    }
+function buildAccountPage(key){
       const meta=accounts.find(a=>a.key===key);
       const id='account-'+key;
       const sec=document.getElementById(id);
@@ -511,6 +969,8 @@
           </div>
         </div>
       `;
+      if(key==='people'){ configurePeopleAccount(sec, id); }
+
 
       // Tabs behavior
       sec.querySelectorAll('.tab-btn').forEach(btn => {
