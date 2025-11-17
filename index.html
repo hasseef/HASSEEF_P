@@ -568,55 +568,90 @@
       }
     ];
 
-    function renderPeopleAccountDetails(sec){
-      const rootCard = sec.querySelector('.bg-white.rounded-2xl');
-      if(!rootCard) return;
-      const container = document.createElement('div');
-      container.className = 'mt-6 border-t border-slate-200 pt-4';
-      const header = document.createElement('div');
-      header.className = 'flex items-center justify-between gap-2 mb-3';
-      header.innerHTML = '<div><div class="text-xs text-slate-500">خدمات حساب الأفراد</div><h3 class="text-sm font-semibold">كيف يخدم هذا الحساب الأفراد في المنصة؟</h3></div>';
-      container.appendChild(header);
+    
+function renderPeopleAccountDetails(sec){
+  const rootCard = sec.querySelector('.bg-white.rounded-2xl');
+  if(!rootCard) return;
 
-      const grid = document.createElement('div');
-      grid.className = 'grid md:grid-cols-2 gap-3 text-xs text-slate-700';
+  const container = document.createElement('div');
+  container.className = 'mt-6 border-t border-slate-200 pt-4';
 
-      peopleAccountServices.forEach(svc=>{
-        const card = document.createElement('div');
-        card.className = 'border border-slate-200 rounded-xl p-3 bg-slate-50/60';
-        const title = document.createElement('div');
-        title.className = 'font-semibold mb-1';
-        title.textContent = svc.name_ar;
-        const desc = document.createElement('p');
-        desc.className = 'text-[11px] text-slate-600 mb-2';
-        desc.textContent = svc.desc_ar;
-        card.appendChild(title);
-        card.appendChild(desc);
+  const header = document.createElement('div');
+  header.className = 'flex items-center justify-between gap-2 mb-3';
+  header.innerHTML = `
+    <div>
+      <div class="text-xs text-slate-500">خدمات حساب الأفراد</div>
+      <h3 class="text-sm font-semibold text-slate-900">كيف يخدم هذا الحساب الأفراد في المنصة؟</h3>
+      <p class="text-[11px] text-slate-500 mt-1">
+        يوضّح الجدول التالي الخدمات الرئيسية لحساب الأفراد، والنماذج التشغيلية (Forms) لكل خدمة،
+        مع أهم الحقول التي تُستخدم لاحقًا في الترشيح والتوجيه والربط مع الجهات.
+      </p>
+    </div>
+  `;
+  container.appendChild(header);
 
-        (svc.forms||[]).forEach(f=>{
-          const fbox = document.createElement('div');
-          fbox.className = 'border border-slate-200 rounded-lg bg-white p-2 mb-1';
-          const fname = document.createElement('div');
-          fname.className = 'text-[11px] font-semibold mb-1';
-          fname.textContent = f.name_ar;
-          const ul = document.createElement('ul');
-          ul.className = 'list-disc pr-4 text-[10px] text-slate-500';
-          (f.fields||[]).forEach(fl=>{
-            const li = document.createElement('li');
-            li.textContent = fl;
-            ul.appendChild(li);
-          });
-          fbox.appendChild(fname);
-          fbox.appendChild(ul);
-          card.appendChild(fbox);
-        });
+  const grid = document.createElement('div');
+  grid.className = 'grid md:grid-cols-2 gap-3 text-xs text-slate-700';
 
-        grid.appendChild(card);
-      });
+  peopleAccountServices.forEach((svc, svcIndex)=>{
+    const card = document.createElement('div');
+    card.className = 'border border-slate-200 rounded-xl p-3 bg-slate-50/60';
+    card.id = 'people-service-' + svc.key;
 
-      container.appendChild(grid);
-      rootCard.appendChild(container);
+    const titleRow = document.createElement('div');
+    titleRow.className = 'flex items-center justify-between mb-1';
+    titleRow.innerHTML = `
+      <div class="font-semibold text-slate-900">${svc.name_ar}</div>
+      <span class="text-[10px] px-2 py-0.5 rounded-full bg-white border border-slate-200 text-slate-500">
+        ${ (svc.forms||[]).length } نموذج
+      </span>
+    `;
+    card.appendChild(titleRow);
+
+    const desc = document.createElement('p');
+    desc.className = 'text-[11px] text-slate-600 mb-2';
+    desc.textContent = svc.desc_ar;
+    card.appendChild(desc);
+
+    if((svc.forms||[]).length){
+      const subHeader = document.createElement('div');
+      subHeader.className = 'text-[11px] font-semibold text-slate-700 mb-1';
+      subHeader.textContent = 'النماذج التشغيلية لهذه الخدمة:';
+      card.appendChild(subHeader);
     }
+
+    (svc.forms||[]).forEach(f=>{
+      const fbox = document.createElement('div');
+      fbox.className = 'border border-slate-200 rounded-lg bg-white p-2 mb-1.5';
+
+      const fnameRow = document.createElement('div');
+      fnameRow.className = 'flex items-center justify-between mb-1';
+      fnameRow.innerHTML = `
+        <div class="text-[11px] font-semibold text-slate-900">${f.name_ar}</div>
+        <span class="text-[9px] px-2 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500">
+          نموذج
+        </span>
+      `;
+      fbox.appendChild(fnameRow);
+
+      const ul = document.createElement('ul');
+      ul.className = 'list-disc pr-4 text-[10px] text-slate-500';
+      (f.fields||[]).forEach(fl=>{
+        const li = document.createElement('li');
+        li.textContent = fl;
+        ul.appendChild(li);
+      });
+      fbox.appendChild(ul);
+      card.appendChild(fbox);
+    });
+
+    grid.appendChild(card);
+  });
+
+  container.appendChild(grid);
+  rootCard.appendChild(container);
+}
+
 
 function buildAccountPage(key){
       const meta=accounts.find(a=>a.key===key);
