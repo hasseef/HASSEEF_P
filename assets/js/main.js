@@ -1,1 +1,1 @@
-// custom scripts
+// custom js

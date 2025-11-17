@@ -294,6 +294,169 @@
       { key:'admin',    name_ar:'حوكمة المنصة',  name_en:'Platform Governance', icon:'settings', color:'from-primary to-accent' },
     ];
 
+    // خدمات حساب الأفراد: تعريف الخدمات + النماذج + الحقول
+    const peopleAccountServices = [
+      {
+        key: 'profile',
+        icon: 'id-card',
+        name: 'الملف التنموي',
+        desc: 'ملف شامل يعكس تعليم الفرد وخبراته ومهاراته وتطوعه واهتماماته التنموية.',
+        forms: [
+          {
+            name: 'الملف الأساسي للفرد',
+            fields: [
+              'البيانات الشخصية (الاسم، العمر، المدينة، الجنسية)',
+              'المؤهلات العلمية (الدرجة، التخصص، جهة التخرج، سنة التخرج)',
+              'الخبرات العملية (المسمى الوظيفي، مدة الخبرة، جهة العمل)',
+              'المهارات الرئيسة (رقمية، لغوية، قيادية، تخصصية)',
+              'الاهتمامات التنموية (تعليم، صحة، ريادة، تقنية، تطوع...)'
+            ]
+          },
+          {
+            name: 'تفضيلات الفرص',
+            fields: [
+              'نوع الفرص المفضلة (وظيفة، تطوع، تدريب، مبادرات، استثمار)',
+              'القطاعات المفضلة (حكومي، خاص، غير ربحي، جامعات)',
+              'المناطق/المدن المفضلة',
+              'تفضيلات نمط العمل (حضوري/عن بُعد/هجين)'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'initiatives',
+        icon: 'sparkles',
+        name: 'مبادرات الأفراد',
+        desc: 'تمكين الأفراد من تقديم مبادرات ومشاريع صغيرة مرتبطة بأولويات التنمية وبرامج الرؤية.',
+        forms: [
+          {
+            name: 'نموذج مبادرة/مشروع فردي',
+            fields: [
+              'اسم المبادرة/المشروع',
+              'وصف الفكرة وطبيعة المشكلة التي تعالجها',
+              'الفئة المستهدفة والموقع الجغرافي',
+              'مدى المبادرة (قصيرة/متوسطة/طويلة المدى)',
+              'نوع الدعم المطلوب (تمويل/رعاية/تنفيذ/إرشاد/احتضان)'
+            ]
+          },
+          {
+            name: 'ربط المبادرة بالرؤية والجهات',
+            fields: [
+              'برامج الرؤية ذات العلاقة',
+              'الجهات الحكومية المحتملة للشراكة',
+              'الجهات غير الربحية/الجامعات/الشركات المحتملة للشراكة'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'jobs',
+        icon: 'briefcase',
+        name: 'التوظيف',
+        desc: 'ربط الفرد بالوظائف المناسبة لملفه وتفضيلاته ومتابعة حالة الطلبات.',
+        forms: [
+          {
+            name: 'تفضيلات الوظائف',
+            fields: [
+              'المسارات الوظيفية المفضلة (إدارية، تعليمية، تقنية، صحية...)',
+              'نوع العمل (دوام كامل/جزئي/حُر/عن بُعد)',
+              'الحد الأدنى المقبول للراتب (اختياري)',
+              'الجهات/القطاعات المستهدفة للتوظيف'
+            ]
+          },
+          {
+            name: 'متابعة طلب توظيف',
+            fields: [
+              'المسمى الوظيفي أو رقم الوظيفة داخل المنصة',
+              'اسم الجهة المعلنة عن الوظيفة',
+              'تاريخ التقديم',
+              'حالة الطلب (تحت المراجعة/مقابلة/مقبول/مرفوض)',
+              'ملاحظات أو تنبيهات تخص الطلب'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'volunteer',
+        icon: 'hand-heart',
+        name: 'التطوع',
+        desc: 'إتاحة فرص تطوعية نوعية وتوثيق ساعات التطوع والأثر المجتمعي للفرد.',
+        forms: [
+          {
+            name: 'تفضيلات التطوع',
+            fields: [
+              'المجالات التطوعية المفضلة (مجتمعي، صحي، تعليمي، تقني...)',
+              'عدد الساعات المتاحة شهريًا للتطوع',
+              'نمط التطوع المفضل (حضوري/عن بُعد)',
+              'الفئات المستهدفة التي يفضّل خدمتها'
+            ]
+          },
+          {
+            name: 'سجل التطوع الشخصي',
+            fields: [
+              'اسم الجهة/المبادرة المتطوع معها',
+              'نوع النشاط التطوعي',
+              'الفترة الزمنية وساعات التطوع',
+              'المهارات التي تم استخدامها أو اكتسابها'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'learning',
+        icon: 'book-open-check',
+        name: 'التدريب والتطوير',
+        desc: 'ربط الفرد بالبرامج التدريبية والمعسكرات المناسبة وتوثيق البرامج المنجزة.',
+        forms: [
+          {
+            name: 'تفضيلات التدريب والتطوير',
+            fields: [
+              'المهارات التي يرغب الفرد في تطويرها (رقمية، ريادية، لغوية...)',
+              'نوع البرامج المفضلة (معسكرات، دورات قصيرة، برامج مطولة)',
+              'نمط التنفيذ (حضوري/عن بُعد/هجين)'
+            ]
+          },
+          {
+            name: 'سجل البرامج التدريبية',
+            fields: [
+              'اسم البرنامج/الدورة',
+              'الجهة المنفِّذة (جامعة/جمعية/شركة/منصة)',
+              'تاريخ البداية والنهاية',
+              'المهارات أو المخرجات المكتسبة'
+            ]
+          }
+        ]
+      },
+      {
+        key: 'portfolio',
+        icon: 'folder-kanban',
+        name: 'محفظتي التنموية',
+        desc: 'محفظة ذكية توثق مساهمات الفرد في المشاريع (مبادرات، تطوع، تدريب، تبرع، استثمار مجتمعي).',
+        forms: [
+          {
+            name: 'توثيق مساهمة في مشروع',
+            fields: [
+              'اسم المشروع أو المبادرة المدعومة',
+              'نوع المساهمة (تبرع مالي، استثمار، عينية، وقت/خبرة)',
+              'قيمة أو مستوى المساهمة (إنطباق)',
+              'الفترة أو مدة المشاركة',
+              'الأثر المتوقع أو المتحقق من المساهمة'
+            ]
+          },
+          {
+            name: 'ملخص أثر الفرد في المنصة',
+            fields: [
+              'عدد المشاريع التي ساهم فيها الفرد',
+              'عدد ساعات التطوع المعتمدة',
+              'عدد البرامج التدريبية التي أكملها',
+              'أبرز قصص النجاح أو التجارب الملهمة'
+            ]
+          }
+        ]
+      }
+    ];
+
+
     const modules = [
       { key:'projects', label_ar:'مشاريع', label_en:'Projects', icon:'folder-kanban' },
       { key:'challenges',label_ar:'تحديات', label_en:'Challenges', icon:'puzzle' },
@@ -377,6 +540,7 @@
         tb.appendChild(tr);
       });
       lucide.createIcons();
+      if(key==='people'){ injectPeopleServices(sec); }
     }
 
     function renderStories(){
@@ -411,218 +575,90 @@
       });
     }
 
-    // تعريف خدمات حساب الأفراد ونماذجها
-const peopleAccountServices = [
-  {
-    key:'profile',
-    name_ar:'الملف التنموي الشامل للفرد',
-    desc_ar:'ملف ذكي يجمع التعليم والخبرات والمهارات والتطوع والاهتمامات؛ ليستخدمه النظام في ترشيح الفرص المناسبة للفرد.',
-    forms:[
-      {
-        name_ar:'نموذج الملف الأساسي للفرد',
-        fields:[
-          'البيانات الشخصية (الاسم، العمر، المدينة، الجنسية)',
-          'المؤهلات العلمية (الدرجة، التخصص، جهة التخرج، سنة التخرج)',
-          'الخبرات العملية (المسمى الوظيفي، مدة الخبرة، جهة العمل)',
-          'المهارات الرئيسة (رقمية، لغوية، قيادية، تخصصية)',
-          'الاهتمامات التنموية (تعليم، صحة، ريادة، تقنية، تطوع...)'
-        ]
-      },
-      {
-        name_ar:'نموذج تفضيلات الفرص للفرد',
-        fields:[
-          'نوع الفرص المفضلة (وظيفة، تطوع، تدريب، مبادرات، استثمار)',
-          'القطاعات المفضلة (حكومي، خاص، غير ربحي، جامعات)',
-          'المناطق/المدن المفضلة',
-          'تفضيلات نمط العمل (حضوري/عن بُعد/هجين)'
-        ]
+    
+    // قسم خدمات حساب الأفراد داخل بطاقة الحساب
+    function injectPeopleServices(sec){
+      try{
+        const card = sec.querySelector('.bg-white.rounded-2xl');
+        if(!card || !peopleAccountServices || !peopleAccountServices.length) return;
+
+        const container = document.createElement('section');
+        container.className = 'mt-6 border-t border-slate-200 pt-4 space-y-3';
+
+        const header = document.createElement('div');
+        header.className = 'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2';
+        header.innerHTML = '<div><div class="text-xs text-slate-500">خدمات حساب الأفراد</div><h3 class="text-sm font-semibold text-slate-900">كيف يخدم هذا الحساب الأفراد في المنصة؟</h3></div><p class="text-[11px] text-slate-500 max-w-md">يمكن تفعيل هذه الخدمات لاحقًا كنماذج حقيقية تربط الفرد بالوظائف، والتطوع، والتدريب، والمبادرات، والمحفظة التنموية.</p>';
+        container.appendChild(header);
+
+        const cardsRow = document.createElement('div');
+        cardsRow.className = 'flex gap-2 overflow-x-auto scroll-slim pb-1 -mx-1 px-1 sm:grid sm:grid-cols-3 sm:overflow-visible sm:mx-0 sm:px-0';
+        container.appendChild(cardsRow);
+
+        const formsContainer = document.createElement('div');
+        formsContainer.className = 'mt-3 space-y-2';
+        container.appendChild(formsContainer);
+
+        let activeKey = peopleAccountServices[0]?.key;
+
+        function renderCards(){
+          cardsRow.innerHTML = '';
+          peopleAccountServices.forEach(svc=>{
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'min-w-[140px] sm:min-w-0 flex-1 rounded-2xl border px-3 py-2 text-right text-[11px] transition shadow-sm ';
+            if(svc.key === activeKey){
+              btn.className += 'bg-slate-900 text-white border-slate-900';
+            }else{
+              btn.className += 'bg-slate-50 text-slate-700 border-slate-200';
+            }
+            btn.innerHTML = '<div class="flex items-center justify-between gap-2 mb-1"><div class="flex items-center gap-2"><span class="inline-flex h-6 w-6 rounded-xl bg-slate-900/10 items-center justify-center"><i data-lucide="'+svc.icon+'" class="w-3.5 h-3.5"></i></span><span class="font-semibold text-[12px]">'+svc.name+'</span></div></div><p class="text-[10px] '+(svc.key===activeKey?'text-slate-100/90':'text-slate-500')+' line-clamp-2">'+svc.desc+'</p>';
+            btn.onclick = () => {
+              activeKey = svc.key;
+              renderCards();
+              renderForms();
+            };
+            cardsRow.appendChild(btn);
+          });
+        }
+
+        function renderForms(){
+          formsContainer.innerHTML = '';
+          const svc = peopleAccountServices.find(s=>s.key===activeKey) || peopleAccountServices[0];
+          if(!svc) return;
+          const titleRow = document.createElement('div');
+          titleRow.className = 'flex items-center justify-between gap-2 mb-1';
+          titleRow.innerHTML = '<div class="text-xs font-semibold text-slate-800">النماذج التشغيلية لخدمة: '+svc.name+'</div><div class="text-[10px] text-slate-500">'+(svc.forms?.length || 0)+' نموذج</div>';
+          formsContainer.appendChild(titleRow);
+
+          (svc.forms || []).forEach(form => {
+            const card = document.createElement('div');
+            card.className = 'rounded-2xl border border-slate-200 bg-slate-50/70 p-3';
+            const head = document.createElement('div');
+            head.className = 'flex items-center justify-between gap-2 mb-2';
+            head.innerHTML = '<div class="flex items-center gap-2"><span class="inline-flex h-6 w-6 rounded-xl bg-white border border-slate-200 items-center justify-center"><i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-700"></i></span><div><div class="text-[12px] font-semibold text-slate-900">'+form.name+'</div><div class="text-[10px] text-slate-500">الحقول الرئيسة لهذا النموذج (قابلة للتحويل إلى نموذج إدخال وتشغيل فعلي)</div></div></div><span class="text-[10px] inline-flex items-center px-2 py-0.5 rounded-full bg-white border border-slate-200 text-slate-500">نموذج</span>';
+            card.appendChild(head);
+
+            const ul = document.createElement('ul');
+            ul.className = 'list-disc pr-4 space-y-0.5 text-[10px] text-slate-600';
+            (form.fields || []).forEach(f => {
+              const li = document.createElement('li');
+              li.textContent = f;
+              ul.appendChild(li);
+            });
+            card.appendChild(ul);
+            formsContainer.appendChild(card);
+          });
+          if(window.lucide){ lucide.createIcons(); }
+        }
+
+        renderCards();
+        renderForms();
+
+        card.appendChild(container);
+      }catch(e){
+        console.error('injectPeopleServices error', e);
       }
-    ]
-  },
-  {
-    key:'initiatives',
-    name_ar:'مبادرات ومشاريع الأفراد',
-    desc_ar:'تمكين الأفراد من تقديم مبادرات ومشاريع صغيرة وربطها بأهداف الجهات وبرامج الرؤية واحتياجات المناطق.',
-    forms:[
-      {
-        name_ar:'نموذج مبادرة/مشروع فردي',
-        fields:[
-          'اسم المبادرة/المشروع',
-          'وصف الفكرة وطبيعة المشكلة التي تعالجها',
-          'الفئة المستهدفة والموقع الجغرافي',
-          'مدى المبادرة (قصيرة/متوسطة/طويلة المدى)',
-          'نوع الدعم المطلوب (تمويل/رعاية/تنفيذ/إرشاد/احتضان)'
-        ]
-      },
-      {
-        name_ar:'نموذج ربط المبادرة ببرامج الرؤية والجهات',
-        fields:[
-          'برامج الرؤية ذات العلاقة',
-          'الجهات الحكومية المحتملة للشراكة',
-          'الجهات غير الربحية/الجامعات/الشركات المحتملة للشراكة'
-        ]
-      }
-    ]
-  },
-  {
-    key:'jobs',
-    name_ar:'فرص التوظيف والمسار المهني',
-    desc_ar:'ربط الفرد بالوظائف المناسبة لملفه وتفضيلاته، مع إدارة طلبات التوظيف وحالتها.',
-    forms:[
-      {
-        name_ar:'نموذج تفضيلات الوظائف',
-        fields:[
-          'المسارات الوظيفية المفضلة (إدارية، تعليمية، تقنية، صحية...)',
-          'نوع العمل (دوام كامل/جزئي/حُر/عن بُعد)',
-          'الحد الأدنى المقبول للراتب (اختياري)',
-          'الجهات/القطاعات المستهدفة للتوظيف'
-        ]
-      },
-      {
-        name_ar:'نموذج متابعة طلب توظيف عبر المنصة',
-        fields:[
-          'المسمى الوظيفي أو رقم الوظيفة داخل المنصة',
-          'اسم الجهة المعلنة عن الوظيفة',
-          'تاريخ التقديم',
-          'حالة الطلب (تحت المراجعة/مقابلة/مقبول/مرفوض)',
-          'ملاحظات أو تنبيهات تخص الطلب'
-        ]
-      }
-    ]
-  },
-  {
-    key:'volunteer',
-    name_ar:'التطوع والمشاركة المجتمعية',
-    desc_ar:'إتاحة فرص تطوعية نوعية وربطها بهوية الفرد ومهاراته مع توثيق الساعات والأثر.',
-    forms:[
-      {
-        name_ar:'نموذج تفضيلات التطوع',
-        fields:[
-          'المجالات التطوعية المفضلة (مجتمعي، صحي، تعليمي، تقني...)',
-          'عدد الساعات المتاحة شهريًا للتطوع',
-          'نمط التطوع المفضل (حضوري/عن بُعد)',
-          'الفئات المستهدفة التي يفضّل خدمتها'
-        ]
-      },
-      {
-        name_ar:'سجل التطوع الشخصي',
-        fields:[
-          'اسم الجهة/المبادرة المتطوع معها',
-          'نوع النشاط التطوعي',
-          'الفترة الزمنية وساعات التطوع',
-          'المهارات التي تم استخدامها أو اكتسابها'
-        ]
-      }
-    ]
-  },
-  {
-    key:'learning',
-    name_ar:'التدريب والتطوير المهاري',
-    desc_ar:'ربط الفرد بالدورات والمعسكرات والبرامج التدريبية المتوافقة مع ملفه التنموي.',
-    forms:[
-      {
-        name_ar:'نموذج تفضيلات التدريب والتطوير',
-        fields:[
-          'المهارات التي يرغب الفرد في تطويرها (رقمية، ريادية، لغوية...)',
-          'نوع البرامج المفضلة (معسكرات، دورات قصيرة، برامج مطولة)',
-          'نمط التنفيذ (حضوري/عن بُعد/هجين)'
-        ]
-      },
-      {
-        name_ar:'سجل الدورات والبرامج التدريبية',
-        fields:[
-          'اسم البرنامج/الدورة',
-          'الجهة المنفِّذة (جامعة/جمعية/شركة/منصة)',
-          'تاريخ البداية والنهاية',
-          'المهارات أو المخرجات المكتسبة'
-        ]
-      }
-    ]
-  },
-  {
-    key:'portfolio',
-    name_ar:'محفظتي التنموية ودعمي للمشاريع',
-    desc_ar:'محفظة ذكية توثّق مساهمات الفرد (مبادرات، تطوع، تدريب، تبرع، استثمار مجتمعي) وتعرض أثر مشاركته.',
-    forms:[
-      {
-        name_ar:'نموذج توثيق دعم/مساهمة في مشروع',
-        fields:[
-          'اسم المشروع أو المبادرة المدعومة',
-          'نوع المساهمة (تبرع مالي، استثمار، عينية، وقت/خبرة)',
-          'قيمة أو مستوى المساهمة (إنطباق)',
-          'الفترة أو مدة المشاركة',
-          'الأثر المتوقع أو المتحقق من المساهمة'
-        ]
-      },
-      {
-        name_ar:'نموذج ملخص أثر الفرد في المنصة',
-        fields:[
-          'عدد المشاريع التي ساهم فيها الفرد',
-          'عدد ساعات التطوع المعتمدة',
-          'عدد البرامج التدريبية التي أكملها',
-          'أبرز قصص النجاح أو التجارب الملهمة'
-        ]
-      }
-    ]
-  }
-];
-
-function buildPeopleTabs(sec, id){
-  const container = sec.querySelector('.mt-5');
-  if(!container) return;
-  container.innerHTML = '';
-
-  const row = document.createElement('div');
-  row.className = 'flex items-center gap-2 text-sm';
-
-  peopleAccountServices.forEach((svc, index) => {
-    const btn = document.createElement('button');
-    btn.className = 'tab-btn px-3 py-2 rounded-lg ' + (index===0 ? 'bg-slate-900 text-white' : 'bg-slate-100');
-    btn.setAttribute('data-tab', 'tab-'+id+'-'+svc.key);
-    btn.textContent = svc.name_ar;
-    row.appendChild(btn);
-  });
-
-  container.appendChild(row);
-
-  peopleAccountServices.forEach((svc, index) => {
-    const tab = document.createElement('div');
-    tab.id = 'tab-'+id+'-'+svc.key;
-    tab.className = 'tab mt-3' + (index===0 ? '' : ' hidden');
-
-    const wrap = document.createElement('div');
-    wrap.className = 'grid grid-cols-1 md:grid-cols-2 gap-3';
-
-    svc.forms.forEach(form => {
-      const card = document.createElement('div');
-      card.className = 'p-4 rounded-2xl border bg-white';
-
-      const title = document.createElement('div');
-      title.className = 'font-semibold mb-1 text-sm';
-      title.textContent = form.name_ar;
-      card.appendChild(title);
-
-      const desc = document.createElement('div');
-      desc.className = 'text-[11px] text-slate-500 mb-2';
-      desc.textContent = svc.desc_ar;
-      card.appendChild(desc);
-
-      const ul = document.createElement('ul');
-      ul.className = 'list-disc pr-4 text-[11px] text-slate-600';
-      form.fields.forEach(fieldLabel => {
-        const li = document.createElement('li');
-        li.textContent = fieldLabel;
-        ul.appendChild(li);
-      });
-      card.appendChild(ul);
-
-      wrap.appendChild(card);
-    });
-
-    tab.appendChild(wrap);
-    container.appendChild(tab);
-  });
-}
+    }
 
 function buildAccountPage(key){
       const meta=accounts.find(a=>a.key===key);
@@ -724,8 +760,6 @@ function buildAccountPage(key){
           </div>
         </div>
       `;
-
-      if(key==='people'){ buildPeopleTabs(sec, id); }
 
       // Tabs behavior
       sec.querySelectorAll('.tab-btn').forEach(btn => {
