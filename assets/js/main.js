@@ -1,1 +1,1 @@
-// Custom production scripts can go here
+// Custom scripts (optional)
