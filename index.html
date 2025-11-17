@@ -576,6 +576,7 @@
     }
 
     
+
     // قسم خدمات حساب الأفراد داخل بطاقة الحساب
     function injectPeopleServices(sec){
       try{
@@ -590,10 +591,12 @@
         header.innerHTML = '<div><div class="text-xs text-slate-500">خدمات حساب الأفراد</div><h3 class="text-sm font-semibold text-slate-900">كيف يخدم هذا الحساب الأفراد في المنصة؟</h3></div><p class="text-[11px] text-slate-500 max-w-md">يمكن تفعيل هذه الخدمات لاحقًا كنماذج حقيقية تربط الفرد بالوظائف، والتطوع، والتدريب، والمبادرات، والمحفظة التنموية.</p>';
         container.appendChild(header);
 
+        // صف خدمات تفاعلي (متوافق مع الجوال)
         const cardsRow = document.createElement('div');
         cardsRow.className = 'flex gap-2 overflow-x-auto scroll-slim pb-1 -mx-1 px-1 sm:grid sm:grid-cols-3 sm:overflow-visible sm:mx-0 sm:px-0';
         container.appendChild(cardsRow);
 
+        // حاوية النماذج
         const formsContainer = document.createElement('div');
         formsContainer.className = 'mt-3 space-y-2';
         container.appendChild(formsContainer);
@@ -772,6 +775,7 @@ function buildAccountPage(key){
         };
       });
       lucide.createIcons();
+      if(key==='people'){ injectPeopleServices(sec); }
     }
 
     function openDrawer(id){ $('#'+id).classList.remove('hidden'); }
