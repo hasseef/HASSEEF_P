@@ -293,232 +293,8 @@
       { key:'speakers', name_ar:'مدربون/متحدثون',name_en:'Trainers/Speakers', icon:'mic', color:'from-primary to-accent' },
       { key:'admin',    name_ar:'حوكمة المنصة',  name_en:'Platform Governance', icon:'settings', color:'from-primary to-accent' },
     ];
-    // تعريف خدمات حساب الأفراد (تبويبات + نماذج + حقول تفصيلية)
-    const peopleAccountServices = [
-      {
-        key: 'my_profile',
-        label: 'ملفي',
-        desc: 'ملف شامل يعكس بيانات الفرد التعليمية والعملية والمهارية وأدواره (مدرب، خبير، متحدث، متطوع، مستثمر...) واهتماماته التنموية.',
-        forms: [
-          {
-            name: 'الملف الأساسي للفرد',
-            fields: [
-              'البيانات الشخصية (الاسم، العمر، المدينة، الجنسية) — نص قصير / إلزامي',
-              'المؤهلات العلمية (الدرجة، التخصص، جهة التخرج، سنة التخرج) — قائمة + نص / إلزامي',
-              'الخبرات العملية (المسمى الوظيفي، مدة الخبرة، جهة العمل) — تكرار سجلات / اختياري',
-              'المهارات الرئيسة (رقمية، لغوية، قيادية، تخصصية) — اختيار من قائمة + إضافة يدويًا',
-              'الاهتمامات التنموية (تعليم، صحة، ريادة، تقنية، تطوع...) — اختيار متعدد'
-            ]
-          },
-          {
-            name: 'أدواري كمدرب/خبير/متحدث',
-            fields: [
-              'نوع الدور (مدرب، خبير، متحدث، مستشار...) — اختيار من قائمة',
-              'مجالات التخصص أو المواضيع التي أقدمها — اختيار متعدد + نص إضافي',
-              'سنوات الخبرة في التدريب/الاستشارة/التحدث — رقم',
-              'أنماط التنفيذ المفضلة (حضوري، عن بُعد، هجين) — اختيار متعدد',
-              'لغة/لغات التقديم — اختيار متعدد',
-              'رابط السيرة الذاتية أو الأعمال أو النماذج المسجلة — رابط URL'
-            ]
-          },
-          {
-            name: 'تفضيلات الفرص',
-            fields: [
-              'نوع الفرص المفضلة (وظيفة، تطوع، تدريب، مبادرات، استثمار، تدريب/تحدث مدفوع) — اختيار متعدد',
-              'القطاعات المفضلة (حكومي، خاص، غير ربحي، جامعات) — اختيار متعدد',
-              'المناطق/المدن المفضلة — اختيار من قائمة المناطق',
-              'تفضيلات نمط العمل (حضوري، عن بُعد، هجين) — اختيار متعدد'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_initiatives',
-        label: 'مبادراتي',
-        desc: 'مبادرات ومشاريع فردية يقترحها الفرد لدعم أولويات المجتمع وبرامج الرؤية، مع ربطها بالجهات وبرامج الرؤية.',
-        forms: [
-          {
-            name: 'مبادرة/مشروع فردي',
-            fields: [
-              'اسم المبادرة/المشروع — نص قصير / إلزامي',
-              'وصف الفكرة وطبيعة المشكلة التي تعالجها — نص طويل / إلزامي',
-              'الفئة المستهدفة والموقع الجغرافي — نص / إلزامي',
-              'مدى المبادرة (قصيرة، متوسطة، طويلة المدى) — اختيار من قائمة',
-              'نوع الدعم المطلوب (تمويل، رعاية، تنفيذ، إرشاد، احتضان) — اختيار متعدد',
-              'مرفقات (مقترح، عرض تقديمي، دراسة أولية) — رفع ملفات'
-            ]
-          },
-          {
-            name: 'ربط المبادرة بالرؤية والجهات',
-            fields: [
-              'برامج الرؤية ذات العلاقة — اختيار من قائمة برامج الرؤية',
-              'الأهداف الاستراتيجية/التفصيلية المدعومة — اختيار من قوائم مترابطة',
-              'الجهات الحكومية المحتملة للشراكة — اختيار متعدد',
-              'الجهات غير الربحية/الجامعات/الشركات المحتملة للشراكة — اختيار متعدد',
-              'درجة الأولوية التنموية للمبادرة — منخفضة/متوسطة/عالية'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_jobs',
-        label: 'فرصي الوظيفية',
-        desc: 'إدارة الفرص الوظيفية وفرص التعاقد كمدرب/متحدث/خبير، مع متابعة حالة كل طلب.',
-        forms: [
-          {
-            name: 'تفضيلات الفرص الوظيفية',
-            fields: [
-              'نوع الفرص (وظائف تقليدية، فرص تدريبية مدفوعة، فرص كمدرب/متحدث/خبير، استشارات) — اختيار متعدد',
-              'المسارات الوظيفية المفضلة (إدارية، تعليمية، تقنية، صحية...) — اختيار متعدد',
-              'نوع العمل (دوام كامل، جزئي، حر، عن بُعد) — اختيار من قائمة',
-              'الحد الأدنى المقبول للراتب أو الأتعاب — رقم / اختياري',
-              'الجهات/القطاعات المستهدفة للتوظيف أو التعاقد — اختيار متعدد'
-            ]
-          },
-          {
-            name: 'متابعة طلب فرصة',
-            fields: [
-              'نوع الفرصة (وظيفة، تعاقد كمدرب، تعاقد كمتحدث، استشارة...) — اختيار من قائمة',
-              'المسمى الوظيفي أو عنوان الفرصة — نص قصير',
-              'اسم الجهة المعلنة عن الفرصة — نص',
-              'تاريخ التقديم — حقل تاريخ',
-              'حالة الطلب (تحت المراجعة، مقابلة، عرض، قبول، اعتذار) — اختيار من قائمة',
-              'ملاحظات أو تنبيهات تخص الطلب — نص طويل'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_volunteer',
-        label: 'تطوعي',
-        desc: 'فرص التطوع المتاحة للفرد وسجل مشاركاته وأثره المجتمعي، بما في ذلك التطوع كمدرب أو متحدث أو خبير.',
-        forms: [
-          {
-            name: 'تفضيلات التطوع',
-            fields: [
-              'المجالات التطوعية المفضلة (مجتمعي، صحي، تعليمي، تقني...) — اختيار متعدد',
-              'قبول التطوع كمدرب أو خبير أو متحدث — نعم/لا',
-              'عدد الساعات المتاحة شهريًا للتطوع — رقم تقريبي',
-              'نمط التطوع المفضل (حضوري، عن بُعد) — اختيار من قائمة',
-              'الفئات المستهدفة التي يفضّل خدمتها — اختيار متعدد'
-            ]
-          },
-          {
-            name: 'سجل التطوع الشخصي',
-            fields: [
-              'اسم الجهة/المبادرة المتطوع معها — نص',
-              'نوع النشاط التطوعي (تنفيذي، تنظيمي، تدريب، حديث...) — اختيار من قائمة',
-              'الفترة الزمنية وساعات التطوع — تاريخ + رقم',
-              'الدور الذي قمت به (متطوع عام، منسق، مدرب، متحدث...) — اختيار',
-              'المهارات التي تم استخدامها أو اكتسابها — نص'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_development',
-        label: 'تطويري',
-        desc: 'الدورات والمعسكرات التدريبية وفرص التدريب التعاوني، بالإضافة إلى المحافل والملتقيات المناسبة لملف الفرد.',
-        forms: [
-          {
-            name: 'تفضيلات التدريب والتطوير',
-            fields: [
-              'المهارات التي يرغب الفرد في تطويرها (رقمية، ريادية، لغوية...) — اختيار متعدد',
-              'نوع البرامج المفضلة (معسكرات، دورات قصيرة، برامج مطولة) — اختيار متعدد',
-              'نمط التنفيذ (حضوري، عن بُعد، هجين) — اختيار من قائمة'
-            ]
-          },
-          {
-            name: 'فرص التدريب التعاوني',
-            fields: [
-              'نوع التدريب التعاوني (جامعي، كليات، تقني...) — اختيار من قائمة',
-              'التخصص الدراسي — نص',
-              'الفصل/الفترة التدريبية المستهدفة — اختيار فترة زمنية',
-              'الجهات أو القطاعات المفضلة للتدريب التعاوني — اختيار متعدد',
-              'المنطقة/المدينة المستهدفة — اختيار من قائمة'
-            ]
-          },
-          {
-            name: 'المحافل والملتقيات المناسبة لي',
-            fields: [
-              'المجالات التي أرغب في حضور محافل أو ملتقيات فيها — اختيار متعدد',
-              'نوع الفعالية المفضلة (ملتقى، منتدى، مؤتمر، ورشة عمل...) — اختيار من قائمة',
-              'المدن أو المناطق المفضلة لحضور الفعاليات — اختيار من قائمة',
-              'تفضيل المشاركة (حضور كمتلقي، كمتحدث، كمشارك في حلقة نقاش) — اختيار من قائمة',
-              'قبول الظهور كمتحدث أو مدرب في المحافل — نعم/لا'
-            ]
-          },
-          {
-            name: 'سجل البرامج والفعاليات التدريبية',
-            fields: [
-              'اسم البرنامج/الدورة أو الفعالية — نص',
-              'نوع الفعالية (برنامج تدريبي، معسكر، ملتقى، مؤتمر...) — اختيار من قائمة',
-              'الجهة المنفذة أو المنظمة — نص',
-              'تاريخ البداية والنهاية — حقل تاريخ مزدوج',
-              'أهم المهارات أو المعارف المكتسبة — نص طويل'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_record',
-        label: 'سجلي التنموي',
-        desc: 'لوحة أداء شخصية تلخص مشاركات الفرد التنموية (مبادرات، تدريب، تطوع، وظائف، فعاليات، شهادات).',
-        forms: [
-          {
-            name: 'ملخص مشاركاتي التنموية',
-            fields: [
-              'عدد المبادرات أو المشاريع التي قدمها الفرد — رقم محسوب تلقائيًا',
-              'عدد برامج التدريب/التطوير التي أكملها — رقم محسوب تلقائيًا',
-              'عدد ساعات التطوع المعتمدة — رقم محسوب تلقائيًا',
-              'عدد المشاركات في محافل أو ملتقيات أو مؤتمرات — رقم محسوب تلقائيًا',
-              'عدد المرات التي شاركت فيها كمتحدث أو مدرب — رقم محسوب تلقائيًا',
-              'الجهات الأكثر تعاملًا مع الفرد — قائمة ملخصة',
-              'أبرز قصص النجاح أو التجارب الملهمة — نص حر'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_wallet',
-        label: 'محفظتي المالية',
-        desc: 'إدارة المدفوعات والرسوم والاشتراكات والاستثمارات والمساهمات المالية للفرد داخل المنصة.',
-        forms: [
-          {
-            name: 'سجل المدفوعات والرسوم',
-            fields: [
-              'نوع العملية (رسوم تدريب، رسوم شهادة، اشتراك، تبرع...) — اختيار من قائمة',
-              'اسم الجهة/البرنامج المرتبط بالعملية — نص',
-              'المبلغ — رقم',
-              'تاريخ العملية — حقل تاريخ',
-              'طريقة الدفع (مدى، بطاقة، تحويل...) — اختيار من قائمة'
-            ]
-          },
-          {
-            name: 'سجل الاستثمارات أو المساهمات',
-            fields: [
-              'اسم المشروع أو المبادرة المستثمَر/المساهم فيها — نص',
-              'نوع المساهمة (استثمار، دعم، تبرع...) — اختيار من قائمة',
-              'المبلغ أو قيمة المساهمة — رقم',
-              'تاريخ المساهمة — حقل تاريخ',
-              'نوع العائد (مالي، اجتماعي، مختلط) — اختيار من قائمة',
-              'الأثر المتوقع أو المتحقق من المساهمة — نص طويل'
-            ]
-          },
-          {
-            name: 'فرص استثمارية مناسبة لي',
-            fields: [
-              'نوع الفرصة (استثمار في مشروع، اشتراك في حاضنة، رعاية فعالية...) — اختيار من قائمة',
-              'الحد الأدنى والأعلى للمبلغ الذي أرغب في استثماره — رقم/نطاق',
-              'درجة المخاطرة المقبولة (منخفضة، متوسطة، عالية) — اختيار من قائمة',
-              'القطاعات المفضلة للاستثمار (تعليم، تقنية، صحة، ريادة...) — اختيار متعدد'
-            ]
-          }
-        ]
-      }
-    ];
 
-        const modules = [
+    const modules = [
       { key:'projects', label_ar:'مشاريع', label_en:'Projects', icon:'folder-kanban' },
       { key:'challenges',label_ar:'تحديات', label_en:'Challenges', icon:'puzzle' },
       { key:'events', label_ar:'فعاليات', label_en:'Events', icon:'calendar' },
@@ -635,562 +411,309 @@
       });
     }
 
-    
-    // تهيئة تبويبات ومؤشرات حساب الأفراد
-    function configurePeopleAccount(sec, id){
-      try{
-        if(!sec || !peopleAccountServices || !peopleAccountServices.length) return;
+    function buildAccountPage(key){
+      const meta=accounts.find(a=>a.key===key);
+      const id='account-'+key;
+      const sec=document.getElementById(id);
+      if(!sec) return;
+      const title=currentLang==='ar'?meta.name_ar:meta.name_en;
 
-        // 1) مؤشرات حساب الأفراد (KPIs) مهيأة للفرد
-        const kpiGrid = sec.querySelector('.grid.grid-cols-2.sm\\:grid-cols-4.gap-3.mt-4');
-        if(kpiGrid){
-          const cards = kpiGrid.querySelectorAll('.bg-slate-50.rounded-xl.p-4');
-          const labels = [
-            'عدد الفرص المناسبة للفرد',
-            'عدد مبادرات ومشاريع الفرد',
-            'ساعات التطوع/التدريب المكتملة',
-            'عدد الجهات المتفاعلة مع الفرد'
-          ];
-          const values = ['24','3','46','9']; // قيم تجريبية توضح الفكرة
-          cards.forEach((card, idx)=>{
-            const labelEl = card.querySelector('.text-xs.text-slate-500');
-            const valEl = card.querySelector('.text-2xl.font-bold');
-            if(labelEl && labels[idx]) labelEl.textContent = labels[idx];
-            if(valEl && values[idx]) valEl.textContent = values[idx];
-          });
-        }
+      sec.innerHTML = `
+        <div class="bg-white rounded-2xl p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-r ${meta.color} flex items-center justify-center text-white">
+                <i data-lucide="${meta.icon}" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500">${currentLang==='ar'?'الملف':'Profile'}</div>
+                <h2 class="text-lg font-semibold">${title}</h2>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm">${currentLang==='ar'?'تصدير':'Export'}</button>
+              <button class="px-3 py-2 rounded-lg bg-primary text-white text-sm">${currentLang==='ar'?'إنشاء جديد':'New'}</button>
+            </div>
+          </div>
 
-        // 2) استبدال التبويبات القديمة بخدمات حساب الأفراد
-        const wrapper = sec.querySelector('.mt-5');
-        if(!wrapper) return;
-        const tabBar = wrapper.querySelector('.flex.items-center.gap-2.text-sm') || wrapper.querySelector('.flex.items-center');
-        if(!tabBar) return;
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+            <div class="bg-slate-50 rounded-xl p-4"><div class="text-xs text-slate-500">${currentLang==='ar'?'مشاريع':'Projects'}</div><div class="text-2xl font-bold">12</div></div>
+            <div class="bg-slate-50 rounded-xl p-4"><div class="text-xs text-slate-500">${currentLang==='ar'?'تمويل (ر.س)':'Funding (SAR)'} </div><div class="text-2xl font-bold">1,280,000</div></div>
+            <div class="bg-slate-50 rounded-xl p-4"><div class="text-xs text-slate-500">${currentLang==='ar'?'فعاليات':'Events'} </div><div class="text-2xl font-bold">3</div></div>
+            <div class="bg-slate-50 rounded-xl p-4"><div class="text-xs text-slate-500">${currentLang==='ar'?'فرص':'Opportunities'} </div><div class="text-2xl font-bold">7</div></div>
+          </div>
 
-        tabBar.innerHTML = '';
-        wrapper.querySelectorAll('.tab').forEach(t => t.remove());
+          <div class="mt-5">
+            <div class="flex items-center gap-2 text-sm">
+              <button class="tab-btn px-3 py-2 rounded-lg bg-slate-900 text-white" data-tab="tab-${id}-projects">${currentLang==='ar'?'المشاريع':'Projects'}</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-slate-100" data-tab="tab-${id}-events">${currentLang==='ar'?'الفعاليات':'Events'}</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-slate-100" data-tab="tab-${id}-jobs">${currentLang==='ar'?'الوظائف/التطوع':'Jobs/Volunteer'}</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-slate-100" data-tab="tab-${id}-resources">${currentLang==='ar'?'المرافق/المنح':'Facilities/Grants'}</button>
+            </div>
 
-        peopleAccountServices.forEach((svc, index)=>{
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'tab-btn px-3 py-2 rounded-lg text-xs sm:text-sm transition ' + (index===0 ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700');
-          btn.setAttribute('data-tab', `tab-${id}-${svc.key}`);
-          btn.textContent = svc.label;
-          tabBar.appendChild(btn);
+            <div id="tab-${id}-projects" class="tab mt-3">
+              <div class="overflow-auto scroll-slim">
+                <table class="w-full text-sm">
+                  <thead><tr class="text-right text-slate-500">
+                    <th class="px-3 py-2">${currentLang==='ar'?'المشروع':'Project'}</th>
+                    <th class="px-3 py-2">${currentLang==='ar'?'القطاع':'Sector'}</th>
+                    <th class="px-3 py-2">${currentLang==='ar'?'الحالة':'Status'}</th>
+                    <th class="px-3 py-2">${currentLang==='ar'?'التمويل':'Funding'}</th>
+                    <th class="px-3 py-2"></th>
+                  </tr></thead>
+                  <tbody>
+                    <tr><td class="px-3 py-3 font-medium">برنامج تمكين رقمي</td><td class="px-3 py-3 text-slate-600">جامعات</td><td class="px-3 py-3"><span class="px-2 py-1 rounded-full text-xs bg-emerald-100 text-emerald-700">${currentLang==='ar'?'نشط':'Active'}</span></td><td class="px-3 py-3 text-slate-600">320,000</td><td class="px-3 py-3"><button class="p-2 rounded-lg hover:bg-slate-100"><i data-lucide="arrow-right" class="w-4 h-4"></i></button></td></tr>
+                    <tr><td class="px-3 py-3 font-medium">مختبر ابتكار اجتماعي</td><td class="px-3 py-3 text-slate-600">غير ربحي</td><td class="px-3 py-3"><span class="px-2 py-1 rounded-full text-xs bg-amber-100 text-amber-700">${currentLang==='ar'?'قيد المراجعة':'Review'}</span></td><td class="px-3 py-3 text-slate-600">180,000</td><td class="px-3 py-3"><button class="p-2 rounded-lg hover:bg-slate-100"><i data-lucide="arrow-right" class="w-4 h-4"></i></button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-          const panel = document.createElement('div');
-          panel.id = `tab-${id}-${svc.key}`;
-          panel.className = 'tab mt-3' + (index===0 ? '' : ' hidden');
+            <div id="tab-${id}-events" class="tab mt-3 hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="p-4 rounded-2xl border bg-white">
+                  <div class="text-sm text-slate-500">2025-12-02 • ${currentLang==='ar'?'جامعة حائل':'University of Hail'}</div>
+                  <div class="font-semibold mt-1">${currentLang==='ar'?'ملتقى التحول التنموي':'Development Transformation Forum'}</div>
+                </div>
+                <div class="p-4 rounded-2xl border bg-white">
+                  <div class="text-sm text-slate-500">2025-11-15 • ${currentLang==='ar'?'الغرفة التجارية':'Chamber of Commerce'}</div>
+                  <div class="font-semibold mt-1">${currentLang==='ar'?'منتدى الإعلام التنموي':'Development Media Forum'}</div>
+                </div>
+              </div>
+            </div>
 
-          // وصف مختصر للخدمة
-          const desc = document.createElement('p');
-          desc.className = 'text-xs text-slate-600 mb-3';
-          desc.textContent = svc.desc;
-          panel.appendChild(desc);
+            <div id="tab-${id}-jobs" class="tab mt-3 hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="p-4 rounded-2xl border bg-white">
+                  <div class="font-semibold">${currentLang==='ar'?'منسق برامج':'Programs Coordinator'}</div>
+                  <div class="text-sm text-slate-500">${currentLang==='ar'?'دوام كامل • الرياض':'Full-time • Riyadh'}</div>
+                </div>
+                <div class="p-4 rounded-2xl border bg-white">
+                  <div class="font-semibold">${currentLang==='ar'?'متطوع فعاليات':'Events Volunteer'}</div>
+                  <div class="text-sm text-slate-500">${currentLang==='ar'?'جزئي • حائل':'Part-time • Hail'}</div>
+                </div>
+              </div>
+            </div>
 
-          // قسم نماذج الخدمة
-          if(svc.forms && svc.forms.length){
-            const formsTitle = document.createElement('div');
-            formsTitle.className = 'text-xs font-semibold text-slate-800 mb-1';
-            formsTitle.textContent = 'نماذج الخدمة والحقول الرئيسة:';
-            panel.appendChild(formsTitle);
+            <div id="tab-${id}-resources" class="tab mt-3 hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="p-4 rounded-2xl border bg-white">
+                  <div class="font-semibold">${currentLang==='ar'?'منحة صغيرة — جودة الحياة':'Micro Grant — Quality of Life'}</div>
+                  <div class="text-sm text-slate-500">${currentLang==='ar'?'حتى 100 ألف ر.س':'Up to 100k SAR'}</div>
+                </div>
+                <div class="p-4 rounded-2xl border bg-white">
+                  <div class="font-semibold">${currentLang==='ar'?'مرفق تدريب مشترك':'Shared Training Facility'}</div>
+                  <div class="text-sm text-slate-500">${currentLang==='ar'?'جامعة حائل':'University of Hail'}</div>
+                </div>
+              </div>
+            </div>
 
-            svc.forms.forEach(form => {
-              const card = document.createElement('div');
-              card.className = 'mb-2 rounded-xl border border-slate-200 bg-slate-50 p-3';
-              const head = document.createElement('div');
-              head.className = 'text-xs font-semibold mb-1';
-              head.textContent = form.name;
-              card.appendChild(head);
+          </div>
+        </div>
+      `;
 
-              const ul = document.createElement('ul');
-              ul.className = 'list-disc pr-4 text-[11px] text-slate-600 space-y-0.5';
-              (form.fields || []).forEach(f => {
-                const li = document.createElement('li');
-                li.textContent = f;
-                ul.appendChild(li);
-              });
-              card.appendChild(ul);
-              panel.appendChild(card);
-            });
-          }
-
-          // قسم جدول تجريبي لكل خدمة (يوضح كيف يمكن أن تُعرض البيانات)
-          const tableWrapper = document.createElement('div');
-          tableWrapper.className = 'mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white';
-
-          let tableHtml = '';
-          if(svc.key === 'my_profile'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">المجال</th>
-                    <th class="p-2 text-right">أهم العناصر</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">المؤهلات</td>
-                    <td class="p-2">بكالوريوس، ماجستير، شهادات مهنية</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">الأدوار</td>
-                    <td class="p-2">مدرب، متحدث، خبير، متطوع</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_initiatives'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">اسم المبادرة</th>
-                    <th class="p-2 text-right">المجال</th>
-                    <th class="p-2 text-right">الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">مبادرة تمكين الشباب</td>
-                    <td class="p-2">تنموي/مجتمعي</td>
-                    <td class="p-2">قيد الدراسة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_jobs'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">نوع الفرصة</th>
-                    <th class="p-2 text-right">الجهة</th>
-                    <th class="p-2 text-right">الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">وظيفة بدوام كامل</td>
-                    <td class="p-2">شركة تقنية</td>
-                    <td class="p-2">قيد المراجعة</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">فرصة مدرب معتمد</td>
-                    <td class="p-2">جهة تدريبية</td>
-                    <td class="p-2">مقابلة مجدولة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_volunteer'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">النشاط التطوعي</th>
-                    <th class="p-2 text-right">الجهة</th>
-                    <th class="p-2 text-right">ساعات التطوع</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">تدريب رقمي تطوعي</td>
-                    <td class="p-2">جمعية غير ربحية</td>
-                    <td class="p-2">12 ساعة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_development'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">البرنامج/الفعالية</th>
-                    <th class="p-2 text-right">النوع</th>
-                    <th class="p-2 text-right">الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">معسكر مهارات رقمية</td>
-                    <td class="p-2">برنامج تدريبي</td>
-                    <td class="p-2">مكتمل</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">منتدى الابتكار المجتمعي</td>
-                    <td class="p-2">ملتقى/محفل</td>
-                    <td class="p-2">مسجل</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_record'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">المجال</th>
-                    <th class="p-2 text-right">القيمة التراكمية</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">برامج التدريب</td>
-                    <td class="p-2">8 برامج مكتملة</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">ساعات التطوع</td>
-                    <td class="p-2">120 ساعة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_wallet'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">نوع العملية</th>
-                    <th class="p-2 text-right">الوصف</th>
-                    <th class="p-2 text-right">المبلغ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">رسوم برنامج تدريبي</td>
-                    <td class="p-2">اشتراك في معسكر مهارات رقمية</td>
-                    <td class="p-2">1,200 ريال</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">استثمار في مشروع</td>
-                    <td class="p-2">مساهمة في مشروع مجتمعي تقني</td>
-                    <td class="p-2">5,000 ريال</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }
-
-          if(tableHtml){
-            tableWrapper.innerHTML = tableHtml;
-            panel.appendChild(tableWrapper);
-          }
-
-          wrapper.appendChild(panel);
-        });
-      }catch(e){
-        console.error('configurePeopleAccount error', e);
-      }
-    }
-
-    // تهيئة واجهة حساب الأفراد: تبويبات + نماذج تفاعلية + شرح + جداول
-    function configurePeopleAccount(sec, id){
-      try{
-        if(!sec || !peopleAccountServices || !peopleAccountServices.length) return;
-
-        // 1) تهيئة مؤشرات الأداء الخاصة بالفرد
-        const kpiGrid = sec.querySelector('.grid.grid-cols-2.sm\\:grid-cols-4.gap-3.mt-4');
-        if(kpiGrid){
-          const cards = kpiGrid.querySelectorAll('.bg-slate-50.rounded-xl.p-4');
-          const labels = [
-            'عدد الفرص المناسبة للفرد',
-            'عدد مبادرات ومشاريع الفرد',
-            'ساعات التطوع/التدريب المكتملة',
-            'عدد الجهات المتفاعلة مع الفرد'
-          ];
-          const values = ['24','3','46','9'];
-          cards.forEach((card, idx)=>{
-            const labelEl = card.querySelector('.text-xs.text-slate-500');
-            const valEl = card.querySelector('.text-2xl.font-bold');
-            if(labelEl && labels[idx]) labelEl.textContent = labels[idx];
-            if(valEl && values[idx]) valEl.textContent = values[idx];
-          });
-        }
-
-        const wrapper = sec.querySelector('.mt-5');
-        if(!wrapper) return;
-        const tabBar = wrapper.querySelector('.flex.items-center.gap-2.text-sm') || wrapper.querySelector('.flex.items-center');
-        if(!tabBar) return;
-
-        tabBar.innerHTML = '';
-        wrapper.querySelectorAll('.tab').forEach(t => t.remove());
-
-        // دالة مساعدة لإنشاء عنصر إدخال لكل حقل
-        const createFieldControl = (fieldLabelText) => {
-          const lower = fieldLabelText.toLowerCase();
-          let control;
-          const isLongText = lower.includes('وصف') || lower.includes('نص طويل') || lower.includes('قصة') || lower.includes('ملاحظات');
-          if(isLongText){
-            control = document.createElement('textarea');
-            control.rows = 2;
-          } else {
-            control = document.createElement('input');
-            control.type = 'text';
-            if(lower.includes('تاريخ')) control.type = 'date';
-            else if(lower.includes('رابط')) control.type = 'url';
-            else if(lower.includes('مرفق') || lower.includes('ملف') || lower.includes('رفع')) control.type = 'file';
-            else if(
-              lower.includes('رقم') || lower.includes('ساعات') ||
-              lower.includes('المبلغ') || lower.includes('قيمة') ||
-              lower.includes('الحد الأدنى') || lower.includes('الحد الأعلى')
-            ) control.type = 'number';
-          }
-          control.className = 'rounded-lg border border-slate-200 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-slate-300 bg-white';
-          return control;
+      // Tabs behavior
+      sec.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.onclick = () => {
+          const target = btn.getAttribute('data-tab');
+          sec.querySelectorAll('.tab-btn').forEach(b=> b.classList.remove('bg-slate-900','text-white'));
+          btn.classList.add('bg-slate-900','text-white');
+          sec.querySelectorAll('.tab').forEach(t => t.classList.add('hidden'));
+          sec.querySelector('#'+target)?.classList.remove('hidden');
         };
+      });
+      lucide.createIcons();
+    }
 
-        peopleAccountServices.forEach((svc, index)=>{
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'tab-btn px-3 py-2 rounded-lg text-xs sm:text-sm transition ' + (index===0 ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700');
-          btn.setAttribute('data-tab', `tab-${id}-${svc.key}`);
-          btn.textContent = svc.label;
-          tabBar.appendChild(btn);
+    function openDrawer(id){ $('#'+id).classList.remove('hidden'); }
+    function closeDrawer(id){ $('#'+id).classList.add('hidden'); }
 
-          const panel = document.createElement('div');
-          panel.id = `tab-${id}-${svc.key}`;
-          panel.className = 'tab mt-3' + (index===0 ? '' : ' hidden');
+    document.getElementById('btnNewProject').onclick=()=>openDrawer('drawerProject');
+    document.getElementById('btnNewEvent').onclick=()=>openDrawer('drawerEvent');
+    $$('#drawerProject [data-close-drawer]').forEach(b=> b.onclick=()=>closeDrawer('drawerProject'));
+    $$('#drawerEvent [data-close-drawer]').forEach(b=> b.onclick=()=>closeDrawer('drawerEvent'));
 
-          // أ) النماذج التفاعلية أولاً تحت التبويب
-          if(svc.forms && svc.forms.length){
-            const formsTitle = document.createElement('div');
-            formsTitle.className = 'text-xs font-semibold text-slate-800 mb-1';
-            formsTitle.textContent = 'نماذج الخدمة والحقول الرئيسة (تجريبية):';
-            panel.appendChild(formsTitle);
+    document.getElementById('formProject').addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const fd=new FormData(e.target);
+      const item={ id: Math.max(0,...projects.map(p=>p.id))+1,
+        name: fd.get('name'), sector: fd.get('sector'), region: fd.get('region'),
+        program: fd.get('program'), fund: Number(fd.get('fund')||0), status: fd.get('status') };
+      projects.unshift(item);
+      closeDrawer('drawerProject'); renderKPIs(); renderProjectsTable(); e.target.reset();
+      toast(i18n[currentLang].toastSaved);
+    });
 
-            svc.forms.forEach(form => {
-              const card = document.createElement('div');
-              card.className = 'mb-2 rounded-xl border border-slate-200 bg-slate-50 p-3';
+    document.getElementById('formEvent').addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const fd=new FormData(e.target);
+      events.unshift({ id: Math.max(0,...events.map(x=>x.id))+1, title: fd.get('title'), date: fd.get('date'), venue: fd.get('venue'), desc: fd.get('desc') });
+      closeDrawer('drawerEvent'); renderKPIs(); e.target.reset(); toast(i18n[currentLang].toastSaved);
+    });
 
-              const head = document.createElement('div');
-              head.className = 'text-xs font-semibold mb-2';
-              head.textContent = form.name;
-              card.appendChild(head);
+    $('#filterRegion').onchange=renderProjectsTable;
+    $('#filterSector').onchange=renderProjectsTable;
+    $('#filterProgram').onchange=renderProjectsTable;
+    $('#btnResetFilters').onclick=()=>{ $('#filterRegion').value=''; $('#filterSector').value=''; $('#filterProgram').value=''; $('#globalSearch').value=''; renderProjectsTable(); };
+    $('#globalSearch').addEventListener('input', renderProjectsTable);
 
-              const formEl = document.createElement('form');
-              formEl.className = 'space-y-2';
+    function switchView(id){
+      $$('.view').forEach(v=>v.classList.add('hidden'));
+      const view=$('#'+id); if(view) view.classList.remove('hidden');
+      $$('#navMain .navlink').forEach(b=> b.classList.remove('bg-slate-100'));
+      $(`#navMain .navlink[data-route="${id}"]`)?.classList.add('bg-slate-100');
+      location.hash=id;
+      if(id==='map'){ setTimeout(()=>{ initMap(); mapInstance && mapInstance.invalidateSize(); }, 60); }
+      if(id.startsWith('account-')){ buildAccountPage(id.replace('account-','')); }
+    }
 
-              (form.fields || []).forEach(f => {
-                const row = document.createElement('div');
-                row.className = 'flex flex-col gap-1';
+    window.addEventListener('hashchange', ()=> switchView(location.hash.replace('#','') || 'dashboard'));
+    window.addEventListener('keydown', (e)=>{ if(e.altKey && e.key==='1') switchView('dashboard'); });
 
-                const label = document.createElement('label');
-                label.className = 'text-[11px] text-slate-700';
-                const parts = f.split('—');
-                label.textContent = (parts[0] || f).trim();
+    document.getElementById('btnExportPDF').onclick = ()=>{
+      const { jsPDF } = window.jspdf; const doc = new jsPDF();
+      const title = (currentLang==='ar'?'قائمة المشاريع':'Projects List'); doc.setFontSize(14); doc.text(title, 14, 16);
+      const head = [[i18n[currentLang].thProject,i18n[currentLang].thSector,i18n[currentLang].thRegion,i18n[currentLang].thProgram,i18n[currentLang].thFund,i18n[currentLang].thStatus]];
+      const body = Array.from(document.querySelectorAll('#projectsTbody tr')).map(tr=> Array.from(tr.querySelectorAll('td')).map(td=> td.innerText.trim()).slice(0,6));
+      doc.autoTable({ head, body, startY:22, styles:{fontSize:10} }); doc.save('projects.pdf');
+    };
 
-                const control = createFieldControl(f);
-                row.appendChild(label);
-                row.appendChild(control);
-                formEl.appendChild(row);
-              });
+    document.getElementById('btnExportXLSX').onclick = ()=>{
+      const data = [['ID','Project','Sector','Region','Program','Funding','Status']];
+      projects.forEach(p=> data.push([p.id,p.name,p.sector,p.region,p.program,p.fund,p.status]));
+      const ws = XLSX.utils.aoa_to_sheet(data); const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Projects'); XLSX.writeFile(wb, 'projects.xlsx');
+    };
 
-              const actions = document.createElement('div');
-              actions.className = 'flex justify-end gap-2 pt-1';
+    function applyI18n(lang){
+      currentLang = lang; localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+      const rtl = (lang==='ar'); document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+      document.querySelectorAll('input,textarea,select').forEach(el=> rtl ? el.classList.add('rtl-input') : el.classList.remove('rtl-input'));
+      document.querySelectorAll('[data-i18n]').forEach(el=>{ const k = el.getAttribute('data-i18n'); if(i18n[lang][k]) el.textContent = i18n[lang][k]; });
+      document.getElementById('globalSearch').placeholder = rtl ? 'ابحث عن: مشروع، فعالية، وظيفة، منحة، مرفق...' : 'Search: project, event, job, grant, facility...';
+      document.querySelectorAll('thead tr').forEach(tr=>{ rtl ? tr.classList.replace('text-left','text-right') : tr.classList.replace('text-right','text-left'); });
+      lucide.createIcons();
+    }
 
-              const saveBtn = document.createElement('button');
-              saveBtn.type = 'button';
-              saveBtn.className = 'px-3 py-1 rounded-lg bg-slate-900 text-white text-[11px]';
-              saveBtn.textContent = 'حفظ مبدئي (تجريبي)';
-              saveBtn.addEventListener('click', ()=>{
-                alert('هذا نموذج تجريبي لواجهة الإدخال في حساب الأفراد. سيتم ربطه بقاعدة البيانات في النسخة التنفيذية.');
-              });
+    document.getElementById('btnAR').onclick = ()=>{ applyI18n('ar'); renderAccounts(); renderModules(); renderKPIs(); renderProjectsTable(); renderStories(); if(location.hash.replace('#','')==='map'){ mapInstance&&mapInstance.remove(); mapInstance=null; setTimeout(initMap,50); } };
+    document.getElementById('btnEN').onclick = ()=>{ applyI18n('en'); renderAccounts(); renderModules(); renderKPIs(); renderProjectsTable(); renderStories(); if(location.hash.replace('#','')==='map'){ mapInstance&&mapInstance.remove(); mapInstance=null; setTimeout(initMap,50); } };
 
-              const resetBtn = document.createElement('button');
-              resetBtn.type = 'button';
-              resetBtn.className = 'px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px]';
-              resetBtn.textContent = 'مسح الحقول';
-              resetBtn.addEventListener('click', ()=>{
-                formEl.querySelectorAll('input, textarea').forEach(inp => { if(inp.type!=='file') inp.value=''; });
-              });
+    function init(){
+      applyI18n(currentLang); renderAccounts(); renderModules(); renderKPIs(); renderProjectsTable(); renderStories();
+      switchView(location.hash.replace('#','') || 'dashboard'); lucide.createIcons();
+    }
+    init();
+  </script>
+</body>
+</html>
 
-              actions.appendChild(saveBtn);
-              actions.appendChild(resetBtn);
-              formEl.appendChild(actions);
+    // دوال التنقل بين الواجهات وبناء حسابات المنصة
 
-              card.appendChild(formEl);
-              panel.appendChild(card);
-            });
-          }
-
-          // ب) الشرح أسفل النماذج
-          const desc = document.createElement('p');
-          desc.className = 'text-[11px] text-slate-500 mt-3';
-          desc.textContent = svc.desc;
-          panel.appendChild(desc);
-
-          // ج) جداول توضيحية في أسفل كل تبويب
-          const tableWrapper = document.createElement('div');
-          tableWrapper.className = 'mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white';
-          let tableHtml = '';
-
-          if(svc.key === 'my_profile'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">المجال</th>
-                    <th class="p-2 text-right">أهم العناصر</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">المؤهلات</td>
-                    <td class="p-2">بكالوريوس، ماجستير، شهادات مهنية</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">الأدوار</td>
-                    <td class="p-2">مدرب، متحدث، خبير، متطوع</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_initiatives'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">اسم المبادرة</th>
-                    <th class="p-2 text-right">المجال</th>
-                    <th class="p-2 text-right">الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">مبادرة تمكين الشباب</td>
-                    <td class="p-2">تنموي/مجتمعي</td>
-                    <td class="p-2">قيد الدراسة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_jobs'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">نوع الفرصة</th>
-                    <th class="p-2 text-right">الجهة</th>
-                    <th class="p-2 text-right">الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">وظيفة بدوام كامل</td>
-                    <td class="p-2">شركة تقنية</td>
-                    <td class="p-2">قيد المراجعة</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">فرصة مدرب معتمد</td>
-                    <td class="p-2">جهة تدريبية</td>
-                    <td class="p-2">مقابلة مجدولة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_volunteer'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">النشاط التطوعي</th>
-                    <th class="p-2 text-right">الجهة</th>
-                    <th class="p-2 text-right">ساعات التطوع</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">تدريب رقمي تطوعي</td>
-                    <td class="p-2">جمعية غير ربحية</td>
-                    <td class="p-2">12 ساعة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_development'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">البرنامج/الفعالية</th>
-                    <th class="p-2 text-right">النوع</th>
-                    <th class="p-2 text-right">الحالة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">معسكر مهارات رقمية</td>
-                    <td class="p-2">برنامج تدريبي</td>
-                    <td class="p-2">مكتمل</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">منتدى الابتكار المجتمعي</td>
-                    <td class="p-2">ملتقى/محفل</td>
-                    <td class="p-2">مسجل</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_record'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">المجال</th>
-                    <th class="p-2 text-right">القيمة التراكمية</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">برامج التدريب</td>
-                    <td class="p-2">8 برامج مكتملة</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">ساعات التطوع</td>
-                    <td class="p-2">120 ساعة</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }else if(svc.key === 'my_wallet'){
-            tableHtml = `
-              <table class="min-w-full text-xs text-slate-700">
-                <thead class="bg-slate-50">
-                  <tr>
-                    <th class="p-2 text-right">نوع العملية</th>
-                    <th class="p-2 text-right">الوصف</th>
-                    <th class="p-2 text-right">المبلغ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t">
-                    <td class="p-2">رسوم برنامج تدريبي</td>
-                    <td class="p-2">اشتراك في معسكر مهارات رقمية</td>
-                    <td class="p-2">1,200 ريال</td>
-                  </tr>
-                  <tr class="border-t">
-                    <td class="p-2">استثمار في مشروع</td>
-                    <td class="p-2">مساهمة في مشروع مجتمعي تقني</td>
-                    <td class="p-2">5,000 ريال</td>
-                  </tr>
-                </tbody>
-              </table>`;
-          }
-
-          if(tableHtml){
-            tableWrapper.innerHTML = tableHtml;
-            panel.appendChild(tableWrapper);
-          }
-
-          wrapper.appendChild(panel);
-        });
-
-        const buttons = tabBar.querySelectorAll('.tab-btn');
-        const tabs = wrapper.querySelectorAll('.tab');
-        buttons.forEach(btn=>{
-          btn.addEventListener('click', ()=>{
-            const targetId=btn.getAttribute('data-tab');
-            buttons.forEach(b=>b.classList.remove('bg-slate-900','text-white'));
-            buttons.forEach(b=>b.classList.add('bg-slate-100','text-slate-700'));
-            btn.classList.add('bg-slate-900','text-white');
-            tabs.forEach(t=>t.classList.add('hidden'));
-            const target=wrapper.querySelector('#'+targetId);
-            if(target) target.classList.remove('hidden');
-          });
-        });
-
+    function switchView(id){
+      try{
+        const views = $$('.view');
+        views.forEach(v => v.classList.add('hidden'));
+        const target = document.getElementById(id);
+        if(target){
+          target.classList.remove('hidden');
+          window.scrollTo({top:0, behavior:'smooth'});
+        }
       }catch(e){
-        console.error('configurePeopleAccount error', e);
+        console.error('switchView error', e);
       }
     }
 
+    function buildAccountPage(key){
+      try{
+        const secId = 'account-'+key;
+        const sec = document.getElementById(secId);
+        if(!sec) return;
+        sec.innerHTML = '';
 
+        if(key === 'people'){
+          sec.innerHTML = `
+            <div class="bg-white rounded-2xl p-4 shadow-soft">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <div class="text-xs text-slate-500">الملف</div>
+                  <div class="text-lg font-semibold">الأفراد</div>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                <div class="bg-slate-50 rounded-xl p-4">
+                  <div class="text-xs text-slate-500">الفرص المناسبة</div>
+                  <div class="text-2xl font-bold">24</div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-4">
+                  <div class="text-xs text-slate-500">مبادراتي/مشاريعي</div>
+                  <div class="text-2xl font-bold">3</div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-4">
+                  <div class="text-xs text-slate-500">ساعات التطوع/التدريب</div>
+                  <div class="text-2xl font-bold">46</div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-4">
+                  <div class="text-xs text-slate-500">الجهات المتفاعلة</div>
+                  <div class="text-2xl font-bold">9</div>
+                </div>
+              </div>
+              <div class="mt-5">
+                <div class="flex items-center gap-2 text-sm flex-wrap"></div>
+              </div>
+            </div>
+          `;
+          configurePeopleAccount(sec, key);
+          lucide.createIcons();
+        } else {
+          const nameMap = {
+            emirate:'إمارة المنطقة',
+            gov:'جهة حكومية',
+            private:'قطاع خاص',
+            nonprofit:'قطاع غير ربحي',
+            uni:'الجامعات',
+            funder:'جهات مانحة',
+            speakers:'مدربون/متحدثون',
+            admin:'حوكمة المنصة'
+          };
+          sec.innerHTML = `
+            <div class="bg-white rounded-2xl p-6 shadow-soft">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <div class="text-xs text-slate-500">الحساب</div>
+                  <div class="text-lg font-semibold">${nameMap[key] || key}</div>
+                </div>
+                <div class="text-xs text-slate-400">نسخة تجريبية لعرض الفكرة</div>
+              </div>
+              <p class="text-sm text-slate-600">
+                سيتم في النسخة التشغيلية بناء جميع نماذج هذا الحساب وربطها بالمؤشرات وبرامج الرؤية ومنظومة حصيف.
+              </p>
+            </div>
+          `;
+        }
+      }catch(e){
+        console.error('buildAccountPage error', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      try{
+        renderAccounts();
+        renderModules();
+        if(typeof renderProjectsTable === 'function') renderProjectsTable();
+        if(typeof renderStories === 'function') renderStories();
+        switchView('dashboard');
+        if(window.lucide && typeof lucide.createIcons === 'function'){
+          lucide.createIcons();
+        }
+      }catch(e){
+        console.error('init error', e);
+      }
+    });
+
+  </script>
+</body>
+</html>
