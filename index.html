@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>منصة حصيف – النموذج الأولي</title>
+  <title>منصة حصيف – حساب الأفراد (تشغيلي واجهة)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -10,35 +10,29 @@
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
-  <!-- الغلاف العام -->
   <div class="min-h-screen">
-    <!-- الهيدر العلوي -->
+    <!-- الهيدر -->
     <header class="border-b border-slate-200 bg-white">
       <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <!-- شعار حصيف + تلبية + رؤية -->
-          <div class="flex items-center gap-2">
-            <div class="h-9 w-9 rounded-xl bg-slate-900 text-white flex items-center justify-center text-xs font-bold">
-              حصيف
-            </div>
-            <div class="text-xs leading-tight">
-              <div class="font-semibold text-slate-900">منصة حصيف</div>
-              <div class="text-[11px] text-slate-500">برنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
-            </div>
+          <div class="h-9 w-9 rounded-xl bg-slate-900 text-white flex items-center justify-center text-xs font-bold">
+            حصيف
+          </div>
+          <div class="text-xs leading-tight">
+            <div class="font-semibold text-slate-900">منصة حصيف</div>
+            <div class="text-[11px] text-slate-500">برنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
           </div>
         </div>
-        <div class="flex items-center gap-3 text-[11px] text-slate-500">
-          <div class="text-right">
-            <div class="font-semibold text-slate-900">رؤية السعودية 2030</div>
-            <div>تكامل تنموي بين الحكومة والقطاع الخاص والقطاع غير الربحي والأفراد</div>
-          </div>
+        <div class="text-[11px] text-slate-500 text-right">
+          <div class="font-semibold text-slate-900">رؤية السعودية 2030</div>
+          <div>تكامل تنموي بين الحكومة والقطاع الخاص والقطاع غير الربحي والأفراد</div>
         </div>
       </div>
     </header>
 
     <!-- المحتوى -->
     <main class="max-w-6xl mx-auto px-4 py-4 md:py-6">
-      <!-- شريط التنقل العلوي بين الواجهة الرئيسية والحسابات -->
+      <!-- شريط التنقل -->
       <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
           <button id="nav-home"
@@ -51,22 +45,21 @@
           </button>
         </div>
         <div class="text-[11px] text-slate-500">
-          هذا نموذج أولي تفاعلي للعرض أمام القيادة الوطنية – نسخة تجريبية لاختبار الفكرة.
+          نسخة أولى تشغيلية للواجهة الأمامية، جاهزة للربط مع قاعدة بيانات وواجهات API لاحقاً.
         </div>
       </div>
 
       <!-- الواجهة الرئيسية -->
       <section id="view-home" class="view-section">
         <div class="grid gap-4 md:grid-cols-[2fr,1.2fr]">
-          <!-- بطاقة تعريف -->
           <div class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 flex flex-col gap-3">
             <div>
               <div class="text-xs text-slate-500 mb-1">منصة حصيف</div>
-              <div class="text-lg font-semibold mb-1">منصة تكامل تنموي وطني</div>
+              <div class="text-lg font-semibold mb-1">غرفة عمليات تنموية وطنية</div>
               <p class="text-[12px] leading-relaxed text-slate-600">
-                حصيف هي منصة وطنية تعمل كغرفة عمليات تنموية، تربط بين الأفراد، والجهات الحكومية،
-                والقطاع الخاص، والقطاع غير الربحي، والجامعات، والجهات المانحة، لرفع كفاءة استثمار
-                المسؤولية الاجتماعية وتسريع تحقيق مستهدفات رؤية السعودية 2030.
+                حصيف منصة وطنية تربط بين الأفراد، والجهات الحكومية، والقطاع الخاص، والقطاع غير الربحي،
+                والجامعات، والجهات المانحة، لرفع كفاءة استثمار المسؤولية الاجتماعية وتسريع تحقيق مستهدفات
+                رؤية السعودية 2030 من خلال نموذج تشغيلي متكامل.
               </p>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-[11px] mt-2">
@@ -75,7 +68,7 @@
                 <div class="text-xl font-bold">8</div>
               </div>
               <div class="rounded-xl bg-slate-50 p-3">
-                <div class="text-xs text-slate-500 mb-1">مجالات الرؤية</div>
+                <div class="text-xs text-slate-500 mb-1">برامج الرؤية</div>
                 <div class="text-xl font-bold">13+</div>
               </div>
               <div class="rounded-xl bg-slate-50 p-3">
@@ -83,13 +76,12 @@
                 <div class="text-xl font-bold">3</div>
               </div>
               <div class="rounded-xl bg-slate-50 p-3">
-                <div class="text-xs text-slate-500 mb-1">المحافظ التنموية</div>
+                <div class="text-xs text-slate-500 mb-1">تكامل تنموي</div>
                 <div class="text-xl font-bold">متكامل</div>
               </div>
             </div>
           </div>
 
-          <!-- خريطة بسيطة للحسابات -->
           <div class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 text-[11px] flex flex-col gap-2">
             <div class="font-semibold text-slate-900 mb-1">الحسابات الرئيسة في المنصة</div>
             <ul class="space-y-1">
@@ -100,10 +92,10 @@
               <li>• حساب الجهات الحكومية</li>
               <li>• حساب إمارة المنطقة</li>
               <li>• حساب الجهات المانحة</li>
-              <li>• حساب المتحدثين والمدربين والخبراء</li>
+              <li>• حساب المدربين والمتحدثين والخبراء</li>
             </ul>
             <p class="mt-2 text-slate-500">
-              لكل حساب خدمات تفصيلية ونماذج عمل وربط بالمؤشرات التنموية وبرامج الرؤية.
+              كل حساب يحتوي على خدمات ونماذج تشغيلية ولوحات متابعة مرتبطة بالمؤشرات وبرامج الرؤية.
             </p>
           </div>
         </div>
@@ -133,25 +125,25 @@
 
   <!-- سكربت المنصة -->
   <script>
-    // تعريف الحسابات
     const accounts = [
-      { key: 'people',   name: 'حساب الأفراد',            badge: 'الأفراد' },
-      { key: 'private',  name: 'حساب القطاع الخاص',       badge: 'خاص' },
-      { key: 'nonprofit',name: 'حساب القطاع غير الربحي',  badge: 'غير ربحي' },
-      { key: 'uni',      name: 'حساب الجامعات',           badge: 'جامعات' },
-      { key: 'gov',      name: 'حساب الجهات الحكومية',    badge: 'حكومي' },
-      { key: 'emirate',  name: 'حساب إمارة المنطقة',      badge: 'إمارة' },
-      { key: 'funder',   name: 'حساب الجهات المانحة',     badge: 'مانح' },
-      { key: 'speakers', name: 'حساب المدربين والمتحدثين',badge: 'خبراء' },
-      { key: 'admin',    name: 'حساب حوكمة المنصة',       badge: 'حوكمة' }
+      { key: 'people',   name: 'حساب الأفراد',             badge: 'الأفراد' },
+      { key: 'private',  name: 'حساب القطاع الخاص',        badge: 'خاص' },
+      { key: 'nonprofit',name: 'حساب القطاع غير الربحي',   badge: 'غير ربحي' },
+      { key: 'uni',      name: 'حساب الجامعات',            badge: 'جامعات' },
+      { key: 'gov',      name: 'حساب الجهات الحكومية',     badge: 'حكومي' },
+      { key: 'emirate',  name: 'حساب إمارة المنطقة',       badge: 'إمارة' },
+      { key: 'funder',   name: 'حساب الجهات المانحة',      badge: 'مانح' },
+      { key: 'speakers', name: 'حساب المدربين والمتحدثين', badge: 'خبراء' },
+      { key: 'admin',    name: 'حساب حوكمة المنصة',        badge: 'حوكمة' }
     ];
 
-    // خدمات حساب الأفراد (التبويبات)
+    const PEOPLE_STORAGE_PREFIX = 'hasseef_people_';
+
     const peopleServices = [
       {
         key: 'my_profile',
         label: 'ملفي',
-        desc: 'ملف شامل لبيانات الفرد التعليمية والعملية والمهارية وأدواره (مدرب، متحدث، خبير، متطوع، مستثمر).',
+        desc: 'ملف شامل يعكس بيانات الفرد التعليمية والعملية والمهارية وأدواره (مدرب، متحدث، خبير، متطوع، مستثمر).',
         forms: [
           {
             name: 'الملف الأساسي',
@@ -184,8 +176,8 @@
               'اسم المبادرة أو المشروع — نص قصير',
               'الوصف المختصر للفكرة — نص طويل',
               'الفئة المستهدفة والمنطقة — نص',
-              'نوع الدعم المطلوب (تمويل، رعاية، تنفيذ، إرشاد) — اختيار',
-              'مرفقات (عرض تقديمي، دراسة أولية) — ملف'
+              'مدى المبادرة (قصيرة، متوسطة، طويلة المدى) — اختيار',
+              'نوع الدعم المطلوب (تمويل، رعاية، تنفيذ، إرشاد، احتضان) — اختيار'
             ]
           }
         ]
@@ -364,7 +356,7 @@
       });
     }
 
-    function createFieldControl(fieldLabelText) {
+    function createPeopleFieldControl(fieldLabelText) {
       const lower = fieldLabelText.toLowerCase();
       let control;
       const isLongText =
@@ -373,7 +365,6 @@
         lower.includes('قصة') ||
         lower.includes('ملهمة') ||
         lower.includes('ملاحظات');
-
       if (isLongText) {
         control = document.createElement('textarea');
         control.rows = 2;
@@ -389,14 +380,106 @@
       return control;
     }
 
+    function getPeopleStorageKey(serviceKey) {
+      return PEOPLE_STORAGE_PREFIX + serviceKey;
+    }
+
+    function savePeopleServiceData(serviceKey, data) {
+      try {
+        localStorage.setItem(getPeopleStorageKey(serviceKey), JSON.stringify(data));
+      } catch(e) {
+        console.error('savePeopleServiceData error', e);
+      }
+    }
+
+    function loadPeopleServiceData(serviceKey) {
+      try {
+        const raw = localStorage.getItem(getPeopleStorageKey(serviceKey));
+        if (!raw) return null;
+        return JSON.parse(raw);
+      } catch(e) {
+        console.error('loadPeopleServiceData error', e);
+        return null;
+      }
+    }
+
+    function renderPeopleSavedData(panel, serviceKey, data) {
+      let wrapper = panel.querySelector('[data-saved-wrapper="'+serviceKey+'"]');
+      if (!wrapper) {
+        wrapper = document.createElement('div');
+        wrapper.dataset.savedWrapper = serviceKey;
+        wrapper.className = 'mt-3 rounded-xl border border-dashed border-slate-300 bg-white/50 p-3';
+        panel.appendChild(wrapper);
+      }
+
+      if (!data || !data.forms || !data.forms.length) {
+        wrapper.innerHTML = `
+          <div class="flex items-center justify-between gap-2">
+            <div class="text-[11px] text-slate-500">لا يوجد بيانات محفوظة لهذه الخدمة حتى الآن (تجريبي).</div>
+          </div>
+        `;
+        return;
+      }
+
+      let html = `
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="text-xs font-semibold text-slate-900">بياناتي المحفوظة (تجريبي):</div>
+          <button type="button"
+                  class="clear-saved px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 text-[10px]"
+                  data-service-clear="${serviceKey}">
+            مسح البيانات المحفوظة لهذه الخدمة
+          </button>
+        </div>
+        <div class="space-y-2">
+      `;
+      data.forms.forEach(form => {
+        html += `
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-2">
+            <div class="text-[11px] font-semibold text-slate-800 mb-1">${form.name || ''}</div>
+            <div class="grid sm:grid-cols-2 gap-1 text-[11px]">
+        `;
+        (form.fields || []).forEach(f => {
+          if (!f.value) return;
+          html += `
+            <div class="flex gap-1">
+              <span class="text-slate-500">${f.label}:</span>
+              <span class="text-slate-800">${f.value}</span>
+            </div>
+          `;
+        });
+        html += `
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      wrapper.innerHTML = html;
+
+      const clearBtn = wrapper.querySelector('button.clear-saved[data-service-clear="'+serviceKey+'"]');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          try {
+            localStorage.removeItem(getPeopleStorageKey(serviceKey));
+          } catch(e) {
+            console.error('clear people service storage error', e);
+          }
+          renderPeopleSavedData(panel, serviceKey, null);
+          const forms = panel.querySelectorAll('form[data-service-key="'+serviceKey+'"]');
+          forms.forEach(frm => {
+            frm.querySelectorAll('input, textarea').forEach(inp => {
+              if (inp.type !== 'file') inp.value = '';
+            });
+          });
+        });
+      }
+    }
+
     function buildPeopleAccount(container) {
       container.innerHTML = '';
 
-      // رأس الحساب + المؤشرات
       const header = document.createElement('div');
       header.className =
         'rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 mb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4';
-
       header.innerHTML = `
         <div class="flex items-center gap-3">
           <div class="h-10 w-10 rounded-xl bg-emerald-50 flex items-center justify-center text-lg">👤</div>
@@ -429,7 +512,6 @@
       `;
       container.appendChild(header);
 
-      // التبويبات
       const tabsWrapper = document.createElement('div');
       tabsWrapper.className = 'mt-1';
       const tabsBar = document.createElement('div');
@@ -443,7 +525,6 @@
       container.appendChild(tabsWrapper);
 
       peopleServices.forEach((svc, index) => {
-        // زر التبويب
         const tabBtn = document.createElement('button');
         tabBtn.type = 'button';
         tabBtn.dataset.tab = svc.key;
@@ -455,19 +536,17 @@
         tabBtn.textContent = svc.label;
         tabsBar.appendChild(tabBtn);
 
-        // لوحة التبويب
         const panel = document.createElement('div');
         panel.dataset.panel = svc.key;
         panel.className = 'people-panel ' + (index === 0 ? '' : 'hidden');
 
-        // 1) النماذج أسفل التبويب مباشرة
         if (svc.forms && svc.forms.length) {
           const formsTitle = document.createElement('div');
           formsTitle.className = 'text-xs font-semibold text-slate-900 mb-1';
-          formsTitle.textContent = 'نماذج الخدمة (تجريبية):';
+          formsTitle.textContent = 'نماذج الخدمة (قابلة للحفظ محليًا):';
           panel.appendChild(formsTitle);
 
-          svc.forms.forEach(form => {
+          svc.forms.forEach((form, formIndex) => {
             const card = document.createElement('div');
             card.className = 'mb-2 rounded-xl border border-slate-200 bg-slate-50 p-3';
 
@@ -478,15 +557,24 @@
 
             const formEl = document.createElement('form');
             formEl.className = 'space-y-2';
+            formEl.dataset.serviceKey = svc.key;
+            formEl.dataset.formIndex = String(formIndex);
 
-            (form.fields || []).forEach(f => {
+            (form.fields || []).forEach((f, fieldIndex) => {
               const row = document.createElement('div');
               row.className = 'flex flex-col gap-1';
+
               const label = document.createElement('label');
               label.className = 'text-[11px] text-slate-700';
               const parts = f.split('—');
               label.textContent = (parts[0] || f).trim();
-              const control = createFieldControl(f);
+              label.dataset.fieldIndex = String(fieldIndex);
+
+              const control = createPeopleFieldControl(f);
+              control.dataset.serviceKey = svc.key;
+              control.dataset.formIndex = String(formIndex);
+              control.dataset.fieldIndex = String(fieldIndex);
+
               row.appendChild(label);
               row.appendChild(control);
               formEl.appendChild(row);
@@ -498,9 +586,28 @@
             const saveBtn = document.createElement('button');
             saveBtn.type = 'button';
             saveBtn.className = 'px-3 py-1 rounded-lg bg-slate-900 text-white text-[11px]';
-            saveBtn.textContent = 'حفظ مبدئي (تجريبي)';
+            saveBtn.textContent = 'حفظ مبدئي (محلي)';
             saveBtn.addEventListener('click', () => {
-              alert('هذا نموذج تجريبي في حساب الأفراد. الحفظ الفعلي يتم في النسخة التشغيلية المتصلة بقاعدة بيانات.');
+              const formsData = [];
+              const forms = panel.querySelectorAll('form[data-service-key="'+svc.key+'"]');
+              forms.forEach((frm, idx) => {
+                const formNameEl = frm.parentElement.querySelector('.text-xs.font-semibold');
+                const formName = formNameEl ? formNameEl.textContent.trim() : ('نموذج ' + (idx+1));
+                const fieldsData = [];
+                frm.querySelectorAll('label').forEach(lab => {
+                  const control = lab.nextElementSibling;
+                  if (!control) return;
+                  fieldsData.push({
+                    label: lab.textContent.trim(),
+                    value: control.value || ''
+                  });
+                });
+                formsData.push({ name: formName, fields: fieldsData });
+              });
+              const payload = { forms: formsData };
+              savePeopleServiceData(svc.key, payload);
+              renderPeopleSavedData(panel, svc.key, payload);
+              alert('تم حفظ البيانات محلياً في هذا الحساب (تجريبي).');
             });
 
             const resetBtn = document.createElement('button');
@@ -516,46 +623,47 @@
             actions.appendChild(saveBtn);
             actions.appendChild(resetBtn);
             formEl.appendChild(actions);
+
             card.appendChild(formEl);
             panel.appendChild(card);
           });
         }
 
-        // 2) الشرح أسفل النماذج
         const desc = document.createElement('p');
         desc.className = 'text-[11px] text-slate-500 mt-2';
         desc.textContent = svc.desc;
         panel.appendChild(desc);
 
-        // 3) جدول توضيحي بسيط
-        const tableWrapper = document.createElement('div');
-        tableWrapper.className = 'mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white';
-        tableWrapper.innerHTML = `
-          <table class="min-w-full text-xs text-slate-700">
-            <thead class="bg-slate-50">
-              <tr>
-                <th class="p-2 text-right">العنصر</th>
-                <th class="p-2 text-right">مثال تجريبي</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-t">
-                <td class="p-2">الخدمة</td>
-                <td class="p-2">${svc.label}</td>
-              </tr>
-              <tr class="border-t">
-                <td class="p-2">الوصف</td>
-                <td class="p-2">${svc.desc}</td>
-              </tr>
-            </tbody>
-          </table>
-        `;
-        panel.appendChild(tableWrapper);
+        const savedWrapper = document.createElement('div');
+        savedWrapper.dataset.savedWrapper = svc.key;
+        savedWrapper.className = 'mt-3 rounded-xl border border-dashed border-slate-300 bg-white/50 p-3';
+        savedWrapper.innerHTML =
+          '<div class="text-[11px] text-slate-500">لا يوجد بيانات محفوظة لهذه الخدمة حتى الآن (تجريبي).</div>';
+        panel.appendChild(savedWrapper);
 
         panelsContainer.appendChild(panel);
+
+        const saved = loadPeopleServiceData(svc.key);
+        if (saved) {
+          if (saved.forms && saved.forms.length) {
+            const forms = panel.querySelectorAll('form[data-service-key="'+svc.key+'"]');
+            forms.forEach((frm, idx) => {
+              const savedForm = saved.forms[idx];
+              if (!savedForm || !savedForm.fields) return;
+              const labels = frm.querySelectorAll('label');
+              labels.forEach((lab, fieldIndex) => {
+                const control = lab.nextElementSibling;
+                const savedField = savedForm.fields[fieldIndex];
+                if (control && savedField) {
+                  control.value = savedField.value || '';
+                }
+              });
+            });
+          }
+          renderPeopleSavedData(panel, svc.key, saved);
+        }
       });
 
-      // تفعيل التنقل بين التبويبات
       const tabButtons = tabsBar.querySelectorAll('.people-tab');
       const panels = panelsContainer.querySelectorAll('.people-panel');
       tabButtons.forEach(btn => {
@@ -590,8 +698,8 @@
             </span>
           </div>
           <p class="text-[11px] text-slate-600">
-            هذا عرض وصفي مبسط للحساب. في النسخة التشغيلية سيتم استكمال جميع الخدمات التفصيلية، النماذج،
-            الربط مع برامج الرؤية، المؤشرات، والمحافظ التنموية، وفق وثائق منصة حصيف.
+            هذا عرض وصفي مبسط للحساب. في النسخة التشغيلية سيتم استكمال جميع الخدمات التفصيلية والنماذج
+            وربطها مع برامج الرؤية والمستفيدين ولوحات المتابعة، وفق وثائق منصة حصيف.
           </p>
         </div>
       `;
@@ -600,7 +708,6 @@
     function buildAccount(key) {
       const container = document.getElementById('account-content');
       if (!container) return;
-
       if (key === 'people') {
         buildPeopleAccount(container);
       } else {
@@ -614,7 +721,6 @@
         const key = hash.replace('#account-', '');
         showView('accounts');
         buildAccount(key || 'people');
-        // إبراز الحساب في القائمة
         const btn = document.querySelector('.account-btn[data-key="'+key+'"]');
         if (btn) {
           document.querySelectorAll('.account-btn').forEach(b => b.classList.remove('ring-1','ring-slate-400'));
@@ -626,10 +732,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // تهيئة القوائم
       renderAccountList();
 
-      // ربط أزرار التنقل العامة
       document.getElementById('nav-home').addEventListener('click', () => {
         history.replaceState(null, '', '#');
         showView('home');
@@ -645,7 +749,6 @@
         }
       });
 
-      // تهيئة العرض حسب الـ hash (للتوافق مع #account-people)
       applyHashRouting();
     });
 
