@@ -2,757 +2,273 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>منصة حصيف – حساب الأفراد (تشغيلي واجهة)</title>
+  <title>منصة حصيف | HASIF Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  </style>
+  <meta name="description" content="منصة حصيف الوطنية للتكامل التنموي، لربط الأفراد والجهات بالحلول والمشاريع والفعاليات وفق رؤية المملكة 2030." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- يمكنك لاحقًا إضافة Tailwind أو أي إطار تصميم آخر -->
 </head>
-<body class="bg-slate-50 text-slate-900">
-  <div class="min-h-screen">
-    <!-- الهيدر -->
-    <header class="border-b border-slate-200 bg-white">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <div class="h-9 w-9 rounded-xl bg-slate-900 text-white flex items-center justify-center text-xs font-bold">
-            حصيف
-          </div>
-          <div class="text-xs leading-tight">
-            <div class="font-semibold text-slate-900">منصة حصيف</div>
-            <div class="text-[11px] text-slate-500">برنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
-          </div>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo-group">
+        <div class="logo-item">
+          <img src="assets/img/vision2030.png" alt="شعار رؤية السعودية 2030" class="logo logo-vision" />
         </div>
-        <div class="text-[11px] text-slate-500 text-right">
-          <div class="font-semibold text-slate-900">رؤية السعودية 2030</div>
-          <div>تكامل تنموي بين الحكومة والقطاع الخاص والقطاع غير الربحي والأفراد</div>
+        <div class="logo-item">
+          <img src="assets/img/talbiya.png" alt="شعار مبادرة تلبية" class="logo logo-talbiya" />
+        </div>
+        <div class="logo-item">
+          <img src="assets/img/hasif.png" alt="شعار منصة حصيف" class="logo logo-hasseef" />
         </div>
       </div>
-    </header>
+      <nav class="main-nav">
+        <a href="#about">عن المنصة</a>
+        <a href="#accounts">الحسابات</a>
+        <a href="#modules">المكوّنات الأساسية</a>
+        <a href="#vision">رؤية 2030</a>
+        <a href="#dev">للمطورين</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- المحتوى -->
-    <main class="max-w-6xl mx-auto px-4 py-4 md:py-6">
-      <!-- شريط التنقل -->
-      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
-          <button id="nav-home"
-                  class="view-btn px-3 py-1.5 rounded-full bg-slate-900 text-white">
-            الواجهة الرئيسية
-          </button>
-          <button id="nav-accounts"
-                  class="view-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-700">
-            حسابات المنصة
-          </button>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>منصة حصيف الوطنية للتكامل التنموي</h1>
+          <p>
+            نظام وطني موحد لربط الأفراد والقطاع الخاص والقطاع غير الربحي والجامعات والجهات الحكومية
+            وإمارات المناطق وهيئات التطوير، من خلال حلول ومشاريع وفعاليات مرتبطة برؤية المملكة 2030.
+          </p>
+          <div class="hero-actions">
+            <a href="#accounts" class="btn btn-primary">استعراض الحسابات</a>
+            <a href="#dev" class="btn btn-outline">دليل المطورين (GitHub)</a>
+          </div>
         </div>
-        <div class="text-[11px] text-slate-500">
-          نسخة أولى تشغيلية للواجهة الأمامية، جاهزة للربط مع قاعدة بيانات وواجهات API لاحقاً.
+        <div class="hero-card">
+          <h2>نظرة تقنية سريعة</h2>
+          <ul>
+            <li>١٩ مكوّن تشغيلي موحّد (Core Modules)</li>
+            <li>٨ حسابات رئيسية تغطي جميع القطاعات</li>
+            <li>ربط ذكي مع برامج وأهداف رؤية 2030</li>
+            <li>تكامل مع الجهات الحكومية وإمارات المناطق</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      <!-- الواجهة الرئيسية -->
-      <section id="view-home" class="view-section">
-        <div class="grid gap-4 md:grid-cols-[2fr,1.2fr]">
-          <div class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 flex flex-col gap-3">
-            <div>
-              <div class="text-xs text-slate-500 mb-1">منصة حصيف</div>
-              <div class="text-lg font-semibold mb-1">غرفة عمليات تنموية وطنية</div>
-              <p class="text-[12px] leading-relaxed text-slate-600">
-                حصيف منصة وطنية تربط بين الأفراد، والجهات الحكومية، والقطاع الخاص، والقطاع غير الربحي،
-                والجامعات، والجهات المانحة، لرفع كفاءة استثمار المسؤولية الاجتماعية وتسريع تحقيق مستهدفات
-                رؤية السعودية 2030 من خلال نموذج تشغيلي متكامل.
-              </p>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-[11px] mt-2">
-              <div class="rounded-xl bg-slate-50 p-3">
-                <div class="text-xs text-slate-500 mb-1">الحسابات</div>
-                <div class="text-xl font-bold">8</div>
-              </div>
-              <div class="rounded-xl bg-slate-50 p-3">
-                <div class="text-xs text-slate-500 mb-1">برامج الرؤية</div>
-                <div class="text-xl font-bold">13+</div>
-              </div>
-              <div class="rounded-xl bg-slate-50 p-3">
-                <div class="text-xs text-slate-500 mb-1">القطاعات</div>
-                <div class="text-xl font-bold">3</div>
-              </div>
-              <div class="rounded-xl bg-slate-50 p-3">
-                <div class="text-xs text-slate-500 mb-1">تكامل تنموي</div>
-                <div class="text-xl font-bold">متكامل</div>
-              </div>
-            </div>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container section-inner">
+        <div class="section-header">
+          <h2>عن منصة حصيف</h2>
+          <p>
+            حصيف هو نموذج عمل و منصة رقمية وطنية، تم بناؤها لتوحيد الممارسة التنموية
+            عبر مجموعة من المكوّنات الأساسية القابلة لإعادة الاستخدام (Reusable Core Modules)،
+            بحيث تستخدم كل جهة نفس المكوّن لكن بالصلاحيات المناسبة لها.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="card">
+            <h3>تكامل وطني</h3>
+            <p>
+              تربط المنصة بين الأفراد، القطاع الخاص، القطاع غير الربحي، الجامعات،
+              الجهات الحكومية، إمارات المناطق، هيئات التطوير، والمانحين في بيئة تشغيلية واحدة.
+            </p>
           </div>
-
-          <div class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 text-[11px] flex flex-col gap-2">
-            <div class="font-semibold text-slate-900 mb-1">الحسابات الرئيسة في المنصة</div>
-            <ul class="space-y-1">
-              <li>• حساب الأفراد</li>
-              <li>• حساب القطاع الخاص</li>
-              <li>• حساب القطاع غير الربحي</li>
-              <li>• حساب الجامعات</li>
-              <li>• حساب الجهات الحكومية</li>
-              <li>• حساب إمارة المنطقة</li>
-              <li>• حساب الجهات المانحة</li>
-              <li>• حساب المدربين والمتحدثين والخبراء</li>
-            </ul>
-            <p class="mt-2 text-slate-500">
-              كل حساب يحتوي على خدمات ونماذج تشغيلية ولوحات متابعة مرتبطة بالمؤشرات وبرامج الرؤية.
+          <div class="card">
+            <h3>نموذج تقني حديث</h3>
+            <p>
+              معمارية مبنية على الخدمات المصغّرة Microservices، واجهات برمجة RESTful،
+              وقاعدة بيانات هجينة تدعم المشاريع والفعاليات والتمويل والشراكات.
+            </p>
+          </div>
+          <div class="card">
+            <h3>ارتباط بالرؤية 2030</h3>
+            <p>
+              كل مشروع أو حل أو فعالية يمكن ربطه ببرامج وأهداف رؤية 2030
+              مع دعم الربط المتعدد للجهات والمناطق وهيئات التطوير.
             </p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- واجهة الحسابات -->
-      <section id="view-accounts" class="view-section hidden">
-        <div class="grid gap-4 md:grid-cols-[1.1fr,2fr]">
-          <!-- قائمة الحسابات -->
-          <aside class="rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 text-[11px]">
-            <div class="flex items-center justify-between mb-2">
-              <div class="font-semibold text-slate-900 text-xs">الحسابات</div>
-            </div>
-            <div id="account-list" class="space-y-1 mt-2"></div>
-          </aside>
-
-          <!-- محتوى الحساب -->
-          <section id="account-content" class="rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 text-[11px]">
-            <div class="text-xs text-slate-500">
-              اختر أحد الحسابات من القائمة اليمنى لاستعراض تفاصيله التشغيلية.
-            </div>
-          </section>
+    <!-- ACCOUNTS -->
+    <section id="accounts" class="section section-alt">
+      <div class="container section-inner">
+        <div class="section-header">
+          <h2>الحسابات الرئيسية في المنصة</h2>
+          <p>ثمانية حسابات مترابطة، لكل منها صلاحياته وواجهاته، تعمل جميعها فوق نفس المكوّنات الأساسية.</p>
         </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- سكربت المنصة -->
-  <script>
-    const accounts = [
-      { key: 'people',   name: 'حساب الأفراد',             badge: 'الأفراد' },
-      { key: 'private',  name: 'حساب القطاع الخاص',        badge: 'خاص' },
-      { key: 'nonprofit',name: 'حساب القطاع غير الربحي',   badge: 'غير ربحي' },
-      { key: 'uni',      name: 'حساب الجامعات',            badge: 'جامعات' },
-      { key: 'gov',      name: 'حساب الجهات الحكومية',     badge: 'حكومي' },
-      { key: 'emirate',  name: 'حساب إمارة المنطقة',       badge: 'إمارة' },
-      { key: 'funder',   name: 'حساب الجهات المانحة',      badge: 'مانح' },
-      { key: 'speakers', name: 'حساب المدربين والمتحدثين', badge: 'خبراء' },
-      { key: 'admin',    name: 'حساب حوكمة المنصة',        badge: 'حوكمة' }
-    ];
-
-    const PEOPLE_STORAGE_PREFIX = 'hasseef_people_';
-
-    const peopleServices = [
-      {
-        key: 'my_profile',
-        label: 'ملفي',
-        desc: 'ملف شامل يعكس بيانات الفرد التعليمية والعملية والمهارية وأدواره (مدرب، متحدث، خبير، متطوع، مستثمر).',
-        forms: [
-          {
-            name: 'الملف الأساسي',
-            fields: [
-              'الاسم الثلاثي — نص قصير / إلزامي',
-              'المدينة — نص قصير',
-              'المؤهل العلمي والتخصص — نص قصير',
-              'الخبرات العملية المختصرة — نص طويل',
-              'الأدوار (مدرب، متحدث، خبير، متطوع، مستثمر) — نص أو اختيار متعدد'
-            ]
-          },
-          {
-            name: 'تفضيلات الفرص',
-            fields: [
-              'أنواع الفرص المفضلة (وظائف، تطوع، تدريب، استثمار، محافل) — اختيار متعدد',
-              'القطاعات المفضلة (حكومي، خاص، غير ربحي، جامعات) — اختيار متعدد',
-              'المناطق المفضلة — نص أو اختيار من قائمة'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_initiatives',
-        label: 'مبادراتي',
-        desc: 'مبادرات ومشاريع يقترحها الفرد لدعم أولويات المجتمع وبرامج الرؤية مع ربطها بالجهات ذات العلاقة.',
-        forms: [
-          {
-            name: 'إدراج مبادرة/مشروع',
-            fields: [
-              'اسم المبادرة أو المشروع — نص قصير',
-              'الوصف المختصر للفكرة — نص طويل',
-              'الفئة المستهدفة والمنطقة — نص',
-              'مدى المبادرة (قصيرة، متوسطة، طويلة المدى) — اختيار',
-              'نوع الدعم المطلوب (تمويل، رعاية، تنفيذ، إرشاد، احتضان) — اختيار'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_jobs',
-        label: 'فرصي الوظيفية',
-        desc: 'إدارة الفرص الوظيفية وفرص التعاقد كمدرب، متحدث، خبير، أو مستشار.',
-        forms: [
-          {
-            name: 'تفضيلات الوظائف والفرص',
-            fields: [
-              'نوع الفرصة (وظيفة، تعاقد كمدرب، تعاقد كمتحدث، استشارة) — اختيار',
-              'المسار الوظيفي أو مجال العمل — نص',
-              'نوع الدوام (كامل، جزئي، عن بُعد) — اختيار',
-              'الحد الأدنى المقترح للأجر/الراتب — رقم'
-            ]
-          },
-          {
-            name: 'متابعة طلب فرصة',
-            fields: [
-              'عنوان الفرصة — نص قصير',
-              'اسم الجهة — نص',
-              'تاريخ التقديم — تاريخ',
-              'حالة الطلب (تحت المراجعة، مقابلة، عرض، قبول، اعتذار) — اختيار'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_volunteer',
-        label: 'تطوعي',
-        desc: 'تفضيلات وسجل التطوع، بما في ذلك التطوع كمدرب أو متحدث أو خبير.',
-        forms: [
-          {
-            name: 'تفضيلات التطوع',
-            fields: [
-              'المجالات التطوعية المفضلة — اختيار متعدد',
-              'القبول بالتطوع كمدرب/خبير/متحدث — نعم/لا',
-              'عدد الساعات المتاحة شهريًا — رقم تقريبي'
-            ]
-          },
-          {
-            name: 'سجل التطوع',
-            fields: [
-              'اسم الجهة أو المبادرة — نص',
-              'نوع النشاط التطوعي — اختيار',
-              'ساعات التطوع — رقم',
-              'الدور الذي قمت به — نص'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_development',
-        label: 'تطويري',
-        desc: 'الدورات والمعسكرات وفرص التدريب التعاوني، إضافة إلى المحافل والملتقيات المناسبة لملف الفرد.',
-        forms: [
-          {
-            name: 'تفضيلات التدريب والتطوير',
-            fields: [
-              'المهارات التي أرغب في تطويرها — نص أو اختيار متعدد',
-              'نوع البرامج المفضلة (معسكرات، دورات، برامج مطولة) — اختيار',
-              'نمط التنفيذ (حضوري، عن بُعد، هجين) — اختيار'
-            ]
-          },
-          {
-            name: 'فرص التدريب التعاوني',
-            fields: [
-              'نوع التدريب التعاوني (جامعي، تقني، كليات) — اختيار',
-              'التخصص الدراسي — نص',
-              'الفترة أو الفصل المستهدف — نص',
-              'القطاعات أو الجهات المفضلة للتدريب — نص'
-            ]
-          },
-          {
-            name: 'المحافل والملتقيات المناسبة لي',
-            fields: [
-              'المجالات التي أرغب في حضور محافل أو ملتقيات فيها — اختيار متعدد',
-              'نوع الفعالية (ملتقى، منتدى، مؤتمر، ورشة) — اختيار',
-              'إمكانية المشاركة كمتحدث أو مدرب — نعم/لا'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_record',
-        label: 'سجلي التنموي',
-        desc: 'ملخص تراكمي لمشاركات الفرد التنموية (برامج، تطوع، محافل، مبادرات...).',
-        forms: [
-          {
-            name: 'ملخص المشاركات التنموية',
-            fields: [
-              'عدد المبادرات أو المشاريع المقدمة — رقم',
-              'عدد برامج التدريب والتطوير المكتملة — رقم',
-              'عدد ساعات التطوع المعتمدة — رقم',
-              'عدد المشاركات في محافل وملتقيات — رقم',
-              'أبرز قصص النجاح أو التجارب الملهمة — نص طويل'
-            ]
-          }
-        ]
-      },
-      {
-        key: 'my_wallet',
-        label: 'محفظتي المالية',
-        desc: 'إدارة المدفوعات والاشتراكات والاستثمارات والمساهمات المالية داخل المنصة.',
-        forms: [
-          {
-            name: 'سجل المدفوعات',
-            fields: [
-              'نوع العملية (رسوم تدريب، اشتراك، تبرع...) — اختيار',
-              'الجهة أو البرنامج المرتبط بالعملية — نص',
-              'المبلغ — رقم',
-              'تاريخ العملية — تاريخ'
-            ]
-          },
-          {
-            name: 'استثماراتي ومساهماتي',
-            fields: [
-              'اسم المشروع أو المبادرة — نص',
-              'نوع المساهمة (استثمار، دعم، تبرع) — اختيار',
-              'المبلغ — رقم',
-              'العائد المتوقع (مالي، اجتماعي، مختلط) — اختيار'
-            ]
-          }
-        ]
-      }
-    ];
-
-    function showView(view) {
-      const home = document.getElementById('view-home');
-      const accountsView = document.getElementById('view-accounts');
-      const btnHome = document.getElementById('nav-home');
-      const btnAccounts = document.getElementById('nav-accounts');
-
-      if (view === 'home') {
-        home.classList.remove('hidden');
-        accountsView.classList.add('hidden');
-        btnHome.classList.add('bg-slate-900','text-white');
-        btnHome.classList.remove('bg-slate-100','text-slate-700');
-        btnAccounts.classList.remove('bg-slate-900','text-white');
-        btnAccounts.classList.add('bg-slate-100','text-slate-700');
-      } else {
-        home.classList.add('hidden');
-        accountsView.classList.remove('hidden');
-        btnAccounts.classList.add('bg-slate-900','text-white');
-        btnAccounts.classList.remove('bg-slate-100','text-slate-700');
-        btnHome.classList.remove('bg-slate-900','text-white');
-        btnHome.classList.add('bg-slate-100','text-slate-700');
-      }
-    }
-
-    function renderAccountList() {
-      const list = document.getElementById('account-list');
-      if (!list) return;
-      list.innerHTML = '';
-      accounts.forEach(acc => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className =
-          'account-btn w-full text-right px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 transition flex flex-col gap-0.5';
-        btn.dataset.key = acc.key;
-        btn.innerHTML = `
-          <div class="flex items-center justify-between gap-2">
-            <div class="text-xs font-semibold text-slate-900">${acc.name}</div>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-900 text-white">${acc.badge}</span>
+        <div class="accounts-grid">
+          <div class="card account-card">
+            <h3>حساب الإمارة</h3>
+            <p>رؤية شاملة للمنطقة، اعتماد الفعاليات والمتحدثين، ومسح أمني للفعاليات.</p>
           </div>
-          <div class="text-[11px] text-slate-500">عرض الخدمات والنماذج التشغيلية للحساب.</div>
-        `;
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.account-btn').forEach(b => b.classList.remove('ring-1','ring-slate-400'));
-          btn.classList.add('ring-1','ring-slate-400');
-          buildAccount(acc.key);
-        });
-        list.appendChild(btn);
-      });
-    }
-
-    function createPeopleFieldControl(fieldLabelText) {
-      const lower = fieldLabelText.toLowerCase();
-      let control;
-      const isLongText =
-        lower.includes('وصف') ||
-        lower.includes('نص طويل') ||
-        lower.includes('قصة') ||
-        lower.includes('ملهمة') ||
-        lower.includes('ملاحظات');
-      if (isLongText) {
-        control = document.createElement('textarea');
-        control.rows = 2;
-      } else {
-        control = document.createElement('input');
-        control.type = 'text';
-        if (lower.includes('تاريخ')) control.type = 'date';
-        else if (lower.includes('مبلغ') || lower.includes('رقم') || lower.includes('ساعات')) control.type = 'number';
-        else if (lower.includes('ملف') || lower.includes('مرفق')) control.type = 'file';
-      }
-      control.className =
-        'rounded-lg border border-slate-200 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-slate-300 bg-white';
-      return control;
-    }
-
-    function getPeopleStorageKey(serviceKey) {
-      return PEOPLE_STORAGE_PREFIX + serviceKey;
-    }
-
-    function savePeopleServiceData(serviceKey, data) {
-      try {
-        localStorage.setItem(getPeopleStorageKey(serviceKey), JSON.stringify(data));
-      } catch(e) {
-        console.error('savePeopleServiceData error', e);
-      }
-    }
-
-    function loadPeopleServiceData(serviceKey) {
-      try {
-        const raw = localStorage.getItem(getPeopleStorageKey(serviceKey));
-        if (!raw) return null;
-        return JSON.parse(raw);
-      } catch(e) {
-        console.error('loadPeopleServiceData error', e);
-        return null;
-      }
-    }
-
-    function renderPeopleSavedData(panel, serviceKey, data) {
-      let wrapper = panel.querySelector('[data-saved-wrapper="'+serviceKey+'"]');
-      if (!wrapper) {
-        wrapper = document.createElement('div');
-        wrapper.dataset.savedWrapper = serviceKey;
-        wrapper.className = 'mt-3 rounded-xl border border-dashed border-slate-300 bg-white/50 p-3';
-        panel.appendChild(wrapper);
-      }
-
-      if (!data || !data.forms || !data.forms.length) {
-        wrapper.innerHTML = `
-          <div class="flex items-center justify-between gap-2">
-            <div class="text-[11px] text-slate-500">لا يوجد بيانات محفوظة لهذه الخدمة حتى الآن (تجريبي).</div>
+          <div class="card account-card">
+            <h3>حساب هيئة التطوير</h3>
+            <p>إدارة المشاريع الإقليمية، الفعاليات، الشراكات، ومؤشرات التنمية في المنطقة.</p>
           </div>
-        `;
-        return;
-      }
-
-      let html = `
-        <div class="flex items-center justify-between gap-2 mb-1">
-          <div class="text-xs font-semibold text-slate-900">بياناتي المحفوظة (تجريبي):</div>
-          <button type="button"
-                  class="clear-saved px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 text-[10px]"
-                  data-service-clear="${serviceKey}">
-            مسح البيانات المحفوظة لهذه الخدمة
-          </button>
-        </div>
-        <div class="space-y-2">
-      `;
-      data.forms.forEach(form => {
-        html += `
-          <div class="rounded-lg border border-slate-200 bg-slate-50 p-2">
-            <div class="text-[11px] font-semibold text-slate-800 mb-1">${form.name || ''}</div>
-            <div class="grid sm:grid-cols-2 gap-1 text-[11px]">
-        `;
-        (form.fields || []).forEach(f => {
-          if (!f.value) return;
-          html += `
-            <div class="flex gap-1">
-              <span class="text-slate-500">${f.label}:</span>
-              <span class="text-slate-800">${f.value}</span>
-            </div>
-          `;
-        });
-        html += `
-            </div>
+          <div class="card account-card">
+            <h3>حساب الجهة الحكومية</h3>
+            <p>استقبال الحلول، إطلاق المشاريع، طلب التمويل، وإدارة الفعاليات والبرامج الحكومية.</p>
           </div>
-        `;
-      });
-      html += `</div>`;
-      wrapper.innerHTML = html;
-
-      const clearBtn = wrapper.querySelector('button.clear-saved[data-service-clear="'+serviceKey+'"]');
-      if (clearBtn) {
-        clearBtn.addEventListener('click', () => {
-          try {
-            localStorage.removeItem(getPeopleStorageKey(serviceKey));
-          } catch(e) {
-            console.error('clear people service storage error', e);
-          }
-          renderPeopleSavedData(panel, serviceKey, null);
-          const forms = panel.querySelectorAll('form[data-service-key="'+serviceKey+'"]');
-          forms.forEach(frm => {
-            frm.querySelectorAll('input, textarea').forEach(inp => {
-              if (inp.type !== 'file') inp.value = '';
-            });
-          });
-        });
-      }
-    }
-
-    function buildPeopleAccount(container) {
-      container.innerHTML = '';
-
-      const header = document.createElement('div');
-      header.className =
-        'rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 mb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4';
-      header.innerHTML = `
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 rounded-xl bg-emerald-50 flex items-center justify-center text-lg">👤</div>
-          <div>
-            <div class="text-xs text-slate-500 mb-0.5">حساب</div>
-            <div class="text-base font-semibold text-slate-900">الأفراد</div>
-            <div class="text-[11px] text-slate-500 mt-1">
-              حساب يربط الفرد بالفرص الوظيفية والتطوعية والتدريبية والاستثمارية والمحافل، مع إبراز سجله التنموي.
-            </div>
+          <div class="card account-card">
+            <h3>حساب القطاع الخاص</h3>
+            <p>تقديم حلول، رعاية المشاريع، الاستثمار، تشغيل المرافق، ومسؤولية اجتماعية فعّالة.</p>
+          </div>
+          <div class="card account-card">
+            <h3>حساب القطاع غير الربحي</h3>
+            <p>إطلاق المشاريع المجتمعية، طلب التمويل والمنح، إدارة التطوع، وتنظيم الفعاليات.</p>
+          </div>
+          <div class="card account-card">
+            <h3>حساب الجامعات</h3>
+            <p>التعزيز العلمي للحلول، الاحتضان، المرافق الجامعية، التدريب التعاوني، والاستشارات.</p>
+          </div>
+          <div class="card account-card">
+            <h3>حساب المانحين</h3>
+            <p>تمويل المشاريع، رعاية الفعاليات، متابعة الأثر، وإدارة المحفظة التمويلية.</p>
+          </div>
+          <div class="card account-card">
+            <h3>حساب الأفراد</h3>
+            <p>تقديم حلول ومبادرات، التطوع، التدريب، الوظائف، والاستثمار في الفرص التنموية.</p>
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[11px]">
-          <div class="bg-white rounded-xl p-3 border border-slate-200">
-            <div class="text-xs text-slate-500 mb-1">الفرص المناسبة</div>
-            <div class="text-xl font-bold text-slate-900">24</div>
+      </div>
+    </section>
+
+    <!-- CORE MODULES -->
+    <section id="modules" class="section">
+      <div class="container section-inner">
+        <div class="section-header">
+          <h2>المكوّنات الأساسية (Core Modules)</h2>
+          <p>طبقة موحدة من ١٩ مكوّن تشغيلي، تُستخدم في جميع الحسابات مع اختلاف الصلاحيات.</p>
+        </div>
+        <div class="modules-grid">
+          <div class="card module-card">
+            <h3>الحلول</h3>
+            <p>إنشاء، تقييم، تعزيز علمي، وتحويل إلى مشاريع قابلة للتنفيذ.</p>
           </div>
-          <div class="bg-white rounded-xl p-3 border border-slate-200">
-            <div class="text-xs text-slate-500 mb-1">مبادراتي/مشاريعي</div>
-            <div class="text-xl font-bold text-slate-900">3</div>
+          <div class="card module-card">
+            <h3>المشاريع</h3>
+            <p>إدارة دورة حياة المشروع من الفكرة وحتى تقرير الأثر.</p>
           </div>
-          <div class="bg-white rounded-xl p-3 border border-slate-200">
-            <div class="text-xs text-slate-500 mb-1">ساعات التطوع/التدريب</div>
-            <div class="text-xl font-bold text-slate-900">46</div>
+          <div class="card module-card">
+            <h3>الفعاليات والمرافق</h3>
+            <p>تنظيم الفعاليات، اختيار المرافق، إدارة المتحدثين، والتقارير الختامية.</p>
           </div>
-          <div class="bg-white rounded-xl p-3 border border-slate-200">
-            <div class="text-xs text-slate-500 mb-1">الجهات المتفاعلة</div>
-            <div class="text-xl font-bold text-slate-900">9</div>
+          <div class="card module-card">
+            <h3>التمويل والرعايات</h3>
+            <p>طلبات التمويل، المنح، الرعايات، والمحفظة المالية.</p>
+          </div>
+          <div class="card module-card">
+            <h3>التطوع والتدريب</h3>
+            <p>فرص تطوع، تدريب تعاوني، وظائف، وتطوير رأس المال البشري.</p>
+          </div>
+          <div class="card module-card">
+            <h3>الشراكات والاستثمار</h3>
+            <p>بناء الشراكات، الفرص الاستثمارية، وتتبع العوائد.</p>
           </div>
         </div>
-      `;
-      container.appendChild(header);
+      </div>
+    </section>
 
-      const tabsWrapper = document.createElement('div');
-      tabsWrapper.className = 'mt-1';
-      const tabsBar = document.createElement('div');
-      tabsBar.id = 'people-tabs-bar';
-      tabsBar.className = 'flex flex-wrap items-center gap-2 text-xs sm:text-sm mb-3';
-      const panelsContainer = document.createElement('div');
-      panelsContainer.id = 'people-tabs-panels';
-      panelsContainer.className = 'space-y-4';
-      tabsWrapper.appendChild(tabsBar);
-      tabsWrapper.appendChild(panelsContainer);
-      container.appendChild(tabsWrapper);
-
-      peopleServices.forEach((svc, index) => {
-        const tabBtn = document.createElement('button');
-        tabBtn.type = 'button';
-        tabBtn.dataset.tab = svc.key;
-        tabBtn.className =
-          'people-tab px-3 py-1.5 rounded-full border text-xs sm:text-sm ' +
-          (index === 0
-            ? 'bg-slate-900 text-white border-slate-900'
-            : 'bg-slate-100 text-slate-700 border-slate-200');
-        tabBtn.textContent = svc.label;
-        tabsBar.appendChild(tabBtn);
-
-        const panel = document.createElement('div');
-        panel.dataset.panel = svc.key;
-        panel.className = 'people-panel ' + (index === 0 ? '' : 'hidden');
-
-        if (svc.forms && svc.forms.length) {
-          const formsTitle = document.createElement('div');
-          formsTitle.className = 'text-xs font-semibold text-slate-900 mb-1';
-          formsTitle.textContent = 'نماذج الخدمة (قابلة للحفظ محليًا):';
-          panel.appendChild(formsTitle);
-
-          svc.forms.forEach((form, formIndex) => {
-            const card = document.createElement('div');
-            card.className = 'mb-2 rounded-xl border border-slate-200 bg-slate-50 p-3';
-
-            const head = document.createElement('div');
-            head.className = 'text-xs font-semibold mb-2';
-            head.textContent = form.name;
-            card.appendChild(head);
-
-            const formEl = document.createElement('form');
-            formEl.className = 'space-y-2';
-            formEl.dataset.serviceKey = svc.key;
-            formEl.dataset.formIndex = String(formIndex);
-
-            (form.fields || []).forEach((f, fieldIndex) => {
-              const row = document.createElement('div');
-              row.className = 'flex flex-col gap-1';
-
-              const label = document.createElement('label');
-              label.className = 'text-[11px] text-slate-700';
-              const parts = f.split('—');
-              label.textContent = (parts[0] || f).trim();
-              label.dataset.fieldIndex = String(fieldIndex);
-
-              const control = createPeopleFieldControl(f);
-              control.dataset.serviceKey = svc.key;
-              control.dataset.formIndex = String(formIndex);
-              control.dataset.fieldIndex = String(fieldIndex);
-
-              row.appendChild(label);
-              row.appendChild(control);
-              formEl.appendChild(row);
-            });
-
-            const actions = document.createElement('div');
-            actions.className = 'flex justify-end gap-2 pt-1';
-
-            const saveBtn = document.createElement('button');
-            saveBtn.type = 'button';
-            saveBtn.className = 'px-3 py-1 rounded-lg bg-slate-900 text-white text-[11px]';
-            saveBtn.textContent = 'حفظ مبدئي (محلي)';
-            saveBtn.addEventListener('click', () => {
-              const formsData = [];
-              const forms = panel.querySelectorAll('form[data-service-key="'+svc.key+'"]');
-              forms.forEach((frm, idx) => {
-                const formNameEl = frm.parentElement.querySelector('.text-xs.font-semibold');
-                const formName = formNameEl ? formNameEl.textContent.trim() : ('نموذج ' + (idx+1));
-                const fieldsData = [];
-                frm.querySelectorAll('label').forEach(lab => {
-                  const control = lab.nextElementSibling;
-                  if (!control) return;
-                  fieldsData.push({
-                    label: lab.textContent.trim(),
-                    value: control.value || ''
-                  });
-                });
-                formsData.push({ name: formName, fields: fieldsData });
-              });
-              const payload = { forms: formsData };
-              savePeopleServiceData(svc.key, payload);
-              renderPeopleSavedData(panel, svc.key, payload);
-              alert('تم حفظ البيانات محلياً في هذا الحساب (تجريبي).');
-            });
-
-            const resetBtn = document.createElement('button');
-            resetBtn.type = 'button';
-            resetBtn.className = 'px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px]';
-            resetBtn.textContent = 'مسح الحقول';
-            resetBtn.addEventListener('click', () => {
-              formEl.querySelectorAll('input, textarea').forEach(inp => {
-                if (inp.type !== 'file') inp.value = '';
-              });
-            });
-
-            actions.appendChild(saveBtn);
-            actions.appendChild(resetBtn);
-            formEl.appendChild(actions);
-
-            card.appendChild(formEl);
-            panel.appendChild(card);
-          });
-        }
-
-        const desc = document.createElement('p');
-        desc.className = 'text-[11px] text-slate-500 mt-2';
-        desc.textContent = svc.desc;
-        panel.appendChild(desc);
-
-        const savedWrapper = document.createElement('div');
-        savedWrapper.dataset.savedWrapper = svc.key;
-        savedWrapper.className = 'mt-3 rounded-xl border border-dashed border-slate-300 bg-white/50 p-3';
-        savedWrapper.innerHTML =
-          '<div class="text-[11px] text-slate-500">لا يوجد بيانات محفوظة لهذه الخدمة حتى الآن (تجريبي).</div>';
-        panel.appendChild(savedWrapper);
-
-        panelsContainer.appendChild(panel);
-
-        const saved = loadPeopleServiceData(svc.key);
-        if (saved) {
-          if (saved.forms && saved.forms.length) {
-            const forms = panel.querySelectorAll('form[data-service-key="'+svc.key+'"]');
-            forms.forEach((frm, idx) => {
-              const savedForm = saved.forms[idx];
-              if (!savedForm || !savedForm.fields) return;
-              const labels = frm.querySelectorAll('label');
-              labels.forEach((lab, fieldIndex) => {
-                const control = lab.nextElementSibling;
-                const savedField = savedForm.fields[fieldIndex];
-                if (control && savedField) {
-                  control.value = savedField.value || '';
-                }
-              });
-            });
-          }
-          renderPeopleSavedData(panel, svc.key, saved);
-        }
-      });
-
-      const tabButtons = tabsBar.querySelectorAll('.people-tab');
-      const panels = panelsContainer.querySelectorAll('.people-panel');
-      tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const key = btn.dataset.tab;
-          tabButtons.forEach(b => {
-            b.classList.remove('bg-slate-900','text-white','border-slate-900');
-            b.classList.add('bg-slate-100','text-slate-700','border-slate-200');
-          });
-          btn.classList.add('bg-slate-900','text-white','border-slate-900');
-          btn.classList.remove('bg-slate-100','text-slate-700','border-slate-200');
-
-          panels.forEach(p => {
-            if (p.dataset.panel === key) p.classList.remove('hidden');
-            else p.classList.add('hidden');
-          });
-        });
-      });
-    }
-
-    function buildSimpleAccount(container, key) {
-      const meta = accounts.find(a => a.key === key);
-      container.innerHTML = `
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 flex flex-col gap-3">
-          <div class="flex items-center justify-between gap-2">
-            <div>
-              <div class="text-xs text-slate-500 mb-1">الحساب</div>
-              <div class="text-base font-semibold text-slate-900">${meta ? meta.name : key}</div>
-            </div>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-900 text-white">
-              نموذج أولي
-            </span>
-          </div>
-          <p class="text-[11px] text-slate-600">
-            هذا عرض وصفي مبسط للحساب. في النسخة التشغيلية سيتم استكمال جميع الخدمات التفصيلية والنماذج
-            وربطها مع برامج الرؤية والمستفيدين ولوحات المتابعة، وفق وثائق منصة حصيف.
+    <!-- VISION 2030 -->
+    <section id="vision" class="section section-alt">
+      <div class="container section-inner">
+        <div class="section-header">
+          <h2>الربط مع رؤية المملكة 2030</h2>
+          <p>
+            يدعم محرّك الربط في حصيف اختيار البرنامج، الهدف الاستراتيجي، الهدف الفرعي، والهدف التفصيلي،
+            بالإضافة إلى الجهة الحكومية المرتبطة، المنطقة أو المناطق المستفيدة، وهيئة التطوير.
           </p>
         </div>
-      `;
-    }
+        <div class="vision-layout">
+          <div class="vision-text">
+            <h3>محرك ربط ذكي</h3>
+            <ul>
+              <li>١١ برنامج من برامج الرؤية مدعومة في الواجهة.</li>
+              <li>إمكانية الربط المتعدد بأكثر من هدف أو جهة أو منطقة.</li>
+              <li>توليد تقارير تدعم صُنّاع القرار في الجهات الحكومية.</li>
+            </ul>
+          </div>
+          <div class="vision-card">
+            <div class="vision-tag">مثال واجهة ربط</div>
+            <div class="vision-row">
+              <label>برنامج الرؤية</label>
+              <select disabled>
+                <option>برنامج جودة الحياة</option>
+              </select>
+            </div>
+            <div class="vision-row">
+              <label>الهدف الاستراتيجي</label>
+              <select disabled>
+                <option>تعزيز المشاركة المجتمعية في الأنشطة الثقافية والترفيهية</option>
+              </select>
+            </div>
+            <div class="vision-row">
+              <label>المنطقة وهيئة التطوير</label>
+              <select disabled>
+                <option>منطقة حائل – هيئة تطوير حائل</option>
+              </select>
+            </div>
+            <p class="vision-note">
+              * هذه الواجهة للتوضيح فقط، ويقوم فريق التطوير بربطها فعليًا بقواعد بيانات برامج وأهداف الرؤية.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    function buildAccount(key) {
-      const container = document.getElementById('account-content');
-      if (!container) return;
-      if (key === 'people') {
-        buildPeopleAccount(container);
-      } else {
-        buildSimpleAccount(container, key);
-      }
-    }
+    <!-- DEVELOPERS -->
+    <section id="dev" class="section">
+      <div class="container section-inner">
+        <div class="section-header">
+          <h2>للمطورين – GitHub</h2>
+          <p>
+            هذا المستودع التقني مخصّص لهيكلة منصة حصيف، ويمكن لفريق التطوير بناء الخلفية (Backend)
+            وطبقة الـ API والخدمات المصغّرة وربطها بهذه الواجهة الأمامية.
+          </p>
+        </div>
+        <div class="dev-grid">
+          <div class="card">
+            <h3>هيكل المشروع المقترح</h3>
+            <pre class="code-block"><code>hasif-platform/
+├─ backend/
+├─ frontend/
+└─ docs/</code></pre>
+            <p>يمكنك ربط هذا الملف index.html داخل مجلد <code>frontend/</code> أو مجلد <code>landing/</code> للموقع.</p>
+          </div>
+          <div class="card">
+            <h3>الخطوة التالية</h3>
+            <ol>
+              <li>رفع المشروع كمستودع جديد على GitHub.</li>
+              <li>إضافة فريق التطوير كمتعاونين (collaborators).</li>
+              <li>ربط الواجهة الحالية مع API عند جاهزية الخدمات الخلفية.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    function applyHashRouting() {
-      const hash = window.location.hash || '';
-      if (hash.startsWith('#account-')) {
-        const key = hash.replace('#account-', '');
-        showView('accounts');
-        buildAccount(key || 'people');
-        const btn = document.querySelector('.account-btn[data-key="'+key+'"]');
-        if (btn) {
-          document.querySelectorAll('.account-btn').forEach(b => b.classList.remove('ring-1','ring-slate-400'));
-          btn.classList.add('ring-1','ring-slate-400');
-        }
-      } else {
-        showView('home');
-      }
-    }
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-logos">
+        <img src="assets/img/vision2030.png" alt="رؤية السعودية 2030" class="logo logo-vision" />
+        <img src="assets/img/talbiya.png" alt="مبادرة تلبية" class="logo logo-talbiya" />
+        <img src="assets/img/hasif.png" alt="منصة حصيف" class="logo logo-hasseef" />
+      </div>
+      <div class="footer-text">
+        <p>منصة حصيف – نموذج وطني للتكامل التنموي، منبثقة من مبادرة تلبية، متوافقة مع مستهدفات رؤية المملكة 2030.</p>
+        <p class="footer-copy">© جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      renderAccountList();
-
-      document.getElementById('nav-home').addEventListener('click', () => {
-        history.replaceState(null, '', '#');
-        showView('home');
-      });
-      document.getElementById('nav-accounts').addEventListener('click', () => {
-        history.replaceState(null, '', '#account-people');
-        showView('accounts');
-        buildAccount('people');
-        const firstBtn = document.querySelector('.account-btn[data-key="people"]');
-        if (firstBtn) {
-          document.querySelectorAll('.account-btn').forEach(b => b.classList.remove('ring-1','ring-slate-400'));
-          firstBtn.classList.add('ring-1','ring-slate-400');
-        }
-      });
-
-      applyHashRouting();
-    });
-
-    window.addEventListener('hashchange', applyHashRouting);
-  </script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
