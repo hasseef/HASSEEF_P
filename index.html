@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>منصة حصيف | HASIF Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="منصة حصيف الوطنية للتكامل التنموي، لربط الأفراد والجهات بالحلول والمشاريع والفعاليات وفق رؤية المملكة 2030." />
+  <meta name="description" content="منصة حصيف الوطنية للتكامل التن... والجهات بالحلول والمشاريع والفعاليات وفق رؤية المملكة 2030." />
   <link rel="stylesheet" href="assets/css/style.css" />
   <!-- تنسيقات بسيطة لنافذة تفاصيل المكوّنات -->
   <style>
@@ -76,6 +76,42 @@
       margin: 0;
       font-size: 0.85rem;
       color: #475569;
+    }
+
+    /* قسم الفئات المستفيدة (أنا...) */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 900px) {
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 600px) {
+      .audience-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+    .audience-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      color: #0f172a;
+    }
+    .audience-card p {
+      font-size: 0.8rem;
+      color: #475569;
+      margin: 0 0 0.4rem;
+    }
+    .audience-link {
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: #1d4ed8;
+    }
+    .audience-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -149,6 +185,68 @@
             <li class="t-ar">تكامل مع الجهات الحكومية وإمارات المناطق</li>
             <li class="t-en">Integration with government entities & emirates</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIENCES -->
+    <section id="audiences" class="section section-alt">
+      <div class="container section-inner">
+        <div class="section-header">
+          <h2 class="t-ar">لمن صُممت منصة حصيف؟</h2>
+          <h2 class="t-en">Who is HASIF for?</h2>
+          <p class="t-ar">
+            تتيح حصيف لكل فئة من الفئات المستفيدة مسارًا واضحًا للتفاعل مع المنصة؛ من الإمارة والجهات الحكومية
+            وحتى الأفراد والمانحين والجامعات والقطاع الخاص.
+          </p>
+          <p class="t-en">
+            HASIF provides a clear interaction path for each audience segment: emirates, government entities,
+            universities, private sector, nonprofits, donors and individuals.
+          </p>
+        </div>
+        <div class="audience-grid">
+          <div class="card audience-card">
+            <h3 class="t-ar">أنا إمارة / هيئة تطوير</h3>
+            <p class="t-ar">
+              أحتاج رؤية شاملة للمنطقة، اعتماد الفعاليات والمتحدثين، متابعة المشاريع التنموية، وربط كل ذلك بالرؤية 2030.
+            </p>
+            <a href="accounts/emirate.html" class="audience-link t-ar">استعراض نموذج حساب الإمارة</a>
+          </div>
+          <div class="card audience-card">
+            <h3 class="t-ar">أنا جهة حكومية</h3>
+            <p class="t-ar">
+              أحتاج استقبال الحلول، إطلاق المشاريع والمبادرات، طلب التمويل، وقياس الأثر وفق مؤشرات واضحة مرتبطة بالرؤية.
+            </p>
+            <a href="#accounts" class="audience-link t-ar">التعرّف على حساب الجهة الحكومية</a>
+          </div>
+          <div class="card audience-card">
+            <h3 class="t-ar">أنا جامعة</h3>
+            <p class="t-ar">
+              أحتاج تعزيزًا علميًا للمشاريع، فرص احتضان، تفعيل المرافق الجامعية، وبرامج تدريب تعاوني مرتبطة بسوق العمل.
+            </p>
+            <a href="#accounts" class="audience-link t-ar">التعرّف على حساب الجامعات</a>
+          </div>
+          <div class="card audience-card">
+            <h3 class="t-ar">أنا قطاع خاص / شركة</h3>
+            <p class="t-ar">
+              أحتاج فرص مسؤولية اجتماعية واستثمار في مشاريع ذات أثر تنموي واضح يمكن قياسه ومتابعته وتقاريره.
+            </p>
+            <a href="#accounts" class="audience-link t-ar">التعرّف على حساب القطاع الخاص</a>
+          </div>
+          <div class="card audience-card">
+            <h3 class="t-ar">أنا مانح / مستثمر</h3>
+            <p class="t-ar">
+              أبحث عن مشاريع جاهزة للتمويل، حوكمة واضحة، تقارير أثر، وربط مباشر بالرؤية 2030 والجهات الحكومية.
+            </p>
+            <a href="#accounts" class="audience-link t-ar">التعرّف على حساب المانحين</a>
+          </div>
+          <div class="card audience-card">
+            <h3 class="t-ar">أنا فرد</h3>
+            <p class="t-ar">
+              أريد تقديم مبادرات وحلول، التطوع، التدريب، فرص العمل، والاستثمار في الفرص التنموية بما يتناسب مع قدراتي.
+            </p>
+            <a href="accounts/individual.html" class="audience-link t-ar">استعراض نموذج حساب الأفراد</a>
+          </div>
         </div>
       </div>
     </section>
