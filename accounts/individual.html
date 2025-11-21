@@ -434,6 +434,18 @@
             </button>
           </li>
           <li class="people-nav-item">
+            <button class="people-nav-btn" data-section="incubation">
+              <span>الاحتضان ودعم مبادراتي</span>
+              <small>Incubation & Support</small>
+            </button>
+          </li>
+          <li class="people-nav-item">
+            <button class="people-nav-btn" data-section="consulting">
+              <span>الاستشارات</span>
+              <small>Consultations</small>
+            </button>
+          </li>
+          <li class="people-nav-item">
             <button class="people-nav-btn" data-section="volunteering">
               <span>فرص التطوع المناسبة لي</span>
               <small>Volunteering</small>
@@ -465,7 +477,7 @@
           </li>
           <li class="people-nav-item">
             <button class="people-nav-btn" data-section="expert">
-              <span>دوري كمدرب / متحدث / خبير</span>
+              <span>دوري كمدرّب / متحدث / خبير</span>
               <small>Expert Role</small>
             </button>
           </li>
@@ -566,7 +578,7 @@
             </div>
             <div class="inline-field">
               <label>المنطقة / المناطق المفضّلة للمشاركة</label>
-              <input type="text" placeholder="مثال: حائل، القصيم، المنطقه الشرقية" />
+              <input type="text" placeholder="مثال: حائل، القصيم، المنطقة الشرقية" />
             </div>
             <div class="inline-field">
               <label>أنواع الفرص المفضّلة</label>
@@ -730,6 +742,97 @@
           <!-- شرح -->
           <p class="section-note">
             * هنا يتم تفعيل مكوّن (الحلول / المبادرات) للفرد؛ نفس المكوّن يُستخدم في حسابات الجهات ولكن بصلاحيات مختلفة.
+          </p>
+        </section>
+
+        <!-- SECTION: الاحتضان ودعم مبادراتي -->
+        <section id="sec-incubation" class="people-section">
+          <div class="section-header">
+            <h2>الاحتضان ودعم مبادراتي</h2>
+            <p>
+              تقديم طلب احتضان أو تمويل أو رعاية لمبادرة من مبادراتك المسجّلة، وربطها بالجهات والجامعات والمانحين
+              وبرامج الرؤية 2030.
+            </p>
+          </div>
+
+          <!-- نموذج -->
+          <div class="inline-form-grid">
+            <div class="inline-field">
+              <label>اختر المبادرة / الحل من مبادراتي</label>
+              <select>
+                <option>اختر من مبادراتي المسجّلة</option>
+                <option>برنامج دعم الأسر المنتجة في حائل</option>
+                <option>مبادرة تمكين الشباب في ريادة الأعمال</option>
+              </select>
+            </div>
+            <div class="inline-field">
+              <label>نوع الطلب</label>
+              <select>
+                <option>طلب احتضان</option>
+                <option>طلب تمويل مالي</option>
+                <option>طلب رعاية / شريك استراتيجي</option>
+              </select>
+            </div>
+            <div class="inline-field">
+              <label>الجهة المستهدفة الرئيسية</label>
+              <select>
+                <option>جهة حكومية</option>
+                <option>قطاع غير ربحي</option>
+                <option>قطاع خاص</option>
+                <option>جامعة / حاضنة جامعية</option>
+              </select>
+            </div>
+            <div class="inline-field">
+              <label>برنامج الرؤية المناسب</label>
+              <select>
+                <option>اختر برنامج الرؤية</option>
+                <option>برنامج جودة الحياة</option>
+                <option>برنامج تنمية القدرات البشرية</option>
+                <option>برنامج التحول الوطني</option>
+              </select>
+            </div>
+            <div class="inline-field">
+              <label>المنطقة / هيئة التطوير المستهدفة</label>
+              <input type="text" placeholder="مثال: منطقة حائل – هيئة تطوير حائل" />
+            </div>
+            <div class="inline-field">
+              <label>ملخص احتياج المبادرة من الاحتضان / التمويل</label>
+              <textarea placeholder="اشرح ما تحتاجه المبادرة من احتضان، تمويل، أو رعاية، والمخرجات المتوقعة."></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-xs">إرسال طلب الاحتضان / الدعم (تجريبي)</button>
+            <button class="btn-xs secondary">حفظ الطلب كمسودة</button>
+          </div>
+
+          <!-- جدول -->
+          <div class="table-wrapper">
+            <table class="people-table">
+              <thead>
+                <tr>
+                  <th>المبادرة</th>
+                  <th>نوع الطلب</th>
+                  <th>الجهة المستهدفة</th>
+                  <th>برنامج الرؤية</th>
+                  <th>الحالة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>برنامج دعم الأسر المنتجة في حائل</td>
+                  <td><span class="badge badge-type">طلب احتضان</span></td>
+                  <td>جامعة / حاضنة جامعية</td>
+                  <td>تنمية القدرات البشرية</td>
+                  <td><span class="badge badge-status">قيد الدراسة لدى الجامعة</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- شرح -->
+          <p class="section-note">
+            * هذا القسم يفعّل مسار: مبادرة فرد → طلب احتضان / تمويل / رعاية
+            الذي يظهر في حسابات الجامعات، القطاع غير الربحي، القطاع الخاص، والمانحين ضمن مكوّن المشاريع والتمويل.
           </p>
         </section>
 
@@ -979,6 +1082,83 @@
 
           <p class="section-note">
             * هذا يفعّل مكوّن (المدربين / المتحدثين / الخبراء) للفرد؛ في حساب الإمارة والجهات والفعاليات يتم استخدام هذا الملف لاختيار المتحدثين والمدربين.
+          </p>
+        </section>
+
+        <!-- SECTION: الاستشارات -->
+        <section id="sec-consulting" class="people-section">
+          <div class="section-header">
+            <h2>الاستشارات</h2>
+            <p>
+              من هنا يمكنك طلب استشارة من خبراء وجهات مسجّلة في المنصة، أو تقديم نفسك كخبير يقدّم استشارات تنموية
+              للجهات أو الأفراد.
+            </p>
+          </div>
+
+          <div class="inline-form-grid">
+            <div class="inline-field">
+              <label>نوع الاستشارة</label>
+              <select>
+                <option>طلب استشارة</option>
+                <option>عرض استشارة (كمستشار)</option>
+              </select>
+            </div>
+            <div class="inline-field">
+              <label>المجال</label>
+              <input type="text" placeholder="مثال: حوكمة الجمعيات، تصميم المبادرات، ريادة الأعمال..." />
+            </div>
+            <div class="inline-field">
+              <label>الجهة / الفئة المستهدفة</label>
+              <input type="text" placeholder="مثال: جمعية، شركة، أفراد..." />
+            </div>
+            <div class="inline-field">
+              <label>طريقة تقديم الاستشارة</label>
+              <select>
+                <option>عن بُعد</option>
+                <option>حضوري</option>
+                <option>كلاهما</option>
+              </select>
+            </div>
+            <div class="inline-field">
+              <label>المدة المتوقعة / الجلسات</label>
+              <input type="text" placeholder="مثال: 3 جلسات – ساعة لكل جلسة" />
+            </div>
+            <div class="inline-field">
+              <label>وصف مختصر لطلب / عرض الاستشارة</label>
+              <textarea placeholder="اشرح ما تحتاجه من الاستشارة أو ما يمكنك تقديمه كمستشار."></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-xs">إرسال طلب / عرض الاستشارة (تجريبي)</button>
+            <button class="btn-xs secondary">حفظ كمسودة</button>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="people-table">
+              <thead>
+                <tr>
+                  <th>التاريخ</th>
+                  <th>النوع</th>
+                  <th>المجال</th>
+                  <th>الجهة / الطرف الآخر</th>
+                  <th>الحالة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>08 / 04 / 2025</td>
+                  <td><span class="badge badge-type">طلب استشارة</span></td>
+                  <td>تصميم مبادرة مجتمعية</td>
+                  <td>جمعية تنموية في حائل</td>
+                  <td><span class="badge badge-status">قيد التنسيق مع المستشار</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="section-note">
+            * هذا القسم يفعّل مكوّن الاستشارات للفرد؛ نفس المكوّن يظهر عند الجهات والجامعات والقطاع الخاص
+            كطلبات استشارة واردة يمكن قبولها أو جدولتها.
           </p>
         </section>
 
