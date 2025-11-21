@@ -2,49 +2,818 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>حساب الإمارة | Emirate Account</title>
+  <title>منصة حصيف | حساب الإمارة</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* تخطيط لوحة الإمارة */
+    body {
+      background-color: #f8fafc;
+    }
+    .emirate-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .emirate-sidebar {
+      width: 260px;
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 0.75rem;
+    }
+    .emirate-sidebar-header {
+      padding: 0 0.25rem 0.75rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 0.75rem;
+    }
+    .emirate-sidebar-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .emirate-sidebar-sub {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    .emirate-nav-group-title {
+      font-size: 0.7rem;
+      color: #64748b;
+      margin: 0.6rem 0 0.3rem;
+      padding: 0 0.25rem;
+    }
+    .emirate-nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .emirate-nav-item {
+      margin-bottom: 0.15rem;
+    }
+    .emirate-nav-btn {
+      width: 100%;
+      text-align: right;
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      font-size: 0.78rem;
+      padding: 0.45rem 0.5rem;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .emirate-nav-btn span {
+      pointer-events: none;
+    }
+    .emirate-nav-btn small {
+      font-size: 0.65rem;
+      color: #64748b;
+    }
+    .emirate-nav-btn:hover {
+      background: rgba(148, 163, 184, 0.15);
+    }
+    .emirate-nav-btn.active {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .emirate-nav-btn.active small {
+      color: #0f172a;
+    }
+
+    .emirate-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .emirate-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .emirate-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .emirate-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .emirate-header-logos {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .emirate-header-logos img {
+      height: 34px;
+      object-fit: contain;
+    }
+    .emirate-header-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .emirate-header-title h1 {
+      font-size: 0.95rem;
+      margin: 0;
+      color: #0f172a;
+    }
+    .emirate-header-title p {
+      font-size: 0.7rem;
+      margin: 0;
+      color: #64748b;
+    }
+    .emirate-header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: #475569;
+    }
+    .emirate-chip {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #e5e7eb;
+      font-size: 0.7rem;
+    }
+    .emirate-main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .emirate-breadcrumb {
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .emirate-breadcrumb a {
+      color: #0f172a;
+      text-decoration: none;
+    }
+    .emirate-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .emirate-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+    @media (max-width: 900px) {
+      .emirate-layout {
+        flex-direction: column;
+      }
+      .emirate-sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+      }
+      .emirate-sidebar-header {
+        display: none;
+      }
+      .emirate-nav-group-title {
+        display: none;
+      }
+      .emirate-nav-list {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.25rem;
+      }
+      .emirate-nav-btn {
+        white-space: nowrap;
+        font-size: 0.7rem;
+      }
+      .emirate-main-content {
+        padding: 0.75rem;
+      }
+      .emirate-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 600px) {
+      .emirate-summary-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+    .emirate-summary-card {
+      background: #ffffff;
+      border-radius: 0.9rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .emirate-summary-label {
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .emirate-summary-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .emirate-summary-foot {
+      font-size: 0.7rem;
+      color: #22c55e;
+    }
+
+    .emirate-section {
+      display: none;
+      background: #ffffff;
+      border-radius: 0.9rem;
+      border: 1px solid #e2e8f0;
+      padding: 0.85rem 0.9rem;
+    }
+    .emirate-section.active {
+      display: block;
+    }
+    .emirate-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .emirate-section-header h2 {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #0f172a;
+    }
+    .emirate-section-header p {
+      margin: 0.2rem 0 0;
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .emirate-section-actions {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .btn-xs {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #cbd5f5;
+      background: #eff6ff;
+      color: #1d4ed8;
+      cursor: pointer;
+    }
+    .btn-xs.secondary {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+
+    .emirate-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.7rem;
+    }
+    .emirate-filters select,
+    .emirate-filters input {
+      padding: 0.2rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.7rem;
+      color: #0f172a;
+      background: #f8fafc;
+    }
+
+    .emirate-table-wrapper {
+      overflow-x: auto;
+      margin-top: 0.35rem;
+    }
+    table.emirate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.7rem;
+    }
+    table.emirate-table thead {
+      background: #f1f5f9;
+    }
+    table.emirate-table th,
+    table.emirate-table td {
+      padding: 0.4rem 0.45rem;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: right;
+      white-space: nowrap;
+    }
+    table.emirate-table th {
+      font-weight: 600;
+      color: #475569;
+    }
+    table.emirate-table td {
+      color: #0f172a;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      border: 1px solid transparent;
+    }
+    .badge-pending {
+      background: #fef9c3;
+      border-color: #facc15;
+      color: #854d0e;
+    }
+    .badge-region {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      color: #0e7490;
+    }
+    .badge-type {
+      background: #ede9fe;
+      border-color: #a855f7;
+      color: #6b21a8;
+    }
+    .badge-owner {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #166534;
+    }
+    .emirate-note {
+      font-size: 0.7rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 <body class="lang-ar">
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo-group">
-        <img src="../assets/img/vision2030.png" alt="Vision 2030" class="logo-vision" />
-        <img src="../assets/img/talbiya.png" alt="Talbiya" class="logo-talbiya" />
-        <img src="../assets/img/hasif.png" alt="HASIF" class="logo-hasseef" />
+  <div class="emirate-layout">
+    <!-- SIDEBAR -->
+    <aside class="emirate-sidebar">
+      <div class="emirate-sidebar-header">
+        <div class="emirate-sidebar-title">حساب الإمارة</div>
+        <div class="emirate-sidebar-sub">منطقة حائل – نموذج تشغيلي تجريبي للعرض</div>
       </div>
-      <nav class="main-nav">
-        <a href="../index.html#accounts"><span class="t-ar">العودة إلى الحسابات</span><span class="t-en">Back to accounts</span></a>
-      </nav>
-      <div class="lang-switch">
-        <button class="lang-btn active" data-lang="ar">عربي</button>
-        <button class="lang-btn" data-lang="en">English</button>
-      </div>
-    </div>
-  </header>
 
-  <main class="section">
-    <div class="container section-inner">
-      <div class="section-header">
-        <h2 class="t-ar">حساب الإمارة</h2>
-        <h2 class="t-en">Emirate Account</h2>
-        <p class="t-ar">هذه صفحة فرعية تعريفية مختصرة لهذا الحساب داخل منصة حصيف.</p>
-        <p class="t-en">This is a brief subpage describing this account within HASIF Platform.</p>
+      <div>
+        <div class="emirate-nav-group-title">إدارة الفعاليات والمتحدثين</div>
+        <ul class="emirate-nav-list">
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn active" data-section="events">
+              <span>الفعاليات بانتظار الاعتماد</span>
+              <small>Events</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="speakers">
+              <span>اعتماد المتحدثين</span>
+              <small>Speakers</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="security">
+              <span>المسح الأمني للفعاليات</span>
+              <small>Security</small>
+            </button>
+          </li>
+        </ul>
       </div>
-      <div class="card">
-        <p class="t-ar">
-          يمكن استخدام هذه الصفحة لاحقًا لعرض التفاصيل التشغيلية، الصلاحيات، ونماذج الشاشات الخاصة بهذا الحساب،
-          بما يتوافق مع الوثيقة التشغيلية الكاملة لمنصة حصيف.
-        </p>
-        <p class="t-en">
-          This page can later be extended to show operational details, permissions and UI samples
-          for this account, aligned with the full HASIF operational document.
-        </p>
-      </div>
-    </div>
-  </main>
 
-  <script src="../assets/js/app.js"></script>
+      <div>
+        <div class="emirate-nav-group-title">المشاريع والفرص</div>
+        <ul class="emirate-nav-list">
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="projects">
+              <span>المشاريع التنموية في المنطقة</span>
+              <small>Projects</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="solutions">
+              <span>الحلول والمبادرات المقترحة</span>
+              <small>Solutions</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="facilities">
+              <span>مرافق المنطقة</span>
+              <small>Facilities</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="opportunities">
+              <span>فرص المنطقة (وظائف / تدريب / استثمار)</span>
+              <small>Opportunities</small>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="emirate-nav-group-title">التطوع وتنمية رأس المال البشري</div>
+        <ul class="emirate-nav-list">
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="volunteering">
+              <span>التطوع في المنطقة</span>
+              <small>Volunteering</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="training">
+              <span>التدريب والتدريب التعاوني</span>
+              <small>Training</small>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="emirate-nav-group-title">المؤشرات والربط بالرؤية</div>
+        <ul class="emirate-nav-list">
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="kpis">
+              <span>مؤشرات المنطقة (KPIs)</span>
+              <small>KPIs</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="vision">
+              <span>الربط مع برامج وأهداف الرؤية</span>
+              <small>Vision</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="gov-link">
+              <span>الربط بالجهات الحكومية</span>
+              <small>Gov Link</small>
+            </button>
+          </li>
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="geo">
+              <span>الربط الجغرافي وهيئات التطوير</span>
+              <small>Geo</small>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="emirate-nav-group-title">التقارير</div>
+        <ul class="emirate-nav-list">
+          <li class="emirate-nav-item">
+            <button class="emirate-nav-btn" data-section="reports">
+              <span>التقارير ولوحات المؤشرات</span>
+              <small>Reports</small>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="emirate-main">
+      <!-- HEADER -->
+      <header class="emirate-header">
+        <div class="emirate-header-inner">
+          <div class="emirate-header-left">
+            <div class="emirate-header-logos">
+              <img src="../assets/img/vision2030.png" alt="رؤية السعودية 2030" />
+              <img src="../assets/img/talbiya.png" alt="مبادرة تلبية" />
+              <img src="../assets/img/hasif.png" alt="منصة حصيف" />
+            </div>
+            <div class="emirate-header-title">
+              <h1>لوحة تحكم – إمارة منطقة حائل</h1>
+              <p>منصة حصيف – نموذج تشغيلي تجريبي للعرض والشراكات الاستراتيجية</p>
+            </div>
+          </div>
+          <div class="emirate-header-right">
+            <span class="emirate-chip">نسخة تجريبية للعرض (Demo)</span>
+            <a href="../index.html#accounts" style="font-size:0.7rem; text-decoration:none; color:#1d4ed8;">
+              العودة للواجهة الرئيسية
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <main class="emirate-main-content">
+        <div class="emirate-breadcrumb">
+          حساب الإمارة &rsaquo; <span id="emirate-current-section-label">الفعاليات بانتظار الاعتماد</span>
+        </div>
+
+        <!-- خلاصات سريعة -->
+        <div class="emirate-summary-grid">
+          <div class="emirate-summary-card">
+            <div class="emirate-summary-label">فعاليات بانتظار اعتماد الإمارة</div>
+            <div class="emirate-summary-value">8 فعاليات</div>
+            <div class="emirate-summary-foot">3 اليوم – 5 خلال الأسبوع</div>
+          </div>
+          <div class="emirate-summary-card">
+            <div class="emirate-summary-label">مشاريع تنموية مرتبطة بالرؤية</div>
+            <div class="emirate-summary-value">27 مشروعًا</div>
+            <div class="emirate-summary-foot">ضمن 4 برامج رؤية</div>
+          </div>
+          <div class="emirate-summary-card">
+            <div class="emirate-summary-label">طلبات متحدثين بانتظار الاعتماد</div>
+            <div class="emirate-summary-value">5 طلبات</div>
+            <div class="emirate-summary-foot">من جهات حكومية وخاصة</div>
+          </div>
+          <div class="emirate-summary-card">
+            <div class="emirate-summary-label">مؤشرات المنطقة الفعّالة</div>
+            <div class="emirate-summary-value">14 مؤشرًا</div>
+            <div class="emirate-summary-foot">يتم تحديثها عبر منصة حصيف</div>
+          </div>
+        </div>
+
+        <!-- SECTION: EVENTS -->
+        <section id="sec-events" class="emirate-section active">
+          <div class="emirate-section-header">
+            <div>
+              <h2>الفعاليات بانتظار اعتماد الإمارة</h2>
+              <p>
+                تعرض هذه الشاشة جميع الفعاليات الواردة من القطاع الخاص، القطاع غير الربحي، الجامعات،
+                والجهات الحكومية والتي تتطلب اعتماد الإمارة من حيث: <strong>المكان، الوقت، نوع الفعالية، والمتحدثين.</strong>
+              </p>
+            </div>
+            <div class="emirate-section-actions">
+              <button class="btn-xs">عرض الفعاليات حسب المنطقة</button>
+              <button class="btn-xs secondary">إظهار فقط الفعاليات ذات الأولوية العالية</button>
+            </div>
+          </div>
+
+          <div class="emirate-filters">
+            <select>
+              <option>كل الجهات</option>
+              <option>جهة حكومية</option>
+              <option>قطاع خاص</option>
+              <option>قطاع غير ربحي</option>
+              <option>جامعة</option>
+            </select>
+            <select>
+              <option>كل أنواع الفعاليات</option>
+              <option>ملتقى تعريفي</option>
+              <option>مؤتمر</option>
+              <option>ورشة عمل</option>
+              <option>منتدى</option>
+            </select>
+            <select>
+              <option>كل الحالات</option>
+              <option>بانتظار الاعتماد</option>
+              <option>معتمدة</option>
+              <option>مرفوضة</option>
+            </select>
+            <input type="text" placeholder="بحث باسم الجهة أو الفعالية..." />
+          </div>
+
+          <div class="emirate-table-wrapper">
+            <table class="emirate-table">
+              <thead>
+                <tr>
+                  <th>اسم الفعالية</th>
+                  <th>تصنيف الفعالية</th>
+                  <th>الجهة المنظمة</th>
+                  <th>الموقع / المرفق</th>
+                  <th>تاريخ البدء</th>
+                  <th>المدة</th>
+                  <th>المنطقة / هيئة التطوير</th>
+                  <th>حالة الطلب</th>
+                  <th>إجراءات الإمارة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ملتقى حصيف للتكامل التنموي</td>
+                  <td><span class="badge badge-type">ملتقى تعريفي</span></td>
+                  <td><span class="badge badge-owner">مبادرة تلبية – شركة تلبية للبحث والتطوير</span></td>
+                  <td>مسرح غرفة حائل</td>
+                  <td>15 / 05 / 2025</td>
+                  <td>يوم واحد</td>
+                  <td><span class="badge badge-region">منطقة حائل – هيئة تطوير حائل</span></td>
+                  <td><span class="badge badge-pending">بانتظار اعتماد الإمارة</span></td>
+                  <td>
+                    <button class="btn-xs">تفاصيل الطلب</button>
+                    <button class="btn-xs secondary">اعتماد أولي</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>منتدى المسؤولية الاجتماعية في حائل</td>
+                  <td><span class="badge badge-type">منتدى</span></td>
+                  <td><span class="badge badge-owner">مجلس الغرف – شراكة مع شركات كبرى</span></td>
+                  <td>مركز المؤتمرات – جامعة حائل</td>
+                  <td>02 / 06 / 2025</td>
+                  <td>يومان</td>
+                  <td><span class="badge badge-region">منطقة حائل – هيئة تطوير حائل</span></td>
+                  <td><span class="badge badge-pending">بانتظار اعتماد الإمارة</span></td>
+                  <td>
+                    <button class="btn-xs">تفاصيل الطلب</button>
+                    <button class="btn-xs secondary">تحويل للمسح الأمني</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>معسكر التجارة الإلكترونية الثاني</td>
+                  <td><span class="badge badge-type">برنامج تدريبي</span></td>
+                  <td><span class="badge badge-owner">شركة تلبية – شراكة مع منشآت</span></td>
+                  <td>قاعة تدريب – حاضنة تلبية</td>
+                  <td>20 / 07 / 2025</td>
+                  <td>5 أيام</td>
+                  <td><span class="badge badge-region">منطقة حائل – هيئة تطوير حائل</span></td>
+                  <td><span class="badge badge-pending">بانتظار اكتمال بيانات المتحدثين</span></td>
+                  <td>
+                    <button class="btn-xs">تفاصيل الطلب</button>
+                    <button class="btn-xs secondary">طلب استكمال بيانات</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="emirate-note">
+            * هذا مثال تشغيلي توضيحي، ويمكن ربط هذه الشاشة فعليًا بقاعدة بيانات الفعاليات في المنصة،
+            مع ربط كل فعالية بالجهة، المرفق، المنطقة، هيئة التطوير، وبرامج وأهداف رؤية 2030.
+          </p>
+        </section>
+
+        <!-- SECTION: SPEAKERS -->
+        <section id="sec-speakers" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>اعتماد المتحدثين</h2>
+              <p>
+                شاشة مخصّصة لاعتماد المتحدثين في الفعاليات على مستوى المنطقة، مع إمكانية الربط بأمن الدولة
+                والجهات ذات العلاقة والتحقق من السيرة العلمية والعملية.
+              </p>
+            </div>
+          </div>
+          <p class="emirate-note">
+            هذه الشاشة قيد الإعداد التفصيلي، ويمكن لاحقًا إضافة جدول بالمتحدثين، حالة الاعتماد، والفعاليات المرتبطة بكل متحدث.
+          </p>
+        </section>
+
+        <!-- SECTION: SECURITY -->
+        <section id="sec-security" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>المسح الأمني للفعاليات</h2>
+              <p>شاشة لعرض حالة المسح الأمني لكل فعالية، والربط مع الجهات الأمنية ذات العلاقة عند الحاجة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">
+            يمكن لاحقًا ربط هذه الشاشة بمنصة أو نظام داخلي معتمد من وزارة الداخلية، مع إظهار حالة كل فعالية ورسائل التنبيه.
+          </p>
+        </section>
+
+        <!-- باقي الأقسام كـ Placeholder حالياً -->
+        <section id="sec-projects" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>المشاريع التنموية في المنطقة</h2>
+              <p>شاشة لمتابعة المشاريع التنموية المرتبطة بالرؤية 2030 ضمن منطقة حائل.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا تعريف جدول المشاريع، حالة التنفيذ، الربط بالرؤية، والجهات المشاركة.</p>
+        </section>
+
+        <section id="sec-solutions" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>الحلول والمبادرات المقترحة</h2>
+              <p>الحلول الواردة من الأفراد والجامعات والقطاعات المختلفة والتي تخص أولويات المنطقة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا ربط هذه الشاشة بمحرك الحلول في المنصة مع خيارات التصفية والموافقة.</p>
+        </section>
+
+        <section id="sec-facilities" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>مرافق المنطقة</h2>
+              <p>عرض المرافق الحكومية والخاصة والجامعية وغير الربحية التي يمكن استخدامها للفعاليات.</p>
+            </div>
+          </div>
+          <p class="emirate-note">يمكن لاحقًا ربط هذه الشاشة بمحرك إدارة المرافق وتحديد شروط الاستخدام لكل مرفق.</p>
+        </section>
+
+        <section id="sec-opportunities" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>فرص المنطقة (وظائف / تدريب / استثمار)</h2>
+              <p>تجميع للفرص المطروحة في المنطقة بمختلف أنواعها من جهات وقطاعات متعددة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا ربط هذه الشاشة بمحرك الفرص في المنصة لتجميع وعرض الفرص بشكل موحد.</p>
+        </section>
+
+        <section id="sec-volunteering" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>التطوع في المنطقة</h2>
+              <p>عرض الفرص التطوعية ومؤشرات التطوع على مستوى المنطقة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا ربط هذه الشاشة بمحرك التطوع في المنصة.</p>
+        </section>
+
+        <section id="sec-training" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>التدريب والتدريب التعاوني</h2>
+              <p>رؤية عالية لبرامج التدريب والتدريب التعاوني المرتبطة بالمنطقة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا ربط هذه الشاشة بمحرك التدريب والتدريب التعاوني.</p>
+        </section>
+
+        <section id="sec-kpis" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>مؤشرات المنطقة (KPIs)</h2>
+              <p>شاشة لمؤشرات الأداء الرئيسية للمنطقة كما يتم تجميعها من المنصة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا عرض مؤشرات مثل: عدد المشاريع، عدد المستفيدين، فرص العمل، التطوع، وغيرها.</p>
+        </section>
+
+        <section id="sec-vision" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>الربط مع برامج وأهداف الرؤية</h2>
+              <p>رؤية كيف ترتبط المشاريع والفعاليات في المنطقة ببرامج وأهداف رؤية 2030.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا عرض توزيع المشاريع حسب برامج الرؤية والأهداف الاستراتيجية.</p>
+        </section>
+
+        <section id="sec-gov-link" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>الربط بالجهات الحكومية</h2>
+              <p>شاشة توضح أي جهات حكومية مرتبطة بكل مشروع أو فعالية أو مبادرة.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا ربط هذا القسم بمحرك الربط الحكومي في المنصة.</p>
+        </section>
+
+        <section id="sec-geo" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>الربط الجغرافي وهيئات التطوير</h2>
+              <p>رؤية جغرافية للمشاريع والفعاليات حسب المحافظات والمراكز وهيئات التطوير.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا إضافة خرائط ومخططات توضح التوزيع الجغرافي.</p>
+        </section>
+
+        <section id="sec-reports" class="emirate-section">
+          <div class="emirate-section-header">
+            <div>
+              <h2>التقارير ولوحات المؤشرات</h2>
+              <p>شاشة لعرض تقارير شاملة يمكن استخدامها في العروض الرسمية وصنع القرار.</p>
+            </div>
+          </div>
+          <p class="emirate-note">سيتم لاحقًا تعريف نماذج تقارير جاهزة للعرض على القيادة.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // منطق التبديل بين أقسام لوحة الإمارة
+    document.addEventListener('DOMContentLoaded', function () {
+      const navButtons = document.querySelectorAll('.emirate-nav-btn');
+      const sections = document.querySelectorAll('.emirate-section');
+      const labelSpan = document.getElementById('emirate-current-section-label');
+
+      navButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const target = btn.getAttribute('data-section');
+
+          // تفعيل الزر
+          navButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          // إظهار القسم المطلوب
+          sections.forEach(function (sec) {
+            sec.classList.remove('active');
+          });
+          const sectionEl = document.getElementById('sec-' + target);
+          if (sectionEl) sectionEl.classList.add('active');
+
+          // تحديث المسار أعلى الصفحة
+          const text = btn.querySelector('span') ? btn.querySelector('span').textContent.trim() : '';
+          if (labelSpan && text) {
+            labelSpan.textContent = text;
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
