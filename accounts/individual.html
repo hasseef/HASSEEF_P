@@ -447,13 +447,13 @@
           </li>
           <li class="people-nav-item">
             <button class="people-nav-btn" data-section="volunteering">
-              <span>فرص التطوع المناسبة لي</span>
+              <span>فرص التطوع</span>
               <small>Volunteering</small>
             </button>
           </li>
           <li class="people-nav-item">
             <button class="people-nav-btn" data-section="training">
-              <span>التدريب والتدريب التعاوني</span>
+              <span>برامج التدريب والتدريب التعاوني</span>
               <small>Training & Co-op</small>
             </button>
           </li>
@@ -483,8 +483,8 @@
           </li>
           <li class="people-nav-item">
             <button class="people-nav-btn" data-section="investment">
-              <span>الاستثمار والفرص الاستثمارية</span>
-              <small>Investment</small>
+              <span>الاستثمار التنموي</span>
+              <small>Impact Investment</small>
             </button>
           </li>
           <li class="people-nav-item">
@@ -587,7 +587,7 @@
                 <option>تطوع</option>
                 <option>تدريب / تدريب تعاوني</option>
                 <option>وظائف</option>
-                <option>استثمار</option>
+                <option>استثمار تنموي</option>
                 <option>فعاليات ومحافل</option>
               </select>
             </div>
@@ -839,7 +839,7 @@
         <!-- SECTION: التطوع -->
         <section id="sec-volunteering" class="people-section">
           <div class="section-header">
-            <h2>فرص التطوع المناسبة لي</h2>
+            <h2>فرص التطوع</h2>
             <p>استعراض فرص التطوع التي تتناسب مع ملفك التنموي، وإدارة مشاركاتك.</p>
           </div>
 
@@ -864,7 +864,7 @@
               <select>
                 <option>حضوري</option>
                 <option>عن بُعد</option>
-                <option>كلاهما</option>
+                <option>حضوري وعن بُعد معًا</option>
               </select>
             </div>
           </div>
@@ -903,18 +903,22 @@
         <!-- SECTION: التدريب والتدريب التعاوني -->
         <section id="sec-training" class="people-section">
           <div class="section-header">
-            <h2>التدريب والتدريب التعاوني</h2>
-            <p>استعراض البرامج التدريبية وفرص التدريب التعاوني المناسبة لك حسب تخصّصك ومرحلتك الدراسية.</p>
+            <h2>برامج التدريب والتدريب التعاوني</h2>
+            <p>
+              استعراض البرامج التدريبية القصيرة وفرص التدريب التعاوني المناسبة لك حسب تخصّصك ومرحلتك الدراسية،
+              مع متابعة طلباتك السابقة.
+            </p>
           </div>
 
+          <!-- فلترة الفرص -->
           <div class="inline-form-grid">
             <div class="inline-field">
               <label>نوع الفرصة</label>
               <select>
                 <option>كل الأنواع</option>
                 <option>برنامج تدريبي قصير</option>
-                <option>دبلوم / برنامج ممتد</option>
-                <option>تدريب تعاوني (Co-op)</option>
+                <option>برنامج ممتد / دبلوم</option>
+                <option>تدريب تعاوني (للطلاب)</option>
               </select>
             </div>
             <div class="inline-field">
@@ -922,22 +926,24 @@
               <input type="text" placeholder="جامعة / شركة / جهة حكومية..." />
             </div>
             <div class="inline-field">
-              <label>الوضع</label>
+              <label>طريقة التنفيذ</label>
               <select>
                 <option>حضوري</option>
                 <option>عن بُعد</option>
-                <option>هجين</option>
+                <option>حضوري وعن بُعد معًا</option>
               </select>
             </div>
           </div>
 
+          <!-- جدول الفرص المتاحة -->
           <div class="table-wrapper">
             <table class="people-table">
               <thead>
                 <tr>
                   <th>اسم البرنامج</th>
-                  <th>نوعه</th>
+                  <th>نوع الفرصة</th>
                   <th>الجهة</th>
+                  <th>المنطقة</th>
                   <th>الفترة</th>
                   <th>إجراء</th>
                 </tr>
@@ -947,22 +953,63 @@
                   <td>معسكر التجارة الإلكترونية لطلاب الجامعة</td>
                   <td><span class="badge badge-type">تدريب تعاوني</span></td>
                   <td>شركة تلبية بالشراكة مع جامعة حائل</td>
+                  <td>حائل</td>
                   <td>3 أشهر</td>
                   <td><button class="btn-xs">طلب الانضمام</button></td>
+                </tr>
+                <tr>
+                  <td>برنامج مهارات المستقبل الرقمية</td>
+                  <td><span class="badge badge-type">برنامج تدريبي قصير</span></td>
+                  <td>جهة تدريبية معتمدة</td>
+                  <td>عن بُعد</td>
+                  <td>4 أسابيع</td>
+                  <td><button class="btn-xs">التسجيل في البرنامج</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- طلباتي السابقة في التدريب / التدريب التعاوني -->
+          <div class="table-wrapper" style="margin-top:0.8rem;">
+            <table class="people-table">
+              <thead>
+                <tr>
+                  <th>اسم البرنامج</th>
+                  <th>نوع الفرصة</th>
+                  <th>الجهة</th>
+                  <th>الحالة</th>
+                  <th>الفترة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>برنامج مهارات العمل عن بُعد</td>
+                  <td><span class="badge badge-type">برنامج تدريبي قصير</span></td>
+                  <td>منصة تدريب وطنية</td>
+                  <td><span class="badge badge-tag">مكتمل</span></td>
+                  <td>يناير 2025</td>
+                </tr>
+                <tr>
+                  <td>تدريب تعاوني في قطاع غير ربحي</td>
+                  <td><span class="badge badge-type">تدريب تعاوني</span></td>
+                  <td>جمعية تنموية</td>
+                  <td><span class="badge badge-status">قيد المراجعة</span></td>
+                  <td>صيف 2025</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <p class="section-note">
-            * هذا يفعّل مكوّن التدريب / التدريب التعاوني للفرد؛ في المقابل ستُستهلك نفس البيانات في حساب الجامعة والجهة المستضيفة.
+            * هذا القسم يفعّل مكوّن التدريب / التدريب التعاوني للفرد؛ في المنصة الكاملة سيتم ربط طلباتك بحساب الجامعة أو الجهة
+            المستضيفة، مع توثيق عدد الساعات وخطابات إكمال التدريب.
           </p>
         </section>
 
         <!-- SECTION: الفعاليات -->
         <section id="sec-events" class="people-section">
           <div class="section-header">
-            <h2>الفعاليات والمحافل المناسبة لي</h2>
+            <h2>الفعاليات والمحافل</h2>
             <p>عرض الفعاليات (ملتقيات، منتديات، ورش) التي يمكن أن تشارك فيها كمستفيد، أو متحدث، أو متطوع.</p>
           </div>
 
@@ -1116,7 +1163,7 @@
               <select>
                 <option>عن بُعد</option>
                 <option>حضوري</option>
-                <option>كلاهما</option>
+                <option>حضوري وعن بُعد معًا</option>
               </select>
             </div>
             <div class="inline-field">
@@ -1162,11 +1209,11 @@
           </p>
         </section>
 
-        <!-- SECTION: الاستثمار -->
+        <!-- SECTION: الاستثمار التنموي -->
         <section id="sec-investment" class="people-section">
           <div class="section-header">
-            <h2>الاستثمار والفرص الاستثمارية</h2>
-            <p>الفرص التي يمكن للفرد الاستثمار فيها بمبالغ مناسبة، وفق نماذج تمويلية مع الجهات والمانحين.</p>
+            <h2>الاستثمار التنموي</h2>
+            <p>الفرص التي يمكن للفرد المساهمة فيها استثماريًا لدعم مشاريع ذات أثر تنموي واجتماعي.</p>
           </div>
 
           <div class="table-wrapper">
@@ -1185,7 +1232,7 @@
                   <td>تطوير منصة إنتاجية للأسر المنتجة</td>
                   <td>شركة تلبية + شريك تقني + مانح</td>
                   <td>500 ر.س</td>
-                  <td>استثمار اجتماعي (Impact Investment)</td>
+                  <td>استثمار اجتماعي / تنموي</td>
                   <td><button class="btn-xs">استكشاف تفاصيل الفرصة</button></td>
                 </tr>
               </tbody>
@@ -1193,7 +1240,8 @@
           </div>
 
           <p class="section-note">
-            * في النسخة الكاملة، ستتصل هذه الشاشة بمكوّن المحفظة والمحفظة الاستثمارية، مع ضوابط نظامية معتمدة.
+            * في النسخة الكاملة، ستتصل هذه الشاشة بمكوّن المحفظة والمحفظة الاستثمارية، مع ضوابط نظامية معتمدة،
+            وتحديث مباشر لسجلك التنموي كمستثمر اجتماعي.
           </p>
         </section>
 
