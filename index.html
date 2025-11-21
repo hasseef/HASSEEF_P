@@ -6,6 +6,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="منصة حصيف الوطنية للتكامل التنموي، لربط الأفراد والجهات بالحلول والمشاريع والفعاليات وفق رؤية المملكة 2030." />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- تنسيقات بسيطة لنافذة تفاصيل المكوّنات -->
+  <style>
+    .module-modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 40;
+    }
+    .module-modal.hidden {
+      display: none;
+    }
+    .module-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .module-modal-content {
+      position: relative;
+      background: #ffffff;
+      border-radius: 1rem;
+      max-width: 640px;
+      width: 90%;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.3);
+      direction: rtl;
+      text-align: right;
+    }
+    .module-modal-close {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.75rem;
+      border: none;
+      background: transparent;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      color: #64748b;
+    }
+    .module-modal-accounts-title {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .module-modal-accounts-list {
+      margin: 0.35rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.8rem;
+      color: #0f172a;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .module-modal-accounts-list li {
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      white-space: nowrap;
+    }
+    .module-modal h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+    }
+    .module-modal p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+  </style>
 </head>
 <body class="lang-ar">
   <header class="site-header">
@@ -199,51 +271,33 @@
       </div>
     </section>
 
-    <!-- CORE MODULES -->
+    <!-- CORE MODULES (Dynamic from core-modules.js) -->
     <section id="modules" class="section">
       <div class="container section-inner">
         <div class="section-header">
           <h2 class="t-ar">المكوّنات الأساسية (Core Modules)</h2>
           <h2 class="t-en">Core Operational Modules</h2>
-          <p class="t-ar">طبقة موحدة من ١٩ مكوّن تشغيلي، تُستخدم في جميع الحسابات مع اختلاف الصلاحيات.</p>
-          <p class="t-en">A unified layer of 19 operational modules used across all accounts with different permissions.</p>
+          <p class="t-ar">
+            طبقة موحدة من المكوّنات التشغيلية (Core Modules) تُستخدم في جميع الحسابات مع اختلاف الصلاحيات،
+            ويتم تعريفها في ملف النواة التقني واستهلاكها هنا للعرض.
+          </p>
+          <p class="t-en">
+            A unified layer of operational core modules shared across all accounts with different permissions,
+            defined in the technical core file and rendered here.
+          </p>
         </div>
-        <div class="modules-grid">
-          <div class="card module-card">
-            <h3 class="t-ar">الحلول</h3>
-            <h3 class="t-en">Solutions</h3>
-            <p class="t-ar">إنشاء، تقييم، تعزيز علمي، وتحويل إلى مشاريع قابلة للتنفيذ.</p>
-            <p class="t-en">Create, evaluate, review and convert solutions into executable projects.</p>
-          </div>
-          <div class="card module-card">
-            <h3 class="t-ar">المشاريع</h3>
-            <h3 class="t-en">Projects</h3>
-            <p class="t-ar">إدارة دورة حياة المشروع من الفكرة وحتى تقرير الأثر.</p>
-            <p class="t-en">Manage project lifecycle from idea to impact report.</p>
-          </div>
-          <div class="card module-card">
-            <h3 class="t-ar">الفعاليات والمرافق</h3>
-            <h3 class="t-en">Events & Facilities</h3>
-            <p class="t-ar">تنظيم الفعاليات، اختيار المرافق، إدارة المتحدثين، والتقارير الختامية.</p>
-            <p class="t-en">Organize events, select facilities, manage speakers and final reports.</p>
-          </div>
-          <div class="card module-card">
-            <h3 class="t-ar">التمويل والرعايات</h3>
-            <h3 class="t-en">Funding & Sponsorship</h3>
-            <p class="t-ar">طلبات التمويل، المنح، الرعايات، والمحفظة المالية.</p>
-            <p class="t-en">Funding requests, grants, sponsorships and wallet management.</p>
-          </div>
-          <div class="card module-card">
-            <h3 class="t-ar">التطوع والتدريب</h3>
-            <h3 class="t-en">Volunteering & Training</h3>
-            <p class="t-ar">فرص تطوع، تدريب تعاوني، وظائف، وتطوير رأس المال البشري.</p>
-            <p class="t-en">Volunteer opportunities, co-op training, jobs and human capital development.</p>
-          </div>
-          <div class="card module-card">
-            <h3 class="t-ar">الشراكات والاستثمار</h3>
-            <h3 class="t-en">Partnerships & Investment</h3>
-            <p class="t-ar">بناء الشراكات، الفرص الاستثمارية، وتتبع العوائد.</p>
-            <p class="t-en">Build partnerships, publish investment opportunities and track returns.</p>
+
+        <!-- سيتم تعبئته ديناميكيًا حسب HASIF_CORE_MODULES -->
+        <div id="modules-grid" class="modules-grid"></div>
+
+        <!-- نافذة تفاصيل المكوّن -->
+        <div id="module-modal" class="module-modal hidden">
+          <div class="module-modal-backdrop"></div>
+          <div class="module-modal-content">
+            <button class="module-modal-close" type="button">&times;</button>
+            <h3 id="module-modal-title"></h3>
+            <p id="module-modal-desc"></p>
+            <div id="module-modal-accounts" class="module-modal-accounts"></div>
           </div>
         </div>
       </div>
@@ -407,6 +461,97 @@
     </div>
   </footer>
 
+  <!-- سكربتات المنصة -->
+  <script src="assets/js/core-modules.js"></script>
   <script src="assets/js/app.js"></script>
+  <script>
+    // توليد بطاقات المكوّنات الأساسية من النواة المشتركة
+    document.addEventListener('DOMContentLoaded', function () {
+      const grid = document.getElementById('modules-grid');
+      const modules = window.HASIF_CORE_MODULES || [];
+      if (!grid || !modules.length) return;
+
+      grid.innerHTML = '';
+
+      modules.forEach(function (mod) {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'card module-card module-card-btn';
+        card.innerHTML = `
+          <h3 class="t-ar">${mod.nameAr}</h3>
+          <h3 class="t-en">${mod.nameEn}</h3>
+          <p class="t-ar">${mod.descriptionAr}</p>
+          <p class="t-en">${mod.descriptionEn}</p>
+        `;
+        card.addEventListener('click', function () {
+          openModuleModal(mod);
+        });
+        grid.appendChild(card);
+      });
+
+      setupModuleModal();
+    });
+
+    function setupModuleModal() {
+      const modal = document.getElementById('module-modal');
+      if (!modal) return;
+
+      const backdrop = modal.querySelector('.module-modal-backdrop');
+      const closeBtn = modal.querySelector('.module-modal-close');
+
+      const close = function () {
+        modal.classList.add('hidden');
+      };
+
+      if (backdrop) backdrop.addEventListener('click', close);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+    }
+
+    function openModuleModal(mod) {
+      const modal = document.getElementById('module-modal');
+      if (!modal) return;
+
+      const title = document.getElementById('module-modal-title');
+      const desc = document.getElementById('module-modal-desc');
+      const accountsDiv = document.getElementById('module-modal-accounts');
+
+      title.textContent = mod.nameAr + ' / ' + mod.nameEn;
+      desc.textContent = mod.descriptionAr;
+
+      const mapAccountName = function (key) {
+        switch (key) {
+          case 'emirate': return 'حساب الإمارة';
+          case 'development': return 'حساب هيئة التطوير';
+          case 'government': return 'حساب الجهة الحكومية';
+          case 'private': return 'حساب القطاع الخاص';
+          case 'nonprofit': return 'حساب القطاع غير الربحي';
+          case 'university': return 'حساب الجامعات';
+          case 'donor': return 'حساب المانحين';
+          case 'individual': return 'حساب الأفراد';
+          default: return key;
+        }
+      };
+
+      accountsDiv.innerHTML = '';
+
+      if (Array.isArray(mod.usedByAccounts) && mod.usedByAccounts.length) {
+        const titleEl = document.createElement('div');
+        titleEl.className = 'module-modal-accounts-title t-ar';
+        titleEl.textContent = 'الحسابات التي تستخدم هذا المكوّن:';
+        accountsDiv.appendChild(titleEl);
+
+        const list = document.createElement('ul');
+        list.className = 'module-modal-accounts-list';
+        mod.usedByAccounts.forEach(function (accKey) {
+          const li = document.createElement('li');
+          li.textContent = mapAccountName(accKey);
+          list.appendChild(li);
+        });
+        accountsDiv.appendChild(list);
+      }
+
+      modal.classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
