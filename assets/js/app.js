@@ -1,24 +1,21 @@
 
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll(".sidebar-nav").forEach(function(nav) {
-    nav.addEventListener("click", function(e) {
-      if (e.target.matches("button[data-section]")) {
-        const btn = e.target;
-        const container = btn.closest(".account-inner");
-        const sectionId = btn.getAttribute("data-section");
-        nav.querySelectorAll("button").forEach(function(b) { b.classList.remove("active"); });
-        btn.classList.add("active");
-        container.querySelectorAll(".account-section").forEach(function(sec) {
-          sec.style.display = (sec.id === sectionId ? "block" : "none");
-        });
-      }
+function initTabs(){
+  const buttons=document.querySelectorAll('.tab-btn[data-target]');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const targetId=btn.getAttribute('data-target');
+      const container=btn.closest('.main-wrapper')||document;
+      container.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      container.querySelectorAll('.tab-content').forEach(sec=>{
+        sec.style.display = sec.id===targetId ? 'block' : 'none';
+      });
     });
   });
-
-  document.querySelectorAll(".account-inner").forEach(function(container) {
-    const firstBtn = container.querySelector(".sidebar-nav button[data-section]");
-    if (firstBtn) {
-      firstBtn.click();
-    }
+  // activate first tab in each wrapper
+  document.querySelectorAll('.main-wrapper').forEach(w=>{
+    const first=w.querySelector('.tab-btn[data-target]');
+    if(first){ first.click(); }
   });
-});
+}
+document.addEventListener('DOMContentLoaded',initTabs);

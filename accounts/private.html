@@ -1,138 +1,65 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT: '#5AA044' },
-            accent:  { DEFAULT: '#F8BE43' },
-            ink:     { DEFAULT: '#0f172a' },
-            stone:   { DEFAULT: '#f8fafc' }
-          },
-          boxShadow: { soft: '0 10px 20px rgba(2,6,23,.08)' },
-          borderRadius: { xl2: '1rem' }
-        }
-      }
-    }
-  </script>
-
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-  <style>
-    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,.7); }
-    .scroll-slim::-webkit-scrollbar{width:8px;height:8px}
-    .scroll-slim::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:8px}
-    .rtl-input { direction: rtl; }
-    table { border-collapse: separate; border-spacing: 0 8px; }
-    thead th { font-weight:600; color:#0f172a; }
-    tbody tr { background:#fff; box-shadow: 0 1px 2px rgba(2,6,23,.05); }
-    tbody td { border-top: 1px solid #f1f5f9; border-bottom:1px solid #f1f5f9; }
-    tbody td:first-child { border-right:1px solid #f1f5f9; border-radius: .5rem 0 0 .5rem; }
-    tbody td:last-child { border-left:1px solid #f1f5f9; border-radius: 0 .5rem .5rem 0; }
-    #leafletMap { height: 340px; }
-
-    /* Responsive logo sizes */
-    .logo-vision { height: 30px; }
-    .logo-talbiya { height: 36px; }
-    .logo-hasseef { height: 52px; }
-    @media (max-width: 640px){
-      .logo-vision { height: 24px; }
-      .logo-talbiya { height: 28px; }
-      .logo-hasseef { height: 40px; }
-    }
-    @media (min-width: 1024px){
-      .logo-vision { height: 32px; }
-      .logo-talbiya { height: 38px; }
-      .logo-hasseef { height: 56px; }
-    }
-  </style>
-
-<link rel="stylesheet" href="/HASSEEF_P/assets/css/style.css" />
-
-<title>حساب القطاع الخاص - منصة حصيف الوطنية</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حساب القطاع الخاص - منصة حصيف</title>
+  <link rel="stylesheet" href="/HASSEEF_P/assets/css/style.css">
 </head>
-<body class="lang-ar account-layout">
-  <header class="site-header">
-  <div class="container header-inner">
-    <div class="logo-group">
-      <img src="..//HASSEEF_P/assets/img//HASSEEF_P/vision2030.png" alt="Vision 2030" class="logo-vision" />
-      <img src="..//HASSEEF_P/assets/img//HASSEEF_P/talbiya.png" alt="Talbiya" class="logo-talbiya" />
-      <img src="..//HASSEEF_P/assets/img//HASSEEF_P/hasseef.png" alt="HASIF" class="logo-hasseef" />
-    </div>
-    <nav class="main-nav">
-      <a href="../index.html#accounts" class="nav-link is-primary">
-        <span class="t-ar">حسابات المنصة</span>
-        <span class="t-en">Platform Accounts</span>
-      </a>
-    </nav>
-    <div class="lang-switch">
-      <button class="lang-btn active" data-lang="ar">عربي</button>
-      <button class="lang-btn" data-lang="en">English</button>
-    </div>
-  </div>
+<body>
+  
+<header>
+  <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
+  <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
+  <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF National Youth Program">
 </header>
-  <main class="account-main">
-    <div class="container account-inner">
-      <aside class="account-sidebar">
-        <h2>حساب القطاع الخاص</h2>
-        <ul class='sidebar-nav'>
-  <li><button type='button' data-section='priv_overview'>نظرة عامة</button></li>
-  <li><button type='button' data-section='priv_csr'>المسؤولية الاجتماعية</button></li>
-  <li><button type='button' data-section='priv_projects'>المشاريع والاستثمار</button></li>
-  <li><button type='button' data-section='priv_jobs'>التوظيف</button></li>
-  <li><button type='button' data-section='priv_training'>التدريب</button></li>
-</ul>
-      </aside>
-      <div class="account-content">
-        <section id='priv_overview' class='account-section' style='display:none'>
-  <h2 class='account-section-title'>نظرة عامة على حساب القطاع الخاص</h2>
-  <p class='account-section-text'>يتيح حساب القطاع الخاص للشركات إدارة مساهماتها التنموية والاستثمارية، وربط مبادراتها بأهداف رؤية 2030 مع تقارير أثر واضحة.</p>
-  <div class='account-taglist'><span class='account-tag'>استثمار تنموي</span><span class='account-tag'>مسؤولية اجتماعية</span><span class='account-tag'>شراكات</span></div>
-</section>
-<section id='priv_csr' class='account-section' style='display:none'>
-  <h2 class='account-section-title'>إدارة المسؤولية الاجتماعية</h2>
-  <p class='account-section-text'>يمكن للشركة إطلاق مبادرات مجتمعية وربطها بالأهداف الاستراتيجية والفرعية والتفصيلية لرؤية 2030، مع تقارير دورية عن الأثر.</p>
-  <table class='simple-table'><tr><th>المبادرة</th><th>الهدف من الرؤية</th><th>الميزانية</th><th>الحالة</th></tr><tr><td>برنامج دعم الأسر المنتجة</td><td>تمكين المسؤولية الاجتماعية</td><td>500,000</td><td>جاري التنفيذ</td></tr></table>
-</section>
-<section id='priv_projects' class='account-section' style='display:none'>
-  <h2 class='account-section-title'>إدارة المشاريع والاستثمار</h2>
-  <p class='account-section-text'>تستعرض الشركة المشاريع التنموية المفتوحة للاستثمار أو التمويل المشترك، وتحدد مساهمتها ومراحل تنفيذ المشروع.</p>
-  <p class='account-section-text'>يتم ربط المشاريع بمحفظة الشركة الرقمية مع تقارير العائد التنموي والمالي.</p>
-</section>
-<section id='priv_jobs' class='account-section' style='display:none'>
-  <h2 class='account-section-title'>التوظيف</h2>
-  <p class='account-section-text'>إدارة الوظائف الشاغرة وتوظيف الخريجين والمتدربين وربط ذلك بتقارير دور المسؤولية الاجتماعية للشركة.</p>
-  <table class='simple-table'><tr><th>المسمى الوظيفي</th><th>نوع الوظيفة</th><th>الفئة المستهدفة</th></tr><tr><td>محاسب مبتدئ</td><td>دوام كامل</td><td>خريجون جدد</td></tr></table>
-</section>
-<section id='priv_training' class='account-section' style='display:none'>
-  <h2 class='account-section-title'>برامج التدريب</h2>
-  <p class='account-section-text'>إنشاء برامج تدريب تعاوني أو تخصصي بالتعاون مع الجامعات ومراكز التدريب والمدربين المعتمدين عبر منصة حصيف.</p>
-  <div class='account-taglist'><span class='account-tag'>تدريب تعاوني</span><span class='account-tag'>برامج متخصصة</span></div>
-</section>
-      </div>
-    </div>
-  </main>
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      منصة حصيف — حساب حساب القطاع الخاص
-    </div>
-  </footer>
-  <script src="..//HASSEEF_P/assets/js/app.js"></script>
+
+  <div class="main-wrapper">
+    <aside class="sidebar">
+      <h2>حساب القطاع الخاص</h2>
+      <button class="tab-btn" data-target="service1">المسؤولية الاجتماعية</button>
+    </aside>
+    <main class="main">
+      <section id="service1" class="tab-content">
+        <h1>المسؤولية الاجتماعية</h1>
+        <p class="section-note">تسجيل مبادرات وبرامج المسؤولية الاجتماعية وربطها بأهداف الرؤية.</p>
+        <div class="form-card">
+          <div class="form-row">
+            <label>العنوان</label>
+            <input type="text" placeholder="أدخل العنوان هنا">
+          </div>
+          <div class="form-row">
+            <label>الوصف</label>
+            <textarea placeholder="أدخل وصفًا موجزًا"></textarea>
+          </div>
+          <div class="form-row">
+            <label>الفئة أو البرنامج المرتبط</label>
+            <input type="text" placeholder="مثال: جودة الحياة / تنمية القطاع غير الربحي">
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary">حفظ</button>
+            <button type="button" class="btn btn-ghost">إلغاء</button>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>م</th>
+              <th>العنوان</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>عنصر تجريبي</td>
+              <td>مسجّل</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <script src="/HASSEEF_P/assets/js/app.js"></script>
 </body>
 </html>
