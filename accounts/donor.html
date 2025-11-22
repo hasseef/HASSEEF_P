@@ -1,50 +1,132 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>حساب المانحين | Donor Account</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-</head>
-<body class="lang-ar">
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo-group">
-        <img src="../assets/img/vision2030.png" alt="Vision 2030" class="logo-vision" />
-        <img src="../assets/img/talbiya.png" alt="Talbiya" class="logo-talbiya" />
-        <img src="../assets/img/hasif.png" alt="HASIF" class="logo-hasseef" />
-      </div>
-      <nav class="main-nav">
-        <a href="../index.html#accounts"><span class="t-ar">العودة إلى الحسابات</span><span class="t-en">Back to accounts</span></a>
-      </nav>
-      <div class="lang-switch">
-        <button class="lang-btn active" data-lang="ar">عربي</button>
-        <button class="lang-btn" data-lang="en">English</button>
-      </div>
-    </div>
-  </header>
 
-  <main class="section">
-    <div class="container section-inner">
-      <div class="section-header">
-        <h2 class="t-ar">حساب المانحين</h2>
-        <h2 class="t-en">Donor Account</h2>
-        <p class="t-ar">هذه صفحة فرعية تعريفية مختصرة لهذا الحساب داخل منصة حصيف.</p>
-        <p class="t-en">This is a brief subpage describing this account within HASIF Platform.</p>
-      </div>
-      <div class="card">
-        <p class="t-ar">
-          يمكن استخدام هذه الصفحة لاحقًا لعرض التفاصيل التشغيلية، الصلاحيات، ونماذج الشاشات الخاصة بهذا الحساب،
-          بما يتوافق مع الوثيقة التشغيلية الكاملة لمنصة حصيف.
-        </p>
-        <p class="t-en">
-          This page can later be extended to show operational details, permissions and UI samples
-          for this account, aligned with the full HASIF operational document.
-        </p>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#5AA044' },
+            accent:  { DEFAULT: '#F8BE43' },
+            ink:     { DEFAULT: '#0f172a' },
+            stone:   { DEFAULT: '#f8fafc' }
+          },
+          boxShadow: { soft: '0 10px 20px rgba(2,6,23,.08)' },
+          borderRadius: { xl2: '1rem' }
+        }
+      }
+    }
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <style>
+    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,.7); }
+    .scroll-slim::-webkit-scrollbar{width:8px;height:8px}
+    .scroll-slim::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:8px}
+    .rtl-input { direction: rtl; }
+    table { border-collapse: separate; border-spacing: 0 8px; }
+    thead th { font-weight:600; color:#0f172a; }
+    tbody tr { background:#fff; box-shadow: 0 1px 2px rgba(2,6,23,.05); }
+    tbody td { border-top: 1px solid #f1f5f9; border-bottom:1px solid #f1f5f9; }
+    tbody td:first-child { border-right:1px solid #f1f5f9; border-radius: .5rem 0 0 .5rem; }
+    tbody td:last-child { border-left:1px solid #f1f5f9; border-radius: 0 .5rem .5rem 0; }
+    #leafletMap { height: 340px; }
+
+    /* Responsive logo sizes */
+    .logo-vision { height: 30px; }
+    .logo-talbiya { height: 36px; }
+    .logo-hasseef { height: 52px; }
+    @media (max-width: 640px){
+      .logo-vision { height: 24px; }
+      .logo-talbiya { height: 28px; }
+      .logo-hasseef { height: 40px; }
+    }
+    @media (min-width: 1024px){
+      .logo-vision { height: 32px; }
+      .logo-talbiya { height: 38px; }
+      .logo-hasseef { height: 56px; }
+    }
+  </style>
+
+<link rel="stylesheet" href="assets/css/style.css" />
+
+<title>حساب المانحين والجهات التمويلية - منصة حصيف الوطنية</title>
+</head>
+<body class="lang-ar account-layout">
+  <header class="site-header">
+  <div class="container header-inner">
+    <div class="logo-group">
+      <img src="../assets/img/vision2030.png" alt="Vision 2030" class="logo-vision" />
+      <img src="../assets/img/talbiya.png" alt="Talbiya" class="logo-talbiya" />
+      <img src="../assets/img/hasseef.png" alt="HASIF" class="logo-hasseef" />
+    </div>
+    <nav class="main-nav">
+      <a href="../index.html#accounts" class="nav-link is-primary">
+        <span class="t-ar">حسابات المنصة</span>
+        <span class="t-en">Platform Accounts</span>
+      </a>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="ar">عربي</button>
+      <button class="lang-btn" data-lang="en">English</button>
+    </div>
+  </div>
+</header>
+  <main class="account-main">
+    <div class="container account-inner">
+      <aside class="account-sidebar">
+        <h2>حساب المانحين والجهات التمويلية</h2>
+        <ul class='sidebar-nav'>
+  <li><button type='button' data-section='dn_overview'>نظرة عامة</button></li>
+  <li><button type='button' data-section='dn_opps'>فرص المنح والتمويل</button></li>
+  <li><button type='button' data-section='dn_portfolio'>محفظة المنح والاستثمار</button></li>
+  <li><button type='button' data-section='dn_reports'>تقارير الأثر</button></li>
+</ul>
+      </aside>
+      <div class="account-content">
+        <section id='dn_overview' class='account-section' style='display:none'>
+  <h2 class='account-section-title'>نظرة عامة على حساب المانحين والجهات التمويلية</h2>
+  <p class='account-section-text'>يتيح هذا الحساب للجهات المانحة والبنوك وصناديق الاستثمار إدارة برامج المنح، متابعة المشاريع الممولة، وإصدار تقارير الأثر التنموي.</p>
+  <div class='account-taglist'><span class='account-tag'>برامج منح</span><span class='account-tag'>استثمار تنموي</span></div>
+</section>
+<section id='dn_opps' class='account-section' style='display:none'>
+  <h2 class='account-section-title'>فرص المنح والتمويل</h2>
+  <p class='account-section-text'>عرض قائمة بالمشاريع والمبادرات التي تطلب منحًا أو تمويلًا، مع إمكانية وضع شروط المنح والمعايير.</p>
+  <table class='simple-table'><tr><th>المشروع</th><th>الجهة</th><th>المبلغ المطلوب</th></tr><tr><td>مركز ابتكار اجتماعي</td><td>جمعية تنموية</td><td>2,000,000</td></tr></table>
+</section>
+<section id='dn_portfolio' class='account-section' style='display:none'>
+  <h2 class='account-section-title'>محفظة المنح والاستثمار</h2>
+  <p class='account-section-text'>متابعة محفظة المنح والاستثمارات المقدمة للمشاريع بحسب القطاع والمنطقة والبرنامج الوطني.</p>
+  <p class='account-section-text'>يمكن تصدير تقارير المحفظة بصيغ مختلفة لعرضها على مجالس الإدارات.</p>
+</section>
+<section id='dn_reports' class='account-section' style='display:none'>
+  <h2 class='account-section-title'>تقارير الأثر والتنمية</h2>
+  <p class='account-section-text'>لوحة تقارير تبين أثر المنح على مؤشرات التنمية مثل التوظيف، جودة الحياة، وتمكين المسؤولية الاجتماعية.</p>
+  <div class='account-taglist'><span class='account-tag'>مؤشرات أثر</span><span class='account-tag'>رؤية 2030</span></div>
+</section>
       </div>
     </div>
   </main>
-
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      منصة حصيف — حساب حساب المانحين والجهات التمويلية
+    </div>
+  </footer>
   <script src="../assets/js/app.js"></script>
 </body>
 </html>

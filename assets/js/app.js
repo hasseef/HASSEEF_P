@@ -1,28 +1,24 @@
-// Smooth scroll for nav links
-document.addEventListener("DOMContentLoaded", () => {
-  const links = document.querySelectorAll('.main-nav a[href^="#"]');
-  links.forEach(link => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href");
-      if (!href || !href.startsWith("#")) return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      window.scrollTo({
-        top: target.offsetTop - 80,
-        behavior: "smooth",
-      });
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".sidebar-nav").forEach(function(nav) {
+    nav.addEventListener("click", function(e) {
+      if (e.target.matches("button[data-section]")) {
+        const btn = e.target;
+        const container = btn.closest(".account-inner");
+        const sectionId = btn.getAttribute("data-section");
+        nav.querySelectorAll("button").forEach(function(b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        container.querySelectorAll(".account-section").forEach(function(sec) {
+          sec.style.display = (sec.id === sectionId ? "block" : "none");
+        });
+      }
     });
   });
 
-  // Language switch
-  const langButtons = document.querySelectorAll(".lang-btn");
-  langButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const lang = btn.dataset.lang;
-      document.body.classList.toggle("lang-en", lang === "en");
-      langButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    });
+  document.querySelectorAll(".account-inner").forEach(function(container) {
+    const firstBtn = container.querySelector(".sidebar-nav button[data-section]");
+    if (firstBtn) {
+      firstBtn.click();
+    }
   });
 });
