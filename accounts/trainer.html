@@ -13,16 +13,16 @@
   <div class="header-inner">
     <div class="header-logos">
       <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
-      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya">
-      <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF">
+      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
+      <img src="/HASSEEF_P/hasseef.png" alt="Hasseef National">
       <div class="header-meta">
         <div class="header-title">منصة حصيف الوطنية للتكامل التنموي</div>
         <div class="header-sub">منتج تشغيلي لبرنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
       </div>
     </div>
     <div class="header-right">
-      <span class="badge badge-primary">مواءمة مع رؤية 2030</span>
-      <span class="badge">إصدار أولي تجريبي للواجهة</span>
+      <span class="badge badge-primary">متوائمة مع هوية حصيف الوطنية</span>
+      <span class="badge">نسخة واجهات تجريبية</span>
     </div>
   </div>
 </header>
@@ -31,7 +31,7 @@
       <aside class="sidebar">
         <div class="sidebar-title">حساب المدربين</div>
         <button class="tab-btn" data-target="tr_courses"><span class="label">إدارة الدورات التدريبية</span><span class="pill">دورات</span></button>
-      <button class="tab-btn" data-target="tr_requests"><span class="label">طلبات التدريب من الجهات</span><span class="pill">طلبات تدريب</span></button>
+        <button class="tab-btn" data-target="tr_requests"><span class="label">طلبات التدريب من الجهات</span><span class="pill">طلبات تدريب</span></button>
       </aside>
       <main class="main">
         
@@ -48,30 +48,10 @@
             <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
           <form class="form-grid" onsubmit="return false;">
-            
-            <div class="form-field">
-              <label>عنوان الدورة</label>
-              <input type="text" placeholder="مثال: مهارات القيادة للفِرَق التطوعية">
-            </div>
-            
-
-            <div class="form-field">
-              <label>نوع الدورة</label>
-              <input type="text" placeholder="مثال: حضوري / عن بُعد / هجين">
-            </div>
-            
-
-            <div class="form-field">
-              <label>الرسوم (إن وجدت)</label>
-              <input type="text" placeholder="قيمة التسجيل في حال كانت الدورة مدفوعة">
-            </div>
-            
-
-            <div class="form-field full">
-              <label>وصف موجز لمحتوى الدورة</label>
-              <textarea placeholder="اشرح محاور الدورة والفئة المستهدفة والمخرجات."></textarea>
-            </div>
-            
+            <div class="form-field"><label>عنوان الدورة</label><input type="text" placeholder="مثال: مهارات القيادة للفِرَق التطوعية"></div>
+            <div class="form-field"><label>نوع الدورة</label><input type="text" placeholder="مثال: حضوري / عن بُعد / هجين"></div>
+            <div class="form-field"><label>الرسوم (إن وجدت)</label><input type="text" placeholder="قيمة التسجيل في حال كانت الدورة مدفوعة"></div>
+            <div class="form-field full"><label>وصف موجز لمحتوى الدورة</label><textarea placeholder="اشرح محاور الدورة والفئة المستهدفة والمخرجات."></textarea></div>
             <div class="form-actions form-field full">
               <button class="btn btn-primary" type="submit">حفظ</button>
               <button class="btn btn-ghost" type="button">إلغاء</button>
@@ -79,12 +59,8 @@
           </form>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>م</th><th>عنوان الدورة</th><th>النوع</th><th>الرسوم</th><th>الحالة</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
-              </tbody>
+              <thead><tr><th>م</th><th>عنوان الدورة</th><th>النوع</th><th>الرسوم</th><th>الحالة</th></tr></thead>
+              <tbody><tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -104,30 +80,10 @@
             <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
           <form class="form-grid" onsubmit="return false;">
-            
-            <div class="form-field">
-              <label>اسم الجهة</label>
-              <input type="text" placeholder="الجهة الطالبة للتدريب">
-            </div>
-            
-
-            <div class="form-field">
-              <label>عنوان البرنامج التدريبي</label>
-              <input type="text" placeholder="اسم البرنامج المطلوب تنفيذه">
-            </div>
-            
-
-            <div class="form-field">
-              <label>نمط التنفيذ</label>
-              <input type="text" placeholder="مثال: حضوري / عن بُعد / هجين">
-            </div>
-            
-
-            <div class="form-field full">
-              <label>تفاصيل موجزة عن الطلب</label>
-              <textarea placeholder="اشرح موضوع البرنامج وعدد الأيام والفئة المستهدفة."></textarea>
-            </div>
-            
+            <div class="form-field"><label>اسم الجهة</label><input type="text" placeholder="الجهة الطالبة للتدريب"></div>
+            <div class="form-field"><label>عنوان البرنامج التدريبي</label><input type="text" placeholder="اسم البرنامج المطلوب تنفيذه"></div>
+            <div class="form-field"><label>نمط التنفيذ</label><input type="text" placeholder="مثال: حضوري / عن بُعد / هجين"></div>
+            <div class="form-field full"><label>تفاصيل موجزة عن الطلب</label><textarea placeholder="اشرح موضوع البرنامج وعدد الأيام والفئة المستهدفة."></textarea></div>
             <div class="form-actions form-field full">
               <button class="btn btn-primary" type="submit">حفظ</button>
               <button class="btn btn-ghost" type="button">إلغاء</button>
@@ -135,12 +91,8 @@
           </form>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>م</th><th>الجهة</th><th>عنوان البرنامج</th><th>نمط التنفيذ</th><th>الحالة</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
-              </tbody>
+              <thead><tr><th>م</th><th>الجهة</th><th>عنوان البرنامج</th><th>نمط التنفيذ</th><th>الحالة</th></tr></thead>
+              <tbody><tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr></tbody>
             </table>
           </div>
         </div>

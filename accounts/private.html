@@ -13,16 +13,16 @@
   <div class="header-inner">
     <div class="header-logos">
       <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
-      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya">
-      <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF">
+      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
+      <img src="/HASSEEF_P/hasseef.png" alt="Hasseef National">
       <div class="header-meta">
         <div class="header-title">منصة حصيف الوطنية للتكامل التنموي</div>
         <div class="header-sub">منتج تشغيلي لبرنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
       </div>
     </div>
     <div class="header-right">
-      <span class="badge badge-primary">مواءمة مع رؤية 2030</span>
-      <span class="badge">إصدار أولي تجريبي للواجهة</span>
+      <span class="badge badge-primary">متوائمة مع هوية حصيف الوطنية</span>
+      <span class="badge">نسخة واجهات تجريبية</span>
     </div>
   </div>
 </header>
@@ -31,7 +31,7 @@
       <aside class="sidebar">
         <div class="sidebar-title">حساب القطاع الخاص</div>
         <button class="tab-btn" data-target="priv_csr"><span class="label">برامج المسؤولية الاجتماعية</span><span class="pill">CSR</span></button>
-      <button class="tab-btn" data-target="priv_invest"><span class="label">المشاريع الاستثمارية التنموية</span><span class="pill">استثمار تنموي</span></button>
+        <button class="tab-btn" data-target="priv_invest"><span class="label">المشاريع الاستثمارية التنموية</span><span class="pill">استثمار</span></button>
       </aside>
       <main class="main">
         
@@ -48,30 +48,10 @@
             <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
           <form class="form-grid" onsubmit="return false;">
-            
-            <div class="form-field">
-              <label>اسم البرنامج</label>
-              <input type="text" placeholder="مثال: برنامج دعم الأسر المنتجة">
-            </div>
-            
-
-            <div class="form-field">
-              <label>محور المسؤولية الاجتماعية</label>
-              <input type="text" placeholder="مثال: تمكين اقتصادي / تعليمي / صحي">
-            </div>
-            
-
-            <div class="form-field">
-              <label>الميزانية التقديرية</label>
-              <input type="text" placeholder="اكتب قيمة تقديرية أولية للبرنامج">
-            </div>
-            
-
-            <div class="form-field full">
-              <label>وصف موجز للبرنامج</label>
-              <textarea placeholder="اشرح فكرة البرنامج، والفئة المستهدفة، وأثره المتوقع."></textarea>
-            </div>
-            
+            <div class="form-field"><label>اسم البرنامج</label><input type="text" placeholder="مثال: برنامج دعم الأسر المنتجة"></div>
+            <div class="form-field"><label>محور المسؤولية الاجتماعية</label><input type="text" placeholder="مثال: تمكين اقتصادي / تعليمي / صحي"></div>
+            <div class="form-field"><label>الميزانية التقديرية</label><input type="text" placeholder="القيمة التقديرية للبرنامج"></div>
+            <div class="form-field full"><label>وصف موجز للبرنامج</label><textarea placeholder="اشرح فكرة البرنامج والفئة المستهدفة والأثر المتوقع."></textarea></div>
             <div class="form-actions form-field full">
               <button class="btn btn-primary" type="submit">حفظ</button>
               <button class="btn btn-ghost" type="button">إلغاء</button>
@@ -79,12 +59,8 @@
           </form>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>م</th><th>اسم البرنامج</th><th>المحور</th><th>الميزانية</th><th>الحالة</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
-              </tbody>
+              <thead><tr><th>م</th><th>اسم البرنامج</th><th>المحور</th><th>الميزانية</th><th>الحالة</th></tr></thead>
+              <tbody><tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -96,7 +72,7 @@
           <div class="panel-header">
             <div>
               <div class="panel-title">المشاريع الاستثمارية التنموية</div>
-              <div class="panel-sub">تسجيل المشاريع التي تجمع بين العائد المالي والأثر التنموي.</div>
+              <div class="panel-sub">إدراج المشاريع التي تجمع بين العائد المالي والأثر التنموي.</div>
             </div>
           </div>
           <div class="chips-row">
@@ -104,30 +80,10 @@
             <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
           <form class="form-grid" onsubmit="return false;">
-            
-            <div class="form-field">
-              <label>عنوان المشروع</label>
-              <input type="text" placeholder="مثال: مركز ابتكار اجتماعي لرواد الأعمال">
-            </div>
-            
-
-            <div class="form-field">
-              <label>نوع الشراكة</label>
-              <input type="text" placeholder="مثال: استثمار مباشر / شراكة / رعاية">
-            </div>
-            
-
-            <div class="form-field">
-              <label>الجهة المنفذة</label>
-              <input type="text" placeholder="مثال: جمعية / شركة تشغيل / جامعة">
-            </div>
-            
-
-            <div class="form-field full">
-              <label>وصف موجز للمشروع</label>
-              <textarea placeholder="اشرح الفكرة وقيمة المشروع المضافة للمجتمع."></textarea>
-            </div>
-            
+            <div class="form-field"><label>عنوان المشروع</label><input type="text" placeholder="مثال: مركز ابتكار اجتماعي لرواد الأعمال"></div>
+            <div class="form-field"><label>نوع الشراكة</label><input type="text" placeholder="مثال: استثمار مباشر / شراكة / رعاية"></div>
+            <div class="form-field"><label>الجهة المنفذة</label><input type="text" placeholder="مثال: جمعية / شركة تشغيل / جامعة"></div>
+            <div class="form-field full"><label>وصف موجز للمشروع</label><textarea placeholder="اشرح الفكرة والقيمة المضافة للمجتمع."></textarea></div>
             <div class="form-actions form-field full">
               <button class="btn btn-primary" type="submit">حفظ</button>
               <button class="btn btn-ghost" type="button">إلغاء</button>
@@ -135,12 +91,8 @@
           </form>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>م</th><th>اسم المشروع</th><th>نوع الشراكة</th><th>الجهة المنفذة</th><th>الحالة</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
-              </tbody>
+              <thead><tr><th>م</th><th>اسم المشروع</th><th>نوع الشراكة</th><th>الجهة المنفذة</th><th>الحالة</th></tr></thead>
+              <tbody><tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr></tbody>
             </table>
           </div>
         </div>

@@ -13,16 +13,16 @@
   <div class="header-inner">
     <div class="header-logos">
       <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
-      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya">
-      <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF">
+      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
+      <img src="/HASSEEF_P/hasseef.png" alt="Hasseef National">
       <div class="header-meta">
         <div class="header-title">منصة حصيف الوطنية للتكامل التنموي</div>
         <div class="header-sub">منتج تشغيلي لبرنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
       </div>
     </div>
     <div class="header-right">
-      <span class="badge badge-primary">مواءمة مع رؤية 2030</span>
-      <span class="badge">إصدار أولي تجريبي للواجهة</span>
+      <span class="badge badge-primary">متوائمة مع هوية حصيف الوطنية</span>
+      <span class="badge">نسخة واجهات تجريبية</span>
     </div>
   </div>
 </header>
@@ -31,7 +31,7 @@
       <aside class="sidebar">
         <div class="sidebar-title">حساب الجامعة</div>
         <button class="tab-btn" data-target="uni_consult"><span class="label">طلبات الاستشارات العلمية</span><span class="pill">استشارات</span></button>
-      <button class="tab-btn" data-target="uni_coop"><span class="label">فرص التدريب التعاوني</span><span class="pill">تدريب تعاوني</span></button>
+        <button class="tab-btn" data-target="uni_coop"><span class="label">فرص التدريب التعاوني</span><span class="pill">تدريب تعاوني</span></button>
       </aside>
       <main class="main">
         
@@ -40,7 +40,7 @@
           <div class="panel-header">
             <div>
               <div class="panel-title">طلبات الاستشارات العلمية</div>
-              <div class="panel-sub">استقبال طلبات الاستشارات من الجهات المختلفة وربطها بالكليات والباحثين.</div>
+              <div class="panel-sub">استقبال طلبات الاستشارات وربطها بالكليات والباحثين في الجامعة.</div>
             </div>
           </div>
           <div class="chips-row">
@@ -48,30 +48,10 @@
             <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
           <form class="form-grid" onsubmit="return false;">
-            
-            <div class="form-field">
-              <label>اسم الجهة الطالبة</label>
-              <input type="text" placeholder="مثال: جمعية / شركة / جهة حكومية">
-            </div>
-            
-
-            <div class="form-field">
-              <label>عنوان المشروع أو البرنامج</label>
-              <input type="text" placeholder="مثال: مشروع تمكين رواد الأعمال الشباب">
-            </div>
-            
-
-            <div class="form-field">
-              <label>الكلية / التخصص المقترح</label>
-              <input type="text" placeholder="مثال: كلية الأعمال / كلية الحاسب">
-            </div>
-            
-
-            <div class="form-field full">
-              <label>وصف موجز لطلب الاستشارة</label>
-              <textarea placeholder="اشرح ما تحتاجه الجهة من دعم علمي أو بحثي."></textarea>
-            </div>
-            
+            <div class="form-field"><label>اسم الجهة الطالبة</label><input type="text" placeholder="مثال: جمعية / شركة / جهة حكومية"></div>
+            <div class="form-field"><label>عنوان المشروع أو البرنامج</label><input type="text" placeholder="مثال: مشروع تمكين رواد الأعمال الشباب"></div>
+            <div class="form-field"><label>الكلية / التخصص المقترح</label><input type="text" placeholder="مثال: كلية الأعمال / كلية الحاسب"></div>
+            <div class="form-field full"><label>وصف موجز لطلب الاستشارة</label><textarea placeholder="اشرح ما تحتاجه الجهة من دعم علمي أو بحثي."></textarea></div>
             <div class="form-actions form-field full">
               <button class="btn btn-primary" type="submit">حفظ</button>
               <button class="btn btn-ghost" type="button">إلغاء</button>
@@ -79,12 +59,8 @@
           </form>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>م</th><th>الجهة</th><th>عنوان المشروع</th><th>الكلية المقترحة</th><th>الحالة</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
-              </tbody>
+              <thead><tr><th>م</th><th>الجهة</th><th>عنوان المشروع</th><th>الكلية</th><th>الحالة</th></tr></thead>
+              <tbody><tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -104,30 +80,10 @@
             <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
           <form class="form-grid" onsubmit="return false;">
-            
-            <div class="form-field">
-              <label>اسم الجهة</label>
-              <input type="text" placeholder="اسم الجهة المستضيفة للمتدربين">
-            </div>
-            
-
-            <div class="form-field">
-              <label>التخصص المطلوب</label>
-              <input type="text" placeholder="مثال: تسويق / برمجة / موارد بشرية">
-            </div>
-            
-
-            <div class="form-field">
-              <label>عدد المقاعد المتاحة</label>
-              <input type="text" placeholder="عدد الطلاب المتاح قبولهم">
-            </div>
-            
-
-            <div class="form-field full">
-              <label>وصف موجز للمهام</label>
-              <textarea placeholder="اشرح نوع المهام التي سيقوم بها المتدربون."></textarea>
-            </div>
-            
+            <div class="form-field"><label>اسم الجهة</label><input type="text" placeholder="اسم الجهة المستضيفة للمتدربين"></div>
+            <div class="form-field"><label>التخصص المطلوب</label><input type="text" placeholder="مثال: تسويق / برمجة / موارد بشرية"></div>
+            <div class="form-field"><label>عدد المقاعد المتاحة</label><input type="text" placeholder="عدد الطلاب المتاح قبولهم"></div>
+            <div class="form-field full"><label>وصف موجز للمهام</label><textarea placeholder="اشرح نوع المهام التي سيقوم بها المتدربون."></textarea></div>
             <div class="form-actions form-field full">
               <button class="btn btn-primary" type="submit">حفظ</button>
               <button class="btn btn-ghost" type="button">إلغاء</button>
@@ -135,12 +91,8 @@
           </form>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr><th>م</th><th>الجهة</th><th>التخصص</th><th>عدد المقاعد</th><th>الحالة</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
-              </tbody>
+              <thead><tr><th>م</th><th>الجهة</th><th>التخصص</th><th>عدد المقاعد</th><th>الحالة</th></tr></thead>
+              <tbody><tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr></tbody>
             </table>
           </div>
         </div>
