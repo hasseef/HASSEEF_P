@@ -7,58 +7,147 @@
   <link rel="stylesheet" href="/HASSEEF_P/assets/css/style.css">
 </head>
 <body>
-  
-<header>
-  <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
-  <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
-  <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF National Youth Program">
+  <div class="app-shell">
+    
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logos">
+      <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
+      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya">
+      <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF">
+      <div class="header-meta">
+        <div class="header-title">منصة حصيف الوطنية للتكامل التنموي</div>
+        <div class="header-sub">منتج تشغيلي لبرنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="badge badge-primary">مواءمة مع رؤية 2030</span>
+      <span class="badge">إصدار أولي تجريبي للواجهة</span>
+    </div>
+  </div>
 </header>
 
-  <div class="main-wrapper">
-    <aside class="sidebar">
-      <h2>حساب المانحين والجهات التمويلية</h2>
-      <button class="tab-btn" data-target="service1">فرص المنح</button>
-    </aside>
-    <main class="main">
-      <section id="service1" class="tab-content">
-        <h1>فرص المنح</h1>
-        <p class="section-note">استعراض وتسجيل الفرص التمويلية وبرامج المنح التنموية.</p>
-        <div class="form-card">
-          <div class="form-row">
-            <label>العنوان</label>
-            <input type="text" placeholder="أدخل العنوان هنا">
+    <div class="main-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-title">حساب المانحين والجهات التمويلية</div>
+        <button class="tab-btn" data-target="dn_opps"><span class="label">فرص المنح المفتوحة</span><span class="pill">فرص منح</span></button>
+      <button class="tab-btn" data-target="dn_portfolio"><span class="label">محفظة المشاريع الممولة</span><span class="pill">محفظة</span></button>
+      </aside>
+      <main class="main">
+        
+      <section id="dn_opps" class="tab-content" style="display:none;">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">فرص المنح المفتوحة</div>
+              <div class="panel-sub">إدارة فرص المنح التي تقدمها الجهة وشروط الاستفادة منها.</div>
+            </div>
           </div>
-          <div class="form-row">
-            <label>الوصف</label>
-            <textarea placeholder="أدخل وصفًا موجزًا"></textarea>
+          <div class="chips-row">
+            <span class="chip chip-primary">واجهة تجريبية</span>
+            <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
-          <div class="form-row">
-            <label>الفئة أو البرنامج المرتبط</label>
-            <input type="text" placeholder="مثال: جودة الحياة / تنمية القطاع غير الربحي">
-          </div>
-          <div class="btn-row">
-            <button type="button" class="btn btn-primary">حفظ</button>
-            <button type="button" class="btn btn-ghost">إلغاء</button>
+          <form class="form-grid" onsubmit="return false;">
+            
+            <div class="form-field">
+              <label>اسم برنامج المنح</label>
+              <input type="text" placeholder="مثال: برنامج تمكين الجمعيات الصغيرة">
+            </div>
+            
+
+            <div class="form-field">
+              <label>القطاع المستهدف</label>
+              <input type="text" placeholder="مثال: جمعيات / جامعات / مبادرات شبابية">
+            </div>
+            
+
+            <div class="form-field">
+              <label>الميزانية السنوية للبرنامج</label>
+              <input type="text" placeholder="القيمة السنوية المخصصة للمنح">
+            </div>
+            
+
+            <div class="form-field full">
+              <label>وصف موجز لسياسة المنح</label>
+              <textarea placeholder="اشرح المعايير الرئيسية وآلية التقديم والفرز."></textarea>
+            </div>
+            
+            <div class="form-actions form-field full">
+              <button class="btn btn-primary" type="submit">حفظ</button>
+              <button class="btn btn-ghost" type="button">إلغاء</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>م</th><th>برنامج المنح</th><th>القطاع المستهدف</th><th>الميزانية</th><th>الحالة</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>م</th>
-              <th>العنوان</th>
-              <th>الحالة</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>عنصر تجريبي</td>
-              <td>مسجّل</td>
-            </tr>
-          </tbody>
-        </table>
       </section>
-    </main>
+    
+
+      <section id="dn_portfolio" class="tab-content" style="display:none;">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">محفظة المشاريع الممولة</div>
+              <div class="panel-sub">عرض موجز للمشاريع التي تم تمويلها عبر برامج المنح أو الاستثمار التنموي.</div>
+            </div>
+          </div>
+          <div class="chips-row">
+            <span class="chip chip-primary">واجهة تجريبية</span>
+            <span class="chip">نموذج إدخال + جدول عرض</span>
+          </div>
+          <form class="form-grid" onsubmit="return false;">
+            
+            <div class="form-field">
+              <label>اسم المشروع</label>
+              <input type="text" placeholder="المشروع أو البرنامج الممول">
+            </div>
+            
+
+            <div class="form-field">
+              <label>الجهة المنفذة</label>
+              <input type="text" placeholder="مثال: جمعية / شركة / جامعة">
+            </div>
+            
+
+            <div class="form-field">
+              <label>نوع التمويل</label>
+              <input type="text" placeholder="مثال: منحة / استثمار / رعاية">
+            </div>
+            
+
+            <div class="form-field full">
+              <label>ملاحظات موجزة عن الأثر</label>
+              <input type="text" placeholder="شرح موجز للأثر المتحقق أو المتوقع.">
+            </div>
+            
+            <div class="form-actions form-field full">
+              <button class="btn btn-primary" type="submit">حفظ</button>
+              <button class="btn btn-ghost" type="button">إلغاء</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>م</th><th>المشروع</th><th>الجهة المنفذة</th><th>نوع التمويل</th><th>الحالة</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    
+      </main>
+    </div>
   </div>
   <script src="/HASSEEF_P/assets/js/app.js"></script>
 </body>

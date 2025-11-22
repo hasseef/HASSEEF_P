@@ -7,58 +7,147 @@
   <link rel="stylesheet" href="/HASSEEF_P/assets/css/style.css">
 </head>
 <body>
-  
-<header>
-  <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
-  <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
-  <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF National Youth Program">
+  <div class="app-shell">
+    
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logos">
+      <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
+      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya">
+      <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF">
+      <div class="header-meta">
+        <div class="header-title">منصة حصيف الوطنية للتكامل التنموي</div>
+        <div class="header-sub">منتج تشغيلي لبرنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="badge badge-primary">مواءمة مع رؤية 2030</span>
+      <span class="badge">إصدار أولي تجريبي للواجهة</span>
+    </div>
+  </div>
 </header>
 
-  <div class="main-wrapper">
-    <aside class="sidebar">
-      <h2>حساب القطاع الخاص</h2>
-      <button class="tab-btn" data-target="service1">المسؤولية الاجتماعية</button>
-    </aside>
-    <main class="main">
-      <section id="service1" class="tab-content">
-        <h1>المسؤولية الاجتماعية</h1>
-        <p class="section-note">تسجيل مبادرات وبرامج المسؤولية الاجتماعية وربطها بأهداف الرؤية.</p>
-        <div class="form-card">
-          <div class="form-row">
-            <label>العنوان</label>
-            <input type="text" placeholder="أدخل العنوان هنا">
+    <div class="main-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-title">حساب القطاع الخاص</div>
+        <button class="tab-btn" data-target="priv_csr"><span class="label">برامج المسؤولية الاجتماعية</span><span class="pill">CSR</span></button>
+      <button class="tab-btn" data-target="priv_invest"><span class="label">المشاريع الاستثمارية التنموية</span><span class="pill">استثمار تنموي</span></button>
+      </aside>
+      <main class="main">
+        
+      <section id="priv_csr" class="tab-content" style="display:none;">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">برامج المسؤولية الاجتماعية</div>
+              <div class="panel-sub">تصميم وإدارة برامج المسؤولية الاجتماعية وربطها بمؤشرات الأثر.</div>
+            </div>
           </div>
-          <div class="form-row">
-            <label>الوصف</label>
-            <textarea placeholder="أدخل وصفًا موجزًا"></textarea>
+          <div class="chips-row">
+            <span class="chip chip-primary">واجهة تجريبية</span>
+            <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
-          <div class="form-row">
-            <label>الفئة أو البرنامج المرتبط</label>
-            <input type="text" placeholder="مثال: جودة الحياة / تنمية القطاع غير الربحي">
-          </div>
-          <div class="btn-row">
-            <button type="button" class="btn btn-primary">حفظ</button>
-            <button type="button" class="btn btn-ghost">إلغاء</button>
+          <form class="form-grid" onsubmit="return false;">
+            
+            <div class="form-field">
+              <label>اسم البرنامج</label>
+              <input type="text" placeholder="مثال: برنامج دعم الأسر المنتجة">
+            </div>
+            
+
+            <div class="form-field">
+              <label>محور المسؤولية الاجتماعية</label>
+              <input type="text" placeholder="مثال: تمكين اقتصادي / تعليمي / صحي">
+            </div>
+            
+
+            <div class="form-field">
+              <label>الميزانية التقديرية</label>
+              <input type="text" placeholder="اكتب قيمة تقديرية أولية للبرنامج">
+            </div>
+            
+
+            <div class="form-field full">
+              <label>وصف موجز للبرنامج</label>
+              <textarea placeholder="اشرح فكرة البرنامج، والفئة المستهدفة، وأثره المتوقع."></textarea>
+            </div>
+            
+            <div class="form-actions form-field full">
+              <button class="btn btn-primary" type="submit">حفظ</button>
+              <button class="btn btn-ghost" type="button">إلغاء</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>م</th><th>اسم البرنامج</th><th>المحور</th><th>الميزانية</th><th>الحالة</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>م</th>
-              <th>العنوان</th>
-              <th>الحالة</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>عنصر تجريبي</td>
-              <td>مسجّل</td>
-            </tr>
-          </tbody>
-        </table>
       </section>
-    </main>
+    
+
+      <section id="priv_invest" class="tab-content" style="display:none;">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">المشاريع الاستثمارية التنموية</div>
+              <div class="panel-sub">تسجيل المشاريع التي تجمع بين العائد المالي والأثر التنموي.</div>
+            </div>
+          </div>
+          <div class="chips-row">
+            <span class="chip chip-primary">واجهة تجريبية</span>
+            <span class="chip">نموذج إدخال + جدول عرض</span>
+          </div>
+          <form class="form-grid" onsubmit="return false;">
+            
+            <div class="form-field">
+              <label>عنوان المشروع</label>
+              <input type="text" placeholder="مثال: مركز ابتكار اجتماعي لرواد الأعمال">
+            </div>
+            
+
+            <div class="form-field">
+              <label>نوع الشراكة</label>
+              <input type="text" placeholder="مثال: استثمار مباشر / شراكة / رعاية">
+            </div>
+            
+
+            <div class="form-field">
+              <label>الجهة المنفذة</label>
+              <input type="text" placeholder="مثال: جمعية / شركة تشغيل / جامعة">
+            </div>
+            
+
+            <div class="form-field full">
+              <label>وصف موجز للمشروع</label>
+              <textarea placeholder="اشرح الفكرة وقيمة المشروع المضافة للمجتمع."></textarea>
+            </div>
+            
+            <div class="form-actions form-field full">
+              <button class="btn btn-primary" type="submit">حفظ</button>
+              <button class="btn btn-ghost" type="button">إلغاء</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>م</th><th>اسم المشروع</th><th>نوع الشراكة</th><th>الجهة المنفذة</th><th>الحالة</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    
+      </main>
+    </div>
   </div>
   <script src="/HASSEEF_P/assets/js/app.js"></script>
 </body>

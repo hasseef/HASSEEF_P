@@ -7,58 +7,147 @@
   <link rel="stylesheet" href="/HASSEEF_P/assets/css/style.css">
 </head>
 <body>
-  
-<header>
-  <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
-  <img src="/HASSEEF_P/talbiya.png" alt="Talbiya Initiative">
-  <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF National Youth Program">
+  <div class="app-shell">
+    
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logos">
+      <img src="/HASSEEF_P/vision2030.png" alt="Vision 2030">
+      <img src="/HASSEEF_P/talbiya.png" alt="Talbiya">
+      <img src="/HASSEEF_P/hasseef.png" alt="HASSEEF">
+      <div class="header-meta">
+        <div class="header-title">منصة حصيف الوطنية للتكامل التنموي</div>
+        <div class="header-sub">منتج تشغيلي لبرنامج شباب المملكة حصيف الوطني – مبادرة تلبية</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="badge badge-primary">مواءمة مع رؤية 2030</span>
+      <span class="badge">إصدار أولي تجريبي للواجهة</span>
+    </div>
+  </div>
 </header>
 
-  <div class="main-wrapper">
-    <aside class="sidebar">
-      <h2>حساب القطاع غير الربحي</h2>
-      <button class="tab-btn" data-target="service1">المشاريع والمبادرات</button>
-    </aside>
-    <main class="main">
-      <section id="service1" class="tab-content">
-        <h1>المشاريع والمبادرات</h1>
-        <p class="section-note">تسجيل وإدارة المشاريع التنموية للجمعيات والكيانات غير الربحية.</p>
-        <div class="form-card">
-          <div class="form-row">
-            <label>العنوان</label>
-            <input type="text" placeholder="أدخل العنوان هنا">
+    <div class="main-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-title">حساب القطاع غير الربحي</div>
+        <button class="tab-btn" data-target="np_projects"><span class="label">المشاريع والمبادرات</span><span class="pill">مشاريع</span></button>
+      <button class="tab-btn" data-target="np_donations"><span class="label">حملات التبرع</span><span class="pill">تبرعات</span></button>
+      </aside>
+      <main class="main">
+        
+      <section id="np_projects" class="tab-content" style="display:none;">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">المشاريع والمبادرات</div>
+              <div class="panel-sub">إدراج المشاريع التنموية للجمعية وربطها بالمؤشرات والأهداف.</div>
+            </div>
           </div>
-          <div class="form-row">
-            <label>الوصف</label>
-            <textarea placeholder="أدخل وصفًا موجزًا"></textarea>
+          <div class="chips-row">
+            <span class="chip chip-primary">واجهة تجريبية</span>
+            <span class="chip">نموذج إدخال + جدول عرض</span>
           </div>
-          <div class="form-row">
-            <label>الفئة أو البرنامج المرتبط</label>
-            <input type="text" placeholder="مثال: جودة الحياة / تنمية القطاع غير الربحي">
-          </div>
-          <div class="btn-row">
-            <button type="button" class="btn btn-primary">حفظ</button>
-            <button type="button" class="btn btn-ghost">إلغاء</button>
+          <form class="form-grid" onsubmit="return false;">
+            
+            <div class="form-field">
+              <label>اسم المشروع</label>
+              <input type="text" placeholder="مثال: برنامج تمكين الأيتام">
+            </div>
+            
+
+            <div class="form-field">
+              <label>نوع المشروع</label>
+              <input type="text" placeholder="مثال: تعليمي / صحي / اقتصادي">
+            </div>
+            
+
+            <div class="form-field">
+              <label>الميزانية التقديرية</label>
+              <input type="text" placeholder="القيمة التقديرية الإجمالية للمشروع">
+            </div>
+            
+
+            <div class="form-field full">
+              <label>وصف موجز للمشروع</label>
+              <textarea placeholder="اشرح المشكلة والحل والفئة المستهدفة والشركاء."></textarea>
+            </div>
+            
+            <div class="form-actions form-field full">
+              <button class="btn btn-primary" type="submit">حفظ</button>
+              <button class="btn btn-ghost" type="button">إلغاء</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>م</th><th>اسم المشروع</th><th>النوع</th><th>الميزانية</th><th>الحالة</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>م</th>
-              <th>العنوان</th>
-              <th>الحالة</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>عنصر تجريبي</td>
-              <td>مسجّل</td>
-            </tr>
-          </tbody>
-        </table>
       </section>
-    </main>
+    
+
+      <section id="np_donations" class="tab-content" style="display:none;">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">حملات التبرع</div>
+              <div class="panel-sub">إدارة حملات التبرع وربطها بالمشاريع المسجلة في المنصة.</div>
+            </div>
+          </div>
+          <div class="chips-row">
+            <span class="chip chip-primary">واجهة تجريبية</span>
+            <span class="chip">نموذج إدخال + جدول عرض</span>
+          </div>
+          <form class="form-grid" onsubmit="return false;">
+            
+            <div class="form-field">
+              <label>عنوان الحملة</label>
+              <input type="text" placeholder="مثال: حملة كسوة الشتاء للأسر المستحقة">
+            </div>
+            
+
+            <div class="form-field">
+              <label>المشروع المرتبط</label>
+              <input type="text" placeholder="اختر أو اكتب المشروع المرتبط بالحملة">
+            </div>
+            
+
+            <div class="form-field">
+              <label>هدف الحملة المالي</label>
+              <input type="text" placeholder="مثال: 250,000 ريال">
+            </div>
+            
+
+            <div class="form-field full">
+              <label>وصف موجز للحملة</label>
+              <textarea placeholder="اشرح سبب الحملة وكيف سيتم توجيه المبلغ."></textarea>
+            </div>
+            
+            <div class="form-actions form-field full">
+              <button class="btn btn-primary" type="submit">حفظ</button>
+              <button class="btn btn-ghost" type="button">إلغاء</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>م</th><th>عنوان الحملة</th><th>المشروع المرتبط</th><th>الهدف المالي</th><th>الحالة</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td><td>تجريبي</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    
+      </main>
+    </div>
   </div>
   <script src="/HASSEEF_P/assets/js/app.js"></script>
 </body>
